@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   Image,
@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -29,11 +30,10 @@ import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
-import { borderBottom } from '../../utils/navigation';
-
+import PushNotification from 'react-native-push-notification';
 const theme = 'light';
 
-const CreateNickName = props => {
+const privateKeyImport = props => {
   const navigation = useNavigation();
   const { loginSuccess } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -44,14 +44,20 @@ const CreateNickName = props => {
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
   const [isSelected, setSelection] = useState(false);
+  const [privateKey, setPrivateKey] = useState()
+  useEffect(() => {
+    const getPrivate = async () => {
+      const key = await AsyncStorage.getItem('privateKey')
+      setPrivateKey(key)
+    }
+    getPrivate()
+  }, [])
 
-  const onGoToSignUp = () => {
-    navigation.navigate('SignUp');
-  };
+  const handleClipboard = async () => {
+    const privateKey = await AsyncStorage.getItem("privateKey")
+    Clipboard.setString(privateKey)
 
-  const forgotPassword = () => {
-    navigation.navigate('ForgotPassword');
-  };
+  }
 
   const isValid = () => {
     seterrNickname('');
@@ -61,16 +67,20 @@ const CreateNickName = props => {
       nicknameInput.current.focus();
       return false;
     }
+    if (!password.length) {
+      setErrPassword('Please enter password');
+      passwordInput.current.focus();
+      return false;
+    }
     return true;
   };
 
   const onSubmit = () => {
-    if (isValid()) {
-      setIsLoading(true);
+   
 
       // loginSuccess({});
-      navigation.navigate("CreateSponserNickName")
-    }
+      navigation.navigate("ConnectMetamask")
+ 
   };
   const onCheckChange = () => {
     setSelection(!isSelected);
@@ -99,45 +109,39 @@ const CreateNickName = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  Create a nickanme to continue
+                  Enter your Old Credentials
                 </Text>
               </View>
+
               <CustomTextInput
-                inputRef={nicknameInput}
-                returnKeyType="next"
-                keyboardType="email-address"
+                inputRef={passwordInput}
+                label={'Password'}
+                iconRight={'passwordShow'}
+                placeholder={'Contraseña'}
+                returnKeyType="send"
                 textContentType="oneTimeCode"
-                label={'Nickname'}
-                placeholder={'Nickname'}
                 theme={theme}
-                error={errNickname}
-                onChangeText={val => setNickname(val)}
+                value={privateKey}
+                secureTextEntry={true}
+                error={errPassword}
+                onChangeText={val => setPassword(val)}
               />
 
-              <View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <View
-                    style={{ marginTop: -15, marginRight: -15, marginLeft: -10 }}
+              <TouchableOpacity style={styles.forgotContainer} onPress={handleClipboard}>
+                <LinearGradient
+                  colors={['#D1A6FF', '#a857ff', '#a857ff']}
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  locations={[0, 0.67, 1]}
+                  style={{ borderRadius: 12 }}
+                >
+                  <Text
+                    style={[styles.forgotText, { color: COLOR_WHITE }]}
                   >
-                    <CheckBox
-                      // title = "check box"
-                      checked={isSelected}
-                      onPress={onCheckChange}
-                      style={{ margin: 0, backgroundColor: "#000", margin: 0 }}
-                    />
-                  </View>
-                  <Text
-                    style={[styles.termText, { color: COLOR_WHITE, marginRight: 5 }]}
-                  >I have read and agree</Text>
-                  <Text
-                    style={[styles.termText, { color: "#01dfcc" }]}
-                  >to the term and conditions</Text>
-                </View>
-
-              </View>
-
-
+                    {'Copy clave privada'}
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </KeyboardView>
@@ -152,9 +156,9 @@ const CreateNickName = props => {
               marginHorizontal: 20,
               borderRadius: 43,
             }}>
-            <TouchableOpacity disabled={!isSelected} style={[styles.registerButton, { borderBottom: 20 }]} onPress={onSubmit}>
+            <TouchableOpacity style={[styles.registerButton]} onPress={onSubmit}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>{!isSelected?<>LOG IN</>:<>CONTINUE</> }</Text>
+                <Text style={styles.registerText}>CONTINUE LOG IN</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -171,4 +175,4 @@ const mapDispatchToProps = dispatch => ({
   appStart: params => dispatch(appStartAction(params)),
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(CreateNickName));
+export default connect(null, mapDispatchToProps)(withTheme(privateKeyImport));

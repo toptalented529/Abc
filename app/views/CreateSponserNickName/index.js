@@ -33,7 +33,7 @@ import { borderBottom } from '../../utils/navigation';
 
 const theme = 'light';
 
-const CreateNickName = props => {
+const CreateSponserNickName = props => {
   const navigation = useNavigation();
   const { loginSuccess } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +45,7 @@ const CreateNickName = props => {
   const passwordInput = useRef(null);
   const [isSelected, setSelection] = useState(false);
 
-  const onGoToSignUp = () => {
+  const onGoToSignUp = props => {
     navigation.navigate('SignUp');
   };
 
@@ -61,6 +61,7 @@ const CreateNickName = props => {
       nicknameInput.current.focus();
       return false;
     }
+
     return true;
   };
 
@@ -68,8 +69,8 @@ const CreateNickName = props => {
     if (isValid()) {
       setIsLoading(true);
 
-      // loginSuccess({});
-      navigation.navigate("CreateSponserNickName")
+      loginSuccess({});
+      // navigation.navigate("CreatePin")
     }
   };
   const onCheckChange = () => {
@@ -99,7 +100,7 @@ const CreateNickName = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  Create a nickanme to continue
+                  Create your Sponser'nickanme 
                 </Text>
               </View>
               <CustomTextInput
@@ -154,7 +155,7 @@ const CreateNickName = props => {
             }}>
             <TouchableOpacity disabled={!isSelected} style={[styles.registerButton, { borderBottom: 20 }]} onPress={onSubmit}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>{!isSelected?<>LOG IN</>:<>CONTINUE</> }</Text>
+                <Text style={styles.registerText}>{!isSelected?<>CONTINUE</>:<>SAVE</> }</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -171,4 +172,4 @@ const mapDispatchToProps = dispatch => ({
   appStart: params => dispatch(appStartAction(params)),
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(CreateNickName));
+export default connect(null, mapDispatchToProps)(withTheme(CreateSponserNickName));

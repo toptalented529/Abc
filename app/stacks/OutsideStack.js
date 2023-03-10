@@ -16,6 +16,12 @@ import OldTransactionImport from '../views/OldTransactionImport'
 import OldDataImported from '../views/OldDataImported'
 import CreatePINView from '../views/CreatePINView'
 import CreateNickName from '../views/CreateNickName'
+import CreateSponserNickName from '../views/CreateSponserNickName'
+import GenerateWords from '../views/GenerateWords'
+import OfficeAccount from '../views/OfficeAccount'
+import Mnmonichandle from '../views/Mnmonichandle'
+import PrivateKeyImport from '../views/PrivateKeyImport'
+import ConnectMeatamsk from '../views/ConnectMeatamsk'
 
 // Outside
 const Outside = createStackNavigator()
@@ -41,9 +47,19 @@ const OutsideStack = () => {
         component={MetamaskInstallView}
         options={{ headerShown: false }}
       />
-      <Outside.Screen
+       <Outside.Screen
         name="OldAccount"
         component={OldAccount}
+        options={{ headerShown: false }}
+      />
+       <Outside.Screen
+        name="OfficeAccount"
+        component={OfficeAccount}
+        options={{ headerShown: false }}
+      />
+       <Outside.Screen
+        name="PrivateKeyImport"
+        component={PrivateKeyImport}
         options={{ headerShown: false }}
       />
       <Outside.Screen
@@ -52,13 +68,33 @@ const OutsideStack = () => {
         options={{ headerShown: false }}
       />
       <Outside.Screen
+        name="ConnectMetamask"
+        component={ConnectMeatamsk}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
+        name="MnmonicHandle"
+        component={Mnmonichandle}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
         name="CreateNickName"
         component={CreateNickName}
         options={{ headerShown: false }}
       />
       <Outside.Screen
+        name="CreateSponserNickName"
+        component={CreateSponserNickName}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
         name="OldTransactionImport"
         component={OldTransactionImport}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
+        name="GenerateWords"
+        component={GenerateWords}
         options={{ headerShown: false }}
       />
       <Outside.Screen

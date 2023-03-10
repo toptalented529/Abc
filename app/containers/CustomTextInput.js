@@ -19,6 +19,7 @@ import {
 } from '../constants/colors';
 import images from '../assets/images';
 import Styles from '../views/Styles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const {width} = Dimensions.get('window');
 
@@ -125,7 +126,9 @@ const CustomTextInput = props => {
           {...inputProps}
         />
         {iconRight === 'passwordShow' ? (
-          <Image source={images.eye_slash} style={styles.eyeSlashIcon} />
+          <TouchableOpacity  onPress ={() => {setShowPassword(!showPassword)}}>
+          <Image source={images.eye_slash} style={styles.eyeSlashIcon}  />
+          </TouchableOpacity>
         ) : (
           <></>
         )}

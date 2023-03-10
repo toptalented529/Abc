@@ -10,14 +10,12 @@ import {
   ImageBackground,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 import { withTheme } from '../../theme';
 import sharedStyles from '../Styles';
-import styles from './styles';
+import styles from "./styles"
 import images from '../../assets/images';
-import { COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors';
 
 import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
@@ -27,13 +25,10 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
-import { CheckBox } from 'react-native-elements';
-import OldTransactionImport from '../OldTransactionImport';
-import { borderBottom } from '../../utils/navigation';
 
 const theme = 'light';
 
-const CreateNickName = props => {
+const MnemonicHandle = props => {
   const navigation = useNavigation();
   const { loginSuccess } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +38,6 @@ const CreateNickName = props => {
   const [errPassword, setErrPassword] = useState('');
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
-  const [isSelected, setSelection] = useState(false);
 
   const onGoToSignUp = () => {
     navigation.navigate('SignUp');
@@ -61,20 +55,27 @@ const CreateNickName = props => {
       nicknameInput.current.focus();
       return false;
     }
+    if (!password.length) {
+      setErrPassword('Please enter password');
+      passwordInput.current.focus();
+      return false;
+    }
     return true;
   };
+  const  handleContinue = () => {
+    navigation.navigate("GenerateWords")
+  }
+  const handleSignContinue = () => {
+    navigation.navigate("CreateNickName")
+  }
 
   const onSubmit = () => {
     if (isValid()) {
       setIsLoading(true);
 
-      // loginSuccess({});
-      navigation.navigate("CreateSponserNickName")
+      loginSuccess({});
     }
   };
-  const onCheckChange = () => {
-    setSelection(!isSelected);
-  }
 
   return (
     <SafeAreaView
@@ -94,55 +95,26 @@ const CreateNickName = props => {
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
               <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={[styles.appText, { marginTop: -10 }]}>universo</Text>
+              <Text style={styles.appText}>universo</Text>
             </View>
-            <View style={styles.formContainer}>
-              <View style={styles.description}>
-                <Text style={styles.loginText}>
-                  Create a nickanme to continue
-                </Text>
-              </View>
-              <CustomTextInput
-                inputRef={nicknameInput}
-                returnKeyType="next"
-                keyboardType="email-address"
-                textContentType="oneTimeCode"
-                label={'Nickname'}
-                placeholder={'Nickname'}
-                theme={theme}
-                error={errNickname}
-                onChangeText={val => setNickname(val)}
-              />
 
-              <View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <View
-                    style={{ marginTop: -15, marginRight: -15, marginLeft: -10 }}
-                  >
-                    <CheckBox
-                      // title = "check box"
-                      checked={isSelected}
-                      onPress={onCheckChange}
-                      style={{ margin: 0, backgroundColor: "#000", margin: 0 }}
-                    />
-                  </View>
-                  <Text
-                    style={[styles.termText, { color: COLOR_WHITE, marginRight: 5 }]}
-                  >I have read and agree</Text>
-                  <Text
-                    style={[styles.termText, { color: "#01dfcc" }]}
-                  >to the term and conditions</Text>
-                </View>
-
-              </View>
-
-
-            </View>
           </ScrollView>
         </KeyboardView>
 
-        <View style={{ flexDirection: 'column', marginBottom: 60 }}>
+        <View style={styles.metamaskBox}>
+          <Image style ={styles.metamask} source = {images.logo_white}></Image>
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text style={styles.metamaskText}>You have to create a </Text>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center',marginBottom: 15 }}>
+            <Text style={styles.metamaskText}>24 keywords</Text>
+          </View>
+        </View>
+
+
+
+
+        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}
@@ -151,14 +123,39 @@ const CreateNickName = props => {
             style={{
               marginHorizontal: 20,
               borderRadius: 43,
+
             }}>
-            <TouchableOpacity disabled={!isSelected} style={[styles.registerButton, { borderBottom: 20 }]} onPress={onSubmit}>
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>{!isSelected?<>LOG IN</>:<>CONTINUE</> }</Text>
+            <TouchableOpacity style={styles.registerButton} onPress={handleContinue}>
+              <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
+                <Text style={styles.registerText}>CONTINUE WITH UNIVERSO</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
+          <View
+            style={{
+              height: 20,
+              backgroundColor: "transparent"
+            }}
+          >
 
+          </View>
+          <LinearGradient
+            colors={['#6c40bd', '#1b97c0', '#01dfcc']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            locations={[0, 0.67, 1]}
+            style={{
+              marginHorizontal: 20,
+              borderRadius: 43,
+              borderWidth:3,
+              // borderColor:"#fff"
+            }}>
+            <TouchableOpacity style={styles.registerButton} onPress={handleSignContinue}>
+              <View style={{ flex: 1, justifyContent: 'center' }}>
+                <Text style={styles.registerText}>GO TO METAMASK</Text>
+              </View>
+            </TouchableOpacity>
+          </LinearGradient>
 
         </View>
       </ImageBackground>
@@ -171,4 +168,4 @@ const mapDispatchToProps = dispatch => ({
   appStart: params => dispatch(appStartAction(params)),
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(CreateNickName));
+export default connect(null, mapDispatchToProps)(withTheme(MnemonicHandle));

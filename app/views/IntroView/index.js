@@ -16,13 +16,13 @@ const theme = 'light'
 const slides = [
   {
     key: 1,
-    title: 'Welcome to VIP Billionaires',
+    title: 'Welcome to Office APP',
     text: 'We know what it takes to get ahead in business and we want to help make that happen for you.',
     image: images.intro_1,
   },
   {
     key: 2,
-    title: 'Welcome to VIP Billionaires',
+    title: 'Welcome to Office APP',
     text: 'As a business professional, you know that your connections are everything.',
     image: images.intro_2,
   },
@@ -39,10 +39,10 @@ const IntroView = ({ appReady }) => {
   const _renderItem = ({ item }) => (
     <ImageBackground style={styles.container} source={images.background}>
       <View style={styles.slide}>
-        <Image source={item.image} style={styles.image} />
+        {/* <Image source={item.image} style={styles.image} /> */}
         <View style={styles.description}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>{item.title}</Text>
-          <Text style={[styles.text, { color: themes[theme].titleColor }]}>{item.text}</Text>
+          <Text style={[styles.title, { color: "#fff" }]}>{item.title}</Text>
+          <Text style={[styles.text, { color:  "#fff" }]}>{item.text}</Text>
         </View>
       </View>
     </ImageBackground>

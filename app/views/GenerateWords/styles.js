@@ -1,13 +1,13 @@
-import { StyleSheet,Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { COLOR_WHITE } from '../../constants/colors';
 
 
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   logo: {
     width: 93,
@@ -91,14 +91,17 @@ export default StyleSheet.create({
   },
   registerButton: {
     height: 64,
-    width:width * 0.8,
+    width: width * 0.8,
   },
   metamaskBox: {
     width: width * 0.8,
-    height: 190.3,
+    height: 220.3,
+
     flexGrow: 0,
-    marginBottom:36,
-    flexDirection:"column",
+    marginBottom: 36,
+    flexDirection: "column",
+    // paddingLeft:4,
+    // paddingRight:6,
     // marginVertical: 32.7,
     // marginTop: 32.7,
     // marginBottom: 3,
@@ -109,22 +112,37 @@ export default StyleSheet.create({
     // paddingBottom: 1.4,
     // opacity: 0.1,
     borderRadius: 25,
-    backgroundColor:`rgba(255,255,255,0.1)`,
-    justifyContent:"center",
-    alignItems:"center"
+    backgroundColor: `rgba(255,255,255,0.1)`,
+    justifyContent: "center",
+    alignItems: "center"
   },
   metamask: {
-    width:width * 0.2,
-    height:width * 0.2,
-    marginTop:23,
+    width: width * 0.2,
+    height: width * 0.2,
+    marginTop: 23,
+    resizeMode:'contain',
   },
-  metamaskText : {
-    fontFamily:"Poppins",
+  metamaskText: {
+    fontFamily: "Poppins",
     fontSize: 18,
-  color:"white"
+    color: "white"
   },
-  error : {
-    color:"#FFD700",
-    alignSelf:'center'
+  item: {
+    fontSize:12,
+    color:"white",
+    borderRadius:12,
+    backgroundColor:"#141436",
+    marginTop:3,
+    marginBottom:3,
+    marginRight:2,
+    marginLeft:3,
+    
+
+  },
+  FlatList : {
+    justifyContent:'center',
+    marginTop: 16,
+    paddingLeft:12,
+    paddingRight:12,
   }
 });

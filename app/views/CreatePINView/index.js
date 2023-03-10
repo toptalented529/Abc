@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   Image,
@@ -25,6 +25,9 @@ import { appStart as appStartAction } from '../../actions/app';
 
 import StatusBar from '../../containers/StatusBar';
 import KeyboardView from '../../containers/KeyboardView';
+import axios from 'axios';
+import MetaMaskSDK from '@metamask/sdk';
+import BackgroundTimer from 'react-native-background-timer';
 
 const CreatePINView = props => {
   const navigation = useNavigation();
@@ -34,16 +37,27 @@ const CreatePINView = props => {
   const [pin, setPin] = useState(['', '', '', '', '', '']);
   const refs = useRef([]);
   const [fullPin, setFullPin] = useState(false)
+  const [backKeyPress, setBackKeyPress] = useState(false)
+
+
+  useEffect(() => {
+    const getPin = async () => {
+     
+    }
+    getPin()
+
+  },[])
+
+
+
+
+
 
   const handlePinChange = (index, value) => {
 
     if (index > 0 && !pin[index - 1]) {
       return;
     }
-
-
-
-
     const newPin = [...pin];
     newPin[index] = value;
     setPin(newPin);
@@ -59,18 +73,33 @@ const CreatePINView = props => {
 
   const handleFullPin = (pin) => {
     // Handle the full pin here
+    const sdk = new MetaMaskSDK({
+      openDeeplink: link => {
+        Linking.openURL(link);
+      },
+      timer: BackgroundTimer,
+      dappMetadata: {
+        name: 'React Native Test Dapp',
+        url: 'example.com',
+      },
+    });
+    const ethereum = sdk.getProvider();
+    // const res = axios.
+      console.log('RESULT',ethereum.selectedAddress);
     console.log('Full pin:', pin);
     setFullPin(true)
   };
 
   const handleFocus = (index) => {
-    // if (index > 0 && pin[index] === '') {
-    //   refs.current[index - 1].focus();
-    // }
+
+    if (index > 0 && pin[index - 1] === '') {
+      refs.current[index - 1].focus();
+    }
+    console.log("focus", index)
   };
 
   const handleKeyPress = (index, key) => {
-    if (key === 'Backspace' && pin[index] === '') {
+    if (key === 'Backspace') {
       if (index > 0) {
         refs.current[index - 1].focus();
       } else {
@@ -117,7 +146,7 @@ const CreatePINView = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                 {!fullPin?<> Create a </> : <>This is your </> }  <Text style={{ fontWeight: '700' }}>6-digit code</Text>
+                  {!fullPin ? <> Create a </> : <>This is your </>}  <Text style={{ fontWeight: '700' }}>6-digit code</Text>
                 </Text>
               </View>
               <View
@@ -131,7 +160,7 @@ const CreatePINView = props => {
                     ref={(input) => (refs.current[index] = input)}
                     style={[
                       styles.digitBox,
-                      {borderColor: COLOR_WHITE, color: COLOR_WHITE} ,]}                   value={digit}
+                      { borderColor: COLOR_WHITE, color: COLOR_WHITE },]} value={digit}
                     onChangeText={(text) => handlePinChange(index, text)}
                     keyboardType="numeric"
                     maxLength={1}
@@ -162,12 +191,12 @@ const CreatePINView = props => {
             marginBottom: 30,
             borderRadius: 43,
           }}>
-          <TouchableOpacity disabled ={!fullPin} style={styles.registerButton} onPress = {handleContinue}>
+          <TouchableOpacity disabled={!fullPin} style={styles.registerButton} onPress={handleContinue}>
             <View style={{ flex: 1, justifyContent: 'center' }}>
               <Text style={styles.registerText}>CONTINUE</Text>
             </View>
           </TouchableOpacity>
-        </LinearGradient> 
+        </LinearGradient>
       </ImageBackground>
     </SafeAreaView>
   );

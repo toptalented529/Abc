@@ -43,28 +43,28 @@ const theme = 'light';
 
 
 
-// const sdk = new MetaMaskSDK({
-//   openDeeplink: link => {
-//     Linking.openURL(link);
-//   },
-//   timer: BackgroundTimer,
-//   dappMetadata: {
-//     name: 'React Native Test Dapp',
-//     url: 'example.com',
-//   },
-// });
-// const ethereum = sdk.getProvider();
+const sdk = new MetaMaskSDK({
+  openDeeplink: link => {
+    Linking.openURL(link);
+  },
+  timer: BackgroundTimer,
+  dappMetadata: {
+    name: 'React Native Test Dapp',
+    url: 'example.com',
+  },
+});
+const ethereum = sdk.getProvider();
 // const provider = new ethers.providers.Web3Provider(ethereum);
 
 
-const MetamaskInstall = props => {
+const ConnectMetamask = props => {
   const navigation = useNavigation();
   const { loginSuccess } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [errMetamask, seterrMetamask] = useState('')
   const [message, setMessage] = useState("signUp");
   const [signature, setSignature] = useState("");
-  const [nonce,setNonce] = useState()
+  const [nonce, setNonce] = useState()
   const [address, setAddress] = useState('')
   const metamaskUrl = 'https://metamask.app.link'
   const [web3, setWeb3] = useState(null);
@@ -73,61 +73,62 @@ const MetamaskInstall = props => {
 
 
   const handleContinue = async () => {
- 
+    navigation.navigate("OldAccount")
+  }
 
-      navigation.navigate("OfficeAccount")
+  const handlemetamask = async () => {
+    try {
+      if (!address) {
+        console.log("dfdf", ethereum)
+        const result = await ethereum.request({ method: 'eth_requestAccounts' });
+        console.log('RESULT', result?.[0],ethereum.selectedAddress);
+        setAddress(result?.[0])
+        AsyncStorage.setItem("currentAddress", result?.[0])
+      } else {
+        sign()
+      }
 
-
-
+    } catch (e) {
+      console.log('ERROR', e);
+    }
 
   }
 
-  // const handlemetamask = async () => {
-  //   try {
-  //     console.log("dfdf", ethereum)
-  //     const result = await ethereum.request({ method: 'eth_requestAccounts'});
-  //     console.log('RESULT', result?.[0]);
-  //     setAddress( result?.[0])
+
+  const sign = async () => {
+    var nonce1 = "12";
+    if (address) {
+      console.log("33333333333333333333333333333")
+      const res = await axios.post("http://95.217.197.177:8000/account/signup", {
+        address: address
+      })
+      setNonce(res.data.nonce)
+      console.log(res.data.nonce, "222222222222222222222222")
+      nonce1 = res.data.nonce;
 
 
-  //   } catch (e) {
-  //     console.log('ERROR', e);
-  //   }
+      const params = [address, nonce1];
+      const method = 'personal_sign';
+      console.log("11111111111111111", nonce1)
 
-  // }
+      const resp = await ethereum.request({ method, params });
+  
+      console.log("sign data", resp)
 
-
-  // const sign = async () => {
-  //   var nonce1 = "12";
-  //   if(address){
-  //     console.log("33333333333333333333333333333")
-  //     const res = await axios.post("http://95.217.197.177:8000/account/signup", {
-  //       address:address
-  //     })
-  //     setNonce(res.data.nonce)
-  //     console.log(res.data.nonce,"222222222222222222222222")
-  //     nonce1 = res.data.nonce;
-
-  //   }
-  //   const params = [address, nonce1];
-  //   const method = 'personal_sign';
-  //   console.log("11111111111111111",nonce1)
-
-  //   const resp = await ethereum.request({ method, params });
-  //     console.log("sign data",resp)
-
-  //   const res1 = await axios.post("http:///95.217.197.177:8000/account/signin",{
-  //     address:address,
-  //     signature:resp,
-  //   })
-  //   AsyncStorage.setItem("jwt",JSON.stringify(res1.data.jwt))
-  //   const flag = await AsyncStorage.getItem("jwt")
-  //   console.log("here",flag)
-  // };
-
-    const handlematamaskinstall = () => {
-      
+      const res1 = await axios.post("http:///95.217.197.177:8000/account/signin", {
+        address: address,
+        signature: resp,
+      })
+      AsyncStorage.setItem("jwt", JSON.stringify(res1.data.jwt))
+      const flag = await AsyncStorage.getItem("jwt")
+      console.log("here", flag)
+      setTimeout(() => {
+        handleContinue()
+        
+      }, 1000);
     }
+  };
+
 
 
 
@@ -158,17 +159,17 @@ const MetamaskInstall = props => {
         <View style={styles.metamaskBox}>
           <Image style={styles.metamask} source={images.metamask_image}></Image>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>Do you have</Text>
+            <Text style={styles.metamaskText}>Connect</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>MetaMask installed?</Text>
+            <Text style={styles.metamaskText}>MetaMask to the office</Text>
           </View>
         </View>
 
 
 
 
-        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
+        <View style={{ flexDirection: 'column', marginBottom: 55 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}
@@ -179,9 +180,9 @@ const MetamaskInstall = props => {
               borderRadius: 43,
 
             }}>
-            <TouchableOpacity style={styles.registerButton} onPress={handleContinue}>
+            <TouchableOpacity style={styles.registerButton} onPress={handlemetamask}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>YES,CONTINUE</Text>
+                {!address ? <Text style={styles.registerText}>YES,CONTINUE</Text> : <Text style={styles.registerText}>SIGN IN</Text>}
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -193,21 +194,7 @@ const MetamaskInstall = props => {
           >
 
           </View>
-          <LinearGradient
-            colors={['#6c40bd', '#1b97c0', '#01dfcc']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            locations={[0, 0.67, 1]}
-            style={{
-              marginHorizontal: 20,
-              borderRadius: 43,
-            }}>
-            <TouchableOpacity style={styles.registerButton} onPress={handlematamaskinstall}>
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>INSTALL METAMASK</Text>
-              </View>
-            </TouchableOpacity>
-          </LinearGradient>
+
           <Text style={styles.error}>{errMetamask}</Text>
         </View>
       </ImageBackground>
@@ -220,4 +207,4 @@ const mapDispatchToProps = dispatch => ({
   appStart: params => dispatch(appStartAction(params)),
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(MetamaskInstall));
+export default connect(null, mapDispatchToProps)(withTheme(ConnectMetamask));

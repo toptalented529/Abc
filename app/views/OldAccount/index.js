@@ -66,7 +66,7 @@ const OldAccount = props => {
     navigation.navigate("OldSignIn")
   }
   const handleSignContinue = () => {
-    navigation.navigate("SignIn")
+    navigation.navigate("CreateNickName")
   }
 
   const onSubmit = () => {

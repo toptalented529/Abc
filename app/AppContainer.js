@@ -62,7 +62,7 @@ const App = React.memo(({root, isMasterDetail}) => {
             <Stack.Screen name="Splash" component={SplashView} />
           ) : null}
           {root === ROOT_INTRO ? (
-            <Stack.Screen name="Splash" component={IntroView} />
+            <Stack.Screen name="Splashs" component={IntroView} />
           ) : null}
           {root === ROOT_LOADING ? (
             <Stack.Screen name="AuthLoading" component={AuthLoadingView} />

@@ -97,7 +97,7 @@ export default StyleSheet.create({
     width: width * 0.8,
     height: 190.3,
     flexGrow: 0,
-    marginBottom:36,
+    marginBottom:width * 0.3,
     flexDirection:"column",
     // marginVertical: 32.7,
     // marginTop: 32.7,

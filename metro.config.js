@@ -4,6 +4,8 @@
  *
  * @format
  */
+const path = require("path")
+const { getDefaultConfig } = require('metro-config');
 
 module.exports = {
   transformer: {
@@ -14,4 +16,19 @@ module.exports = {
       },
     }),
   },
+  // resolver: {
+  //   extraNodeModules: {
+  //     path: path.resolve(__dirname, 'node_modules'),
+  //     crypto: require.resolve('react-native-crypto'),
+  //     stream: require.resolve('stream-browserify'),
+  //     assert: require.resolve('assert'),
+  //     randomBytes: require.resolve("react-native-randombytes"),
+  //     buffer: require.resolve('buffer'),
+
+  //   },
+  // },
 };
+
+
+
+

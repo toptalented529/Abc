@@ -1,13 +1,10 @@
-import { StyleSheet,Dimensions } from 'react-native';
-import { COLOR_WHITE } from '../../constants/colors';
+import {StyleSheet,Dimensions} from 'react-native';
+import {COLOR_WHITE} from '../../constants/colors';
+const { width } = Dimensions.get('screen');
 
-
-const {width} = Dimensions.get('screen');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:"center",
-    alignItems:"center"
   },
   logo: {
     width: 93,
@@ -25,11 +22,11 @@ export default StyleSheet.create({
     color: '#fff',
   },
   appText: {
-    width: width * 0.7,
+    width: 275,
     marginTop: 14,
-    fontFamily: 'Poppins',
+    fontFamily: 'Montserrat',
     fontSize: 48,
-    fontWeight: '600',
+    fontWeight: '700',
     letterSpacing: 4,
     textAlign: 'center',
     color: '#fff',
@@ -47,13 +44,17 @@ export default StyleSheet.create({
   },
   forgotContainer: {
     marginBottom: 10,
+    width:width *0.4,
+    borderRadius:12,
+    alignSelf:"center",
+
   },
   forgotText: {
-    textAlign: 'right',
-    textDecorationLine: 'underline',
+    textAlign: 'center',
     fontFamily: 'Raleway',
     fontSize: 14,
     lineHeight: 16,
+    padding:6
   },
   bottomContainer: {
     flexDirection: 'row',
@@ -77,12 +78,12 @@ export default StyleSheet.create({
     color: '#fff',
   },
   dontText: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Montserrat',
     fontSize: 14,
     color: '#fff',
   },
   registerText: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Montserrat',
     fontSize: 14,
     fontWeight: '600',
     letterSpacing: 1.4,
@@ -91,40 +92,5 @@ export default StyleSheet.create({
   },
   registerButton: {
     height: 64,
-    width:width * 0.8,
   },
-  metamaskBox: {
-    width: width * 0.8,
-    height: 190.3,
-    flexGrow: 0,
-    marginBottom:36,
-    flexDirection:"column",
-    // marginVertical: 32.7,
-    // marginTop: 32.7,
-    // marginBottom: 3,
-    // marginLeft: 1,
-    // paddingVertical: 0.3,
-    // paddingHorizontal: 30,
-    // paddingTop: 0.3,
-    // paddingBottom: 1.4,
-    // opacity: 0.1,
-    borderRadius: 25,
-    backgroundColor:`rgba(255,255,255,0.1)`,
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  metamask: {
-    width:width * 0.2,
-    height:width * 0.2,
-    marginTop:23,
-  },
-  metamaskText : {
-    fontFamily:"Poppins",
-    fontSize: 18,
-  color:"white"
-  },
-  error : {
-    color:"#FFD700",
-    alignSelf:'center'
-  }
 });
