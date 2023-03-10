@@ -22,12 +22,13 @@ import { COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import { CURRENT_USER } from '../../constants/keys';
 import { appStart as appStartAction } from '../../actions/app';
-
+import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import StatusBar from '../../containers/StatusBar';
 import KeyboardView from '../../containers/KeyboardView';
 import axios from 'axios';
 import MetaMaskSDK from '@metamask/sdk';
 import BackgroundTimer from 'react-native-background-timer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CreatePINView = props => {
   const navigation = useNavigation();
@@ -38,15 +39,32 @@ const CreatePINView = props => {
   const refs = useRef([]);
   const [fullPin, setFullPin] = useState(false)
   const [backKeyPress, setBackKeyPress] = useState(false)
-
+  const [createPin, setCreatePin] = useState(false)
+  const { loginSuccess } = props;
 
   useEffect(() => {
     const getPin = async () => {
-     
+      const address = AsyncStorage.getItem("currentAddress")
+      const jwt = await AsyncStorage.getItem("jwt")
+      const res = await axios.get("http://95.217.197.177:8000/account/me", {
+        headers: {
+          authorization: `bearer ${jwt}`
+        }
+      }
+      )
+      console.log("88888", res.data)
+      user = res.data.user;
+      if (user.pin === "1") {
+        setCreatePin(true)
+      } else {
+
+      }
+
+
     }
     getPin()
 
-  },[])
+  }, [])
 
 
 
@@ -71,21 +89,32 @@ const CreatePINView = props => {
     }
   };
 
-  const handleFullPin = (pin) => {
+  const handleFullPin = async (pin) => {
     // Handle the full pin here
-    const sdk = new MetaMaskSDK({
-      openDeeplink: link => {
-        Linking.openURL(link);
-      },
-      timer: BackgroundTimer,
-      dappMetadata: {
-        name: 'React Native Test Dapp',
-        url: 'example.com',
-      },
-    });
-    const ethereum = sdk.getProvider();
-    // const res = axios.
-      console.log('RESULT',ethereum.selectedAddress);
+    const jwt = await AsyncStorage.getItem("jwt")
+    if (createPin) {
+      const res = await axios.post("http://95.217.197.177:8000/account/setpin", {
+        pin: pin
+      }, {
+        headers: {
+          authorization: `bearer ${jwt}`
+        }
+      })
+      if (res.data.success) {
+        loginSuccess({})
+      }
+    } else {
+
+      const res = await axios.get("http://95.217.197.177:8000/account/me", {
+        headers: {
+          authorization: `bearer ${jwt}`
+        }
+      })
+      if (pin === res.data.user.pin) {
+        console.log("pin", res.data.user.pin)
+        loginSuccess({});
+      }
+    }
     console.log('Full pin:', pin);
     setFullPin(true)
   };
@@ -146,7 +175,7 @@ const CreatePINView = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  {!fullPin ? <> Create a </> : <>This is your </>}  <Text style={{ fontWeight: '700' }}>6-digit code</Text>
+                  {!createPin ? <> Enter your </> : (!fullPin ? <> Create a </> : <>This is your </>)}  <Text style={{ fontWeight: '700' }}>6-digit code</Text>
                 </Text>
               </View>
               <View

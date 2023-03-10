@@ -73,12 +73,12 @@ const MetamaskInstall = props => {
 
 
   const handleContinue = async () => {
- 
 
+    const supported  =  Linking.canOpenURL(metamaskUrl)
+    if(supported ){
       navigation.navigate("OfficeAccount")
 
-
-
+    }
 
   }
 
@@ -125,8 +125,14 @@ const MetamaskInstall = props => {
   //   console.log("here",flag)
   // };
 
-    const handlematamaskinstall = () => {
-      
+    const handlematamaskinstall = async() => {
+      const supported  =  Linking.canOpenURL(metamaskUrl)
+      if(supported ){
+
+      }else{
+        const supported  = await Linking.openURL(metamaskUrl)
+
+      }
     }
 
 

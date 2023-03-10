@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Linking,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -38,6 +39,8 @@ const MnemonicHandle = props => {
   const [errPassword, setErrPassword] = useState('');
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
+  const metamaskUrl = 'https://metamask.app.link'
+
 
   const onGoToSignUp = () => {
     navigation.navigate('SignUp');
@@ -66,7 +69,7 @@ const MnemonicHandle = props => {
     navigation.navigate("GenerateWords")
   }
   const handleSignContinue = () => {
-    navigation.navigate("CreateNickName")
+    const supported = Linking.openURL(metamaskUrl)
   }
 
   const onSubmit = () => {
