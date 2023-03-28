@@ -1,5 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {COLOR_WHITE} from '../../constants/colors';
+
+const { width,height } = Dimensions.get('screen');
 
 export default StyleSheet.create({
   container: {
@@ -86,6 +88,10 @@ export default StyleSheet.create({
     color: '#fff',
   },
   registerButton: {
-    height: 64,
+    height: height * 0.08,
   },
+  error : {
+    color:"#FFD700",
+    alignSelf:'center'
+  }
 });

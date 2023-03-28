@@ -22,6 +22,9 @@ import OfficeAccount from '../views/OfficeAccount'
 import Mnmonichandle from '../views/Mnmonichandle'
 import PrivateKeyImport from '../views/PrivateKeyImport'
 import ConnectMeatamsk from '../views/ConnectMeatamsk'
+import ConnectMetamaskCheck from '../views/ConnectMetamaskCheck'
+import OldDataImportOption from '../views/OldDataImportOption'
+import PublicKeyImport from '../views/PublicKeyImport'
 
 // Outside
 const Outside = createStackNavigator()
@@ -62,6 +65,11 @@ const OutsideStack = () => {
         component={PrivateKeyImport}
         options={{ headerShown: false }}
       />
+       <Outside.Screen
+        name="PublicKeyImport"
+        component={PublicKeyImport}
+        options={{ headerShown: false }}
+      />
       <Outside.Screen
         name="CreatePin"
         component={CreatePINView}
@@ -78,6 +86,11 @@ const OutsideStack = () => {
         options={{ headerShown: false }}
       />
       <Outside.Screen
+        name="ConnectMetamaskCheck"
+        component={ConnectMetamaskCheck}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
         name="CreateNickName"
         component={CreateNickName}
         options={{ headerShown: false }}
@@ -90,6 +103,11 @@ const OutsideStack = () => {
       <Outside.Screen
         name="OldTransactionImport"
         component={OldTransactionImport}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
+        name="OldDataImportOption"
+        component={OldDataImportOption}
         options={{ headerShown: false }}
       />
       <Outside.Screen

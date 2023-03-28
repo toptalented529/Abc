@@ -38,6 +38,9 @@
         <data
             android:host="vipbbillionaires.page.link"
             android:scheme="http"/>
+               
+         <data android:host="metamask.app.link" android:scheme="https"/>
+
       </intent-filter>
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -45,4 +48,11 @@
       </intent-filter>
     </activity>
   </application>
+
+  <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
 </manifest>

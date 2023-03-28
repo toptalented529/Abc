@@ -32,6 +32,7 @@ import HayekView from '../views/HayekView';
 import MarketView from '../views/MarketView';
 import TransactionView from '../views/TransactionView';
 import CreatePINView from '../views/CreatePINView';
+import EditPINView from '../views/EditPINView';
 
 const Tab = createBottomTabNavigator();
 const Inside = createStackNavigator();
@@ -61,6 +62,11 @@ const TabStack = () => {
       <Tab.Screen
         name="Home"
         component={HomeStack}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="EditPin"
+        component={EditPINView}
         options={{headerShown: false}}
       />
       <Tab.Screen

@@ -26,7 +26,6 @@ import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import StatusBar from '../../containers/StatusBar';
 import KeyboardView from '../../containers/KeyboardView';
 import axios from 'axios';
-import MetaMaskSDK from '@metamask/sdk';
 import BackgroundTimer from 'react-native-background-timer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -41,19 +40,20 @@ const CreatePINView = props => {
   const [backKeyPress, setBackKeyPress] = useState(false)
   const [createPin, setCreatePin] = useState(false)
   const { loginSuccess } = props;
-
+  const [loginUser,seLoginUser] = useState()
   useEffect(() => {
     const getPin = async () => {
       const address = AsyncStorage.getItem("currentAddress")
       const jwt = await AsyncStorage.getItem("jwt")
-      const res = await axios.get("http://95.217.197.177:8000/account/me", {
+      const res = await axios.get("http://95.217.197.177:80/account/me", {
         headers: {
           authorization: `bearer ${jwt}`
         }
       }
       )
       console.log("88888", res.data)
-      user = res.data.user;
+     const user = res.data.user;
+     seLoginUser(user)
       if (user.pin === "1") {
         setCreatePin(true)
       } else {
@@ -93,7 +93,7 @@ const CreatePINView = props => {
     // Handle the full pin here
     const jwt = await AsyncStorage.getItem("jwt")
     if (createPin) {
-      const res = await axios.post("http://95.217.197.177:8000/account/setpin", {
+      const res = await axios.post("http://95.217.197.177:80/account/setpin", {
         pin: pin
       }, {
         headers: {
@@ -101,18 +101,21 @@ const CreatePINView = props => {
         }
       })
       if (res.data.success) {
-        loginSuccess({})
+        await AsyncStorage.setItem("current",JSON.stringify(loginUser))
+        loginSuccess({data:loginUser})
       }
     } else {
 
-      const res = await axios.get("http://95.217.197.177:8000/account/me", {
+      const res = await axios.get("http://95.217.197.177:80/account/me", {
         headers: {
           authorization: `bearer ${jwt}`
         }
       })
       if (pin === res.data.user.pin) {
         console.log("pin", res.data.user.pin)
-        loginSuccess({});
+        await AsyncStorage.setItem("current",JSON.stringify(loginUser))
+
+        loginSuccess({data:loginUser});
       }
     }
     console.log('Full pin:', pin);

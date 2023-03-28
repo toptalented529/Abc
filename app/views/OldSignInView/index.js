@@ -29,6 +29,7 @@ import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
+import axios from 'axios';
 
 const theme = 'light';
 
@@ -40,6 +41,7 @@ const OldSignInView = props => {
   const [password, setPassword] = useState('');
   const [errNickname, seterrNickname] = useState('');
   const [errPassword, setErrPassword] = useState('');
+  const [warning, setWarning] = useState('');
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
   const [isSelected,setSelection] = useState(false);
@@ -68,12 +70,42 @@ const OldSignInView = props => {
     return true;
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (isValid()) {
       setIsLoading(true);
+      const jwt = await AsyncStorage.getItem("jwt")
+
+      try{
+        const response = axios.get("http://95.217.197.177:80/account/checkoldaccount",
+        {
+          params:{
+            email: nickname ,
+            password:password
+          },
+          headers: {
+            authorization: `bearer ${jwt}`
+          }
+        })
+        const id = (await response).data.oldUserEmail
+        console.log("213123123",id)
+        if((await response).status ===200)
+        await AsyncStorage.setItem("parentId",id)
+        navigation.navigate("OldTransactionImport")
+        if((await response).status ===400) 
+        setWarning("user email does not exist")
+        if((await response).status ===404)
+        setWarning("user password is not correct")
+      }catch(e) {
+        console.log(e)
+        if((await e.response).status ===400) 
+        setWarning("user email does not exist")
+        if((await e.response).status ===404)
+        setWarning("user password is not correct")
+      }
+
+
 
       // loginSuccess({});
-      navigation.navigate("OldTransactionImport")
     }
   };
   const onCheckChange = () => {
@@ -155,13 +187,13 @@ const OldSignInView = props => {
 
 
 
-              <View style={styles.forgotContainer}>
+              {/* <View style={styles.forgotContainer}>
                 <Text
                   style={[styles.forgotText, {color: COLOR_WHITE}]}
                   onPress={forgotPassword}>
                   {'Forgot Password?'}
                 </Text>
-              </View>
+              </View> */}
             </View>
           </ScrollView>
         </KeyboardView>
@@ -181,7 +213,8 @@ const OldSignInView = props => {
                 <Text style={styles.registerText}>LOG IN</Text>
               </View>
             </TouchableOpacity>
-          </LinearGradient>
+          </LinearGradient> 
+          <Text style ={ styles.error}>{warning}</Text>
 
        
         </View>

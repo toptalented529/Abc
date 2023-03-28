@@ -2,11 +2,11 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { COLOR_WHITE } from '../../constants/colors';
 
 
-const { width } = Dimensions.get('screen');
+const { width,height } = Dimensions.get('screen');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center"
   },
   logo: {
@@ -24,9 +24,21 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
   },
+  copyText: {
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: '`100',
+    textAlign: 'center',
+    color: '#fff',
+    textDecorationLine:"underline",
+    // marginTop:width * 0.05,
+    alignSelf:"flex-end",
+    paddingTop:height * 0.02,
+    paddingRight:width * 0.05
+  },
   appText: {
     width: width * 0.7,
-    marginTop: 14,
+    marginTop: 0,
     fontFamily: 'Poppins',
     fontSize: 48,
     fontWeight: '600',
@@ -90,13 +102,14 @@ export default StyleSheet.create({
     color: '#fff',
   },
   registerButton: {
-    height: 64,
+    height: height * 0.08,
     width: width * 0.8,
   },
   metamaskBox: {
-    width: width * 0.8,
-    height: 220.3,
 
+    width: width * 0.8,
+    height: height * 0.3,
+    // minHeight:250,
     flexGrow: 0,
     marginBottom: 36,
     flexDirection: "column",
@@ -112,9 +125,13 @@ export default StyleSheet.create({
     // paddingBottom: 1.4,
     // opacity: 0.1,
     borderRadius: 25,
-    backgroundColor: `rgba(255,255,255,0.1)`,
-    justifyContent: "center",
-    alignItems: "center"
+    backgroundColor: `rgba(255,255,255,0.05)`,
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderColor:"#fff",
+    borderStyle:"solid",
+    borderWidth:1,
+    overflow:"hidden"
   },
   metamask: {
     width: width * 0.2,
@@ -141,8 +158,9 @@ export default StyleSheet.create({
   },
   FlatList : {
     justifyContent:'center',
-    marginTop: 16,
+    marginTop: height * 0.04,
     paddingLeft:12,
     paddingRight:12,
+    overflow:"hidden"
   }
 });

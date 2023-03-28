@@ -16,9 +16,7 @@ import {fetchUnread} from '../actions/chat';
 
 const handleLoginSuccess = function* handleLoginSuccess({data}) {
   yield put(setUser(data));
-  try {
-    yield firebaseSdk.setFcmToken(data.id);
-  } catch (e) {}
+
 
   // if (!data.emailVerified) {
   //   yield put(appStart({root: ROOT_VERIFY_EMAIL}));
@@ -35,7 +33,7 @@ const handleLoginSuccess = function* handleLoginSuccess({data}) {
 
 const handleLogout = function* handleLogout() {
   yield AsyncStorage.removeItem(CURRENT_USER);
-  yield firebaseSdk.signOut();
+  // yield firebaseSdk.signOut();
   yield put(appStart({root: ROOT_OUTSIDE}));
 };
 

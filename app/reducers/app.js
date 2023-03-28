@@ -10,6 +10,7 @@ export const initialState = {
   foreground: true,
   background: false,
   route: null,
+  ethereum: null,
 }
 
 export default function app(state = initialState, action) {
@@ -61,6 +62,8 @@ export default function app(state = initialState, action) {
         ...state,
         route: action.routeName,
       }
+    case APP.SET_ETHEREUM_INSTANCE: 
+        return { ...state, ethereum: action.ethereum };
     default:
       return state
   }

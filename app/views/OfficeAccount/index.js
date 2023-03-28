@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -25,6 +26,7 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
+const { width, height } = Dimensions.get('screen');
 
 const theme = 'light';
 
@@ -56,7 +58,7 @@ const OfficeAccount = props => {
     }
     return true;
   };
-  const  handleContinue = () => {
+  const handleContinue = () => {
     navigation.navigate("CreatePin")
   }
   const handleSignContinue = () => {
@@ -79,36 +81,40 @@ const OfficeAccount = props => {
       }}>
       <ImageBackground style={styles.container} source={images.background}>
         <StatusBar />
-        <KeyboardView
+        {/* <KeyboardView
           style={sharedStyles.container}
           keyboardVerticalOffset={128}>
           <ScrollView
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
-            keyboardShouldPersistTaps="handled">
+            keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
               <Text style={styles.logoText}>OFFICE</Text>
               <Text style={styles.appText}>universo</Text>
             </View>
 
-          </ScrollView>
-        </KeyboardView>
+          {/* </ScrollView>
+        </KeyboardView> */}
 
         <View style={styles.metamaskBox}>
-          <Image style ={styles.metamask} source = {images.logo_white}></Image>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>Do you have Universe</Text>
+          <Image style={styles.metamask} source={images.logo_white}></Image>
+          
+          <View style={{ flex: 0, justifyContent: 'center', flexDirection: "row" }}>
+            <Text style={styles.metamaskText}>Do you</Text>
+            <Text style={styles.metamaskTextB}> have an account</Text>
+            <Text style={styles.metamaskText}> at</Text>
           </View>
-          <View style={{ flex: 1, justifyContent: 'center',marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>Office Mobile account?</Text>
+          <View style={{ flex: 0, flexDirection: "row", justifyContent: 'center', marginBottom: 15 }}>
+            <Text style={styles.metamaskText}> the</Text>
+            <Text style={styles.metamaskTextB}>  Office Mobile account?</Text>
           </View>
         </View>
 
 
 
 
-        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
+        <View style={{ flexDirection: 'column', marginBottom: height * 0.03 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}
@@ -141,7 +147,7 @@ const OfficeAccount = props => {
             style={{
               marginHorizontal: 20,
               borderRadius: 43,
-              borderWidth:3,
+              borderWidth: 3,
               // borderColor:"#fff"
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleSignContinue}>

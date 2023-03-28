@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import {
   Image,
   SafeAreaView,
@@ -36,7 +36,7 @@ const theme = 'light';
 const privateKeyImport = props => {
   const navigation = useNavigation();
   const { loginSuccess } = props;
-  const [isLoading, setIsLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [errNickname, seterrNickname] = useState('');
@@ -49,13 +49,23 @@ const privateKeyImport = props => {
     const getPrivate = async () => {
       const key = await AsyncStorage.getItem('privateKey')
       setPrivateKey(key)
-    }
+   }
     getPrivate()
   }, [])
+
+
+  useEffect(() => {
+    if(copied) {
+      setTimeout(() => {
+        setCopied(false)
+      }, 1000);
+    }
+  },[copied])
 
   const handleClipboard = async () => {
     const privateKey = await AsyncStorage.getItem("privateKey")
     Clipboard.setString(privateKey)
+    setCopied(true)
 
   }
 
@@ -109,7 +119,7 @@ const privateKeyImport = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  Enter your Old Credentials
+                This is your Private Key, copy it and save it to put it in Metamask
                 </Text>
               </View>
 
@@ -138,7 +148,7 @@ const privateKeyImport = props => {
                   <Text
                     style={[styles.forgotText, { color: COLOR_WHITE }]}
                   >
-                    {'Copy clave privada'}
+                    {!copied? 'Copy clave privada':"private key copied"}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>

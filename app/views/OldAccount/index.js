@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { connect, useSelector } from 'react-redux';
 import {
   Image,
   SafeAreaView,
@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -25,12 +26,14 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
+const { width,height } = Dimensions.get('screen');
+
 
 const theme = 'light';
 
 const OldAccount = props => {
   const navigation = useNavigation();
-  const { loginSuccess } = props;
+  const {ethereum, loginSuccess } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
@@ -39,13 +42,18 @@ const OldAccount = props => {
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
 
-  const onGoToSignUp = () => {
-    navigation.navigate('SignUp');
-  };
+  useEffect(() => {
+    const setItme = async () => {
+      // const result = await ethereum.request({ method: 'eth_requestAccounts' });
+      // console.log('RESULT', result?.[0],ethereum.selectedAddress);
+      console.log("77777777777777777777777777777",ethereum)
+      const eth = ethereum.sdk.getProvider();
+      // const result = await eth.request({ method: 'eth_requestAccounts' });
 
-  const forgotPassword = () => {
-    navigation.navigate('ForgotPassword');
-  };
+    }
+    setItme()
+  },[])
+  
 
   const isValid = () => {
     seterrNickname('');
@@ -85,21 +93,21 @@ const OldAccount = props => {
       }}>
       <ImageBackground style={styles.container} source={images.background}>
         <StatusBar />
-        <KeyboardView
+        {/* <KeyboardView
           style={sharedStyles.container}
           keyboardVerticalOffset={128}>
           <ScrollView
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
-            keyboardShouldPersistTaps="handled">
+            keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
               <Text style={styles.logoText}>OFFICE</Text>
               <Text style={styles.appText}>universo</Text>
             </View>
 
-          </ScrollView>
-        </KeyboardView>
+          {/* </ScrollView>
+        </KeyboardView> */}
 
         <View style={styles.metamaskBox}>
           <Image style ={styles.metamask} source = {images.logo_white}></Image>
@@ -114,7 +122,7 @@ const OldAccount = props => {
 
 
 
-        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
+        <View style={{ flexDirection: 'column',  marginBottom: height * 0.05 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}
@@ -163,9 +171,14 @@ const OldAccount = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   loginSuccess: params => dispatch(loginSuccessAction(params)),
   appStart: params => dispatch(appStartAction(params)),
+
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(OldAccount));
+const mapStateToProps = state => ({
+  ethereum: state.app.ethereum
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(OldAccount));

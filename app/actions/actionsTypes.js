@@ -16,6 +16,7 @@ export const APP = createRequestTypes('APP', [
   'INIT_LOCAL_SETTINGS',
   'SET_MASTER_DETAIL',
   'SET_ROUTE',
+  'SET_ETHEREUM_INSTANCE'
 ])
 export const APP_STATE = createRequestTypes('APP_STATE', [
   'FOREGROUND',

@@ -20,6 +20,7 @@ import images from '../../assets/images';
 import { COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors';
 
 import { loginSuccess as loginSuccessAction } from '../../actions/login';
+// import { setEthereum } from '../../actions/app';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import { CURRENT_USER } from '../../constants/keys';
 import { appStart as appStartAction } from '../../actions/app';
@@ -30,36 +31,38 @@ import KeyboardView from '../../containers/KeyboardView';
 import { Linking } from 'react-native';
 
 import BackgroundTimer from 'react-native-background-timer';
-import MetaMaskSDK from '@metamask/sdk';
+// import MetaMaskSDK from '@metamask/sdk';
 import "react-native-get-random-values"
 import "@ethersproject/shims"
 import { ethers } from 'ethers';
 import axios from 'axios';
 
 import { decode as atob, encode as btoa } from 'base-64';
+import store from '../../lib/createStore';
 global.atob = atob;
 global.btoa = btoa;
 const theme = 'light';
 
 
 
-const sdk = new MetaMaskSDK({
-  openDeeplink: link => {
-    Linking.openURL(link);
-  },
-  timer: BackgroundTimer,
-  dappMetadata: {
-    name: 'React Native Test Dapp',
-    url: 'example.com',
-  },
-});
-const ethereum = sdk.getProvider();
+// const sdk = new MetaMaskSDK({
+//   openDeeplink: link => {
+//     Linking.openURL(link);
+//   },
+//   timer: BackgroundTimer,
+//   dappMetadata: {
+//     name: 'React Native Test Dapp',
+//     url: 'example.com',
+//   },
+// });
+// const ethereum = sdk.getProvider();
 // const provider = new ethers.providers.Web3Provider(ethereum);
 
 
 const ConnectMetamask = props => {
   const navigation = useNavigation();
-  const { loginSuccess } = props;
+  const {ethereum, loginSuccess } = props;
+  // const { setEthereum } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [errMetamask, seterrMetamask] = useState('')
   const [message, setMessage] = useState("signUp");
@@ -68,22 +71,40 @@ const ConnectMetamask = props => {
   const [address, setAddress] = useState('')
   const metamaskUrl = 'https://metamask.app.link'
   const [web3, setWeb3] = useState(null);
+  const [ethereums, setEthereums] = useState()
+  // useEffect(() => {
+  //   store.dispatch(setEthereum({sdk}))
+  //   // AsyncStorage.setItem("ethereum",ethereum)
+  //   console.log("9999999999999999999999999", ethereum)
+  // }, [ethereum])
 
-
-
-
+  useEffect(() => {
+    const setItme = async () => {
+      // const result = await ethereum.request({ method: 'eth_requestAccounts' });
+      // console.log('RESULT', result?.[0],ethereum.selectedAddress);
+      console.log("77777777777777777777777777777",ethereum)
+      const eth = ethereum.sdk.getProvider();
+      // const result = await eth.request({ method: 'eth_requestAccounts' });
+      setEthereums(eth)
+    }
+    setItme()
+  },[])
+  
   const handleContinue = async () => {
-    navigation.navigate("OldAccount")
+    navigation.navigate("ConnectMetamaskCheck")
   }
 
   const handlemetamask = async () => {
     try {
       if (!address) {
-        console.log("dfdf", ethereum)
-        const result = await ethereum.request({ method: 'eth_requestAccounts' });
-        console.log('RESULT', result?.[0],ethereum.selectedAddress);
+        console.log("dfdf", ethereums)
+        const result = await ethereums.request({ method: 'eth_requestAccounts' });
+        console.log('RESULT', result?.[0],ethereums.selectedAddress);
         setAddress(result?.[0])
         AsyncStorage.setItem("currentAddress", result?.[0])
+
+
+        
       } else {
         sign()
       }
@@ -99,11 +120,10 @@ const ConnectMetamask = props => {
     var nonce1 = "12";
     if (address) {
       console.log("33333333333333333333333333333")
-      const res = await axios.post("http://95.217.197.177:8000/account/signup", {
+      const res = await axios.post("http://95.217.197.177:80/account/signup", {
         address: address
       })
       setNonce(res.data.nonce)
-      console.log(res.data.nonce, "222222222222222222222222")
       nonce1 = res.data.nonce;
 
 
@@ -111,11 +131,11 @@ const ConnectMetamask = props => {
       const method = 'personal_sign';
       console.log("11111111111111111", nonce1)
 
-      const resp = await ethereum.request({ method, params });
+      const resp = await ethereums.request({ method, params });
   
       console.log("sign data", resp)
 
-      const res1 = await axios.post("http:///95.217.197.177:8000/account/signin", {
+      const res1 = await axios.post("http:///95.217.197.177:80/account/signin", {
         address: address,
         signature: resp,
       })
@@ -140,21 +160,21 @@ const ConnectMetamask = props => {
       }}>
       <ImageBackground style={styles.container} source={images.background}>
         <StatusBar />
-        <KeyboardView
+        {/* <KeyboardView
           style={sharedStyles.container}
           keyboardVerticalOffset={128}>
           <ScrollView
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
-            keyboardShouldPersistTaps="handled">
+            keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
               <Text style={styles.logoText}>OFFICE</Text>
               <Text style={styles.appText}>universo</Text>
             </View>
 
-          </ScrollView>
-        </KeyboardView>
+          {/* </ScrollView>
+        </KeyboardView> */}
 
         <View style={styles.metamaskBox}>
           <Image style={styles.metamask} source={images.metamask_image}></Image>
@@ -205,6 +225,13 @@ const ConnectMetamask = props => {
 const mapDispatchToProps = dispatch => ({
   loginSuccess: params => dispatch(loginSuccessAction(params)),
   appStart: params => dispatch(appStartAction(params)),
+  // setEthereum: params => dispatch(setEthereum(params)),
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(ConnectMetamask));
+
+const mapStateToProps = state => ({
+  ethereum: state.app.ethereum
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(ConnectMetamask));

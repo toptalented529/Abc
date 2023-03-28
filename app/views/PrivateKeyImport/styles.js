@@ -1,6 +1,6 @@
 import {StyleSheet,Dimensions} from 'react-native';
 import {COLOR_WHITE} from '../../constants/colors';
-const { width } = Dimensions.get('screen');
+const { width,height } = Dimensions.get('screen');
 
 export default StyleSheet.create({
   container: {
@@ -76,6 +76,7 @@ export default StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
     color: '#fff',
+    textAlign:"center"
   },
   dontText: {
     fontFamily: 'Montserrat',
@@ -91,6 +92,6 @@ export default StyleSheet.create({
     color: '#fff',
   },
   registerButton: {
-    height: 64,
+    height: height * 0.08,
   },
 });

@@ -9,6 +9,7 @@ export const ROOT_SIGNUP_PROFILE = 'signup_profile';
 export const ROOT_THANK_YOU = 'thank_you';
 export const ROOT_VERIFY_EMAIL = 'verify_email';
 
+
 export function appStart({root, ...args}) {
   return {
     type: APP.START,
@@ -46,5 +47,11 @@ export function setRoute(routeName) {
   return {
     type: APP.SET_ROUTE,
     routeName,
+  };
+}
+export function setEthereum(ethereum) {
+  return {
+    type: APP.SET_ETHEREUM_INSTANCE,
+    ethereum,
   };
 }

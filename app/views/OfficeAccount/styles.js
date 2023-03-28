@@ -2,11 +2,11 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { COLOR_WHITE } from '../../constants/colors';
 
 
-const { width } = Dimensions.get('screen');
+const { width,height } = Dimensions.get('screen');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center"
   },
   logo: {
@@ -26,7 +26,6 @@ export default StyleSheet.create({
   },
   appText: {
     width: width * 0.7,
-    marginTop: 14,
     fontFamily: 'Poppins',
     fontSize: 48,
     fontWeight: '600',
@@ -90,14 +89,15 @@ export default StyleSheet.create({
     color: '#fff',
   },
   registerButton: {
-    height: 64,
+    height: height * 0.08,
     width: width * 0.8,
   },
   metamaskBox: {
     width: width * 0.8,
-    height: 190.3,
+    height: height * 0.25,
     flexGrow: 0,
-    marginBottom: 36,
+    marginBottom: height * 0.05,
+    marginTop: height * 0.05,
     flexDirection: "column",
     // marginVertical: 32.7,
     // marginTop: 32.7,
@@ -116,12 +116,19 @@ export default StyleSheet.create({
   metamask: {
     width: width * 0.2,
     height: width * 0.2,
-    marginTop: 23,
+    // marginTop: 23,
     resizeMode:'contain',
   },
   metamaskText: {
     fontFamily: "Poppins",
     fontSize: 18,
-    color: "white"
+    color: "white",
+    fontWeight:"100"
+  },
+  metamaskTextB: {
+    fontFamily: "Poppins",
+    fontSize: 18,
+    color: "white",
+    fontWeight:"900",
   }
 });

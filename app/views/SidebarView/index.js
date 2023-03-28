@@ -30,11 +30,13 @@ import I18n from '../../i18n';
 import {SITE_SHOP_URL} from '../../constants/app';
 import {VectorIcon} from '../../containers/VectorIcon';
 import OptionCardBtn from '../../containers/OptionCardBtn';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import LinearGradient from 'react-native-linear-gradient';
 
 const SidebarView = props => {
   const {user, theme, navigation} = props;
+  const{logout} = props;
   const menus = [
     {
       id: 'shop_market',
@@ -65,8 +67,22 @@ const SidebarView = props => {
     },
   ];
   const [show, setShow] = useState(0);
+  const [users , setUsers] = useState()
 
-  const onLogOut = () => {};
+  useEffect(() => {
+    const getuser = async () => {
+      const userString = await AsyncStorage.getItem("current")
+      const userOnj = JSON.parse(userString)
+      console.log("I am sidebar", userOnj.nickname)
+      setUsers(userOnj)
+    }
+    getuser()
+  },[])
+
+  const onLogOut =async () => {
+    logout()
+
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -77,6 +93,15 @@ const SidebarView = props => {
         style={{flex: 1}}>
         <StatusBar />
         <View style={[styles.headerContainer, {borderBottomColor: '#5f5dc1'}]}>
+        <LinearGradient
+              colors={['#6da0ee', '#a755ff']}
+              start={{x: 0, y: 0.5}}
+              end={{x: 1, y: 0.5}}
+              locations={[0, 0.67, 1]}
+              style = {styles.error}
+            >
+        {users && <Text style = {styles.error}>{users.nickname}</Text>} 
+       </LinearGradient>
           <View style={styles.profileInnerContainer}>
             <LinearGradient
               colors={['#6da0ee', '#a755ff']}
@@ -102,6 +127,7 @@ const SidebarView = props => {
               </View>
             </LinearGradient>
           </View>
+          
           <TouchableOpacity
             onPress={() => navigation.closeDrawer()}
             style={[styles.closeIconAndText, {backgroundColor: COLOR_BLACK}]}>
@@ -112,6 +138,7 @@ const SidebarView = props => {
               color={COLOR_WHITE}
             />
           </TouchableOpacity>
+
         </View>
         <ScrollView
           style={{

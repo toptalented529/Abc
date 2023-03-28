@@ -29,8 +29,7 @@ import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
-import { borderBottom } from '../../utils/navigation';
-
+import axios from 'axios';
 const theme = 'light';
 
 const CreateNickName = props => {
@@ -64,12 +63,27 @@ const CreateNickName = props => {
     return true;
   };
 
-  const onSubmit = () => {
-    if (isValid()) {
+  const onSubmit = async () => {
+    if (isValid() && nickname) {
       setIsLoading(true);
+      const jwt = await AsyncStorage.getItem("jwt")
+      
+      try{
 
-      // loginSuccess({});
-      navigation.navigate("CreateSponserNickName")
+        const response = axios.post("http://95.217.197.177:80/account/setnickname",{
+          nickname:nickname
+        },{
+          headers: {
+            authorization: `bearer ${jwt}`
+          }
+        })
+  
+  
+        // loginSuccess({});
+        navigation.navigate("CreateSponserNickName")
+      }catch(e) {
+          console.log(e)
+      }
     }
   };
   const onCheckChange = () => {

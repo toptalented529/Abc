@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import {
   Image,
@@ -9,6 +9,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -22,12 +23,15 @@ import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import { CURRENT_USER } from '../../constants/keys';
 import { appStart as appStartAction } from '../../actions/app';
+import Clipboard from '@react-native-community/clipboard';
 
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+const { width,height } = Dimensions.get('screen');
+
 const theme = 'light';
 
 const GenerateWords = props => {
@@ -42,7 +46,15 @@ const GenerateWords = props => {
   const [mnemonic, setMnemonic] = useState('')
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
+  const [copied,setCopied] = useState(false)
 
+  useEffect(() => {
+    if(copied) {
+      setTimeout(() => {
+        setCopied(false)
+      }, 1000);
+    }
+  },[copied])
 
   const isValid = () => {
     seterrNickname('');
@@ -60,20 +72,24 @@ const GenerateWords = props => {
     return true;
   };
   const handleContinue = () => {
-    navigation.navigate("PrivateKeyImport")
+    navigation.navigate("PublicKeyImport")
   }
-  const handleSignContinue = () => {
-    navigation.navigate("CreateNickName")
+
+  const handleCopy = () => {
+    Clipboard.setString(mnemonic)
+    setCopied(true)
   }
+ 
   const handlewords = async () => {
 
     try{
-      const response = await axios.get("http://95.217.197.177:8000/account/mnemonic")
+      const response = await axios.get("http://95.217.197.177:80/account/mnemonic")
       console.log(response.data)
       setMnemonic(response.data.mnemonic)
       setPrivateKey(response.data.privateKey)
       const tempString = `${response.data.privateKey}`
       await AsyncStorage.setItem("privateKey",tempString.slice(2))
+      await AsyncStorage.setItem("publicKey",response.data.publicKey)
   
     }catch(e){
       console.log(e)
@@ -106,13 +122,17 @@ const GenerateWords = props => {
               <Image style={styles.logo} source={images.logo} />
               <Text style={styles.logoText}>OFFICE</Text>
               <Text style={styles.appText}>universo</Text>
-              <Text>{privateKey}</Text>
             </View>
 
           </ScrollView>
         </KeyboardView>
 
         <View style={styles.metamaskBox}>
+         { privateKey &&
+         <TouchableOpacity style={styles.copyText} onPress ={handleCopy}>
+          <Text style={styles.copyText}>{!copied? "copiar clave":"copied"}</Text>
+          </TouchableOpacity>
+         }
           <View style={styles.FlatList}>
             {mnemonic ? <FlatList
               data={mnemonic.split(" ")}
@@ -127,7 +147,7 @@ const GenerateWords = props => {
 
 
 
-        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
+        <View style={{ flexDirection: 'column',  marginBottom: height * 0.06 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}

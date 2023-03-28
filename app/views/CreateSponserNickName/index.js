@@ -30,6 +30,7 @@ import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
 import { borderBottom } from '../../utils/navigation';
+import axios from 'axios';
 
 const theme = 'light';
 
@@ -65,12 +66,32 @@ const CreateSponserNickName = props => {
     return true;
   };
 
-  const onSubmit = () => {
-    if (isValid()) {
+  const onSubmit = async () => {
+    if (isValid() && nickname) {
       setIsLoading(true);
-
-      loginSuccess({});
-      // navigation.navigate("CreatePin")
+      const jwt = await AsyncStorage.getItem("jwt")
+      try{
+        const response = axios.post("http://95.217.197.177:80/account/setsponsername",{
+          sponsername:nickname
+        },{
+          headers: {
+            authorization: `bearer ${jwt}`
+          }
+        })
+  
+        // loginSuccess({});
+        if((await response).status === 200)
+        navigation.navigate("CreatePin")
+     
+      }catch(e){
+        console.log(e)
+        if((await e.response).status == 404) {
+          setPassword("you've entered wrong name")
+        }
+        if((await e.response).status == 401) {
+          setPassword("you already have account ")
+        }
+      }
     }
   };
   const onCheckChange = () => {
@@ -159,10 +180,11 @@ const CreateSponserNickName = props => {
               </View>
             </TouchableOpacity>
           </LinearGradient>
-
+          <Text style = {styles.error}>{password}</Text>
 
         </View>
       </ImageBackground>
+
     </SafeAreaView>
   );
 };

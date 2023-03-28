@@ -1,6 +1,7 @@
-import {StyleSheet, Platform} from 'react-native';
+import {StyleSheet, Platform,Dimensions} from 'react-native';
 import {moderateScale} from '../utils/scaling';
 import {COLOR_DANGER, COLOR_SEPARATOR} from '../constants/colors';
+const { width,height } = Dimensions.get('screen');
 
 export default StyleSheet.create({
   container: {
@@ -28,10 +29,10 @@ export default StyleSheet.create({
     color: 'white',
   },
   headerContainer: {
-    marginTop: 24,
+    marginTop: height *0.04,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 210,
+    height: height * 0.24,
   },
   label: {
     lineHeight: 40,

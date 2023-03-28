@@ -14,7 +14,7 @@ const DataItem = ({data}) => {
   const navigation = useNavigation();
 
   const gotoPages = title => {
-    if (title === 'Edit PIN') navigation.navigate('CreatePIN');
+    if (title === 'Edit PIN') navigation.navigate('EditPin');
   };
 
   return (

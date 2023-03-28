@@ -88,4 +88,8 @@ export default StyleSheet.create({
   registerButton: {
     height: 64,
   },
+  error : {
+    color:"#FFD700",
+    alignSelf:'center'
+  }
 });

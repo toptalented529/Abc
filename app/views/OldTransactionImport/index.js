@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +17,8 @@ import { withTheme } from '../../theme';
 import sharedStyles from '../Styles';
 import styles from "./styles"
 import images from '../../assets/images';
+const { width, height } = Dimensions.get('screen');
+
 
 import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
@@ -62,8 +65,8 @@ const OldTransactionImport = props => {
     }
     return true;
   };
-  const  handleContinue = () => {
-    navigation.navigate("OldDataImported")
+  const handleContinue = () => {
+    navigation.navigate("OldDataImportOption")
   }
   const handleSignContinue = () => {
     navigation.navigate("SignIn")
@@ -85,36 +88,40 @@ const OldTransactionImport = props => {
       }}>
       <ImageBackground style={styles.container} source={images.background}>
         <StatusBar />
-        <KeyboardView
+        {/* <KeyboardView
           style={sharedStyles.container}
           keyboardVerticalOffset={128}>
           <ScrollView
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
-            keyboardShouldPersistTaps="handled">
-            <View style={sharedStyles.headerContainer}>
-              <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
-            </View>
-
+            keyboardShouldPersistTaps="handled"> */}
+        <View style={sharedStyles.headerContainer}>
+          <Image style={styles.logo} source={images.logo} />
+          <Text style={styles.logoText}>OFFICE</Text>
+          <Text style={styles.appText}>universo</Text>
+        </View>
+        {/* 
           </ScrollView>
-        </KeyboardView>
+        </KeyboardView> */}
 
         <View style={styles.metamaskBox}>
-          <Image style ={styles.metamask} source = {images.logo_white}></Image>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>Do you want import your transactions </Text>
-          </View>
-          <View style={{ flex: 1, justifyContent: 'center',marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>from your old account?</Text>
-          </View>
+          <Image style={styles.metamask} source={images.logo_white}></Image>
+
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              <Text style={styles.metamaskText}>Do you want import the </Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              <Text style={styles.metamaskText}>data from your old  </Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center', marginBottom: 15 }}>
+              <Text style={styles.metamaskText}>Universe account?</Text>
+            </View>
         </View>
 
 
 
 
-        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
+        <View style={{ flexDirection: 'column', marginBottom: height * 0.05 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}
@@ -147,7 +154,7 @@ const OldTransactionImport = props => {
             style={{
               marginHorizontal: 20,
               borderRadius: 43,
-              borderWidth:3,
+              borderWidth: 3,
               // borderColor:"#fff"
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleSignContinue}>

@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Dimensions
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -25,6 +26,7 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
+const { width,height } = Dimensions.get('screen');
 
 const theme = 'light';
 
@@ -38,14 +40,6 @@ const OldDataImported = props => {
   const [errPassword, setErrPassword] = useState('');
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
-
-  const onGoToSignUp = () => {
-    navigation.navigate('SignUp');
-  };
-
-  const forgotPassword = () => {
-    navigation.navigate('ForgotPassword');
-  };
 
   const isValid = () => {
     seterrNickname('');
@@ -65,17 +59,6 @@ const OldDataImported = props => {
   const  handleContinue = () => {
     navigation.navigate("CreatePin")
   }
-  const handleSignContinue = () => {
-    navigation.navigate("SignIn")
-  }
-
-  const onSubmit = () => {
-    if (isValid()) {
-      setIsLoading(true);
-
-      loginSuccess({});
-    }
-  };
 
   return (
     <SafeAreaView
@@ -85,27 +68,27 @@ const OldDataImported = props => {
       }}>
       <ImageBackground style={styles.container} source={images.background}>
         <StatusBar />
-        <KeyboardView
+        {/* <KeyboardView
           style={sharedStyles.container}
           keyboardVerticalOffset={128}>
           <ScrollView
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
-            keyboardShouldPersistTaps="handled">
+            keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
               <Text style={styles.logoText}>OFFICE</Text>
               <Text style={styles.appText}>universo</Text>
             </View>
-
+{/* 
           </ScrollView>
-        </KeyboardView>
+        </KeyboardView> */}
 
         <View style={styles.metamaskBox}>
           <Image style ={styles.metamask} source = {images.tick_circle}></Image>
           <Text style={styles.tickText}>Complete </Text>
 
-          <View style={{ flex: 1, justifyContent: 'center',marginTop:50 }}>
+          <View style={{ flex: 1, justifyContent: 'center',marginTop:10 }}>
             <Text style={styles.metamaskText}>The data was imported </Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center',marginBottom: 15 }}>
@@ -116,7 +99,7 @@ const OldDataImported = props => {
 
 
 
-        <View style={{ flexDirection: 'column', marginBottom: 105 }}>
+        <View style={{ flexDirection: 'column', marginBottom: height * 0.08}}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}

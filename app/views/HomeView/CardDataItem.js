@@ -17,7 +17,7 @@ import {VectorIcon} from '../../containers/VectorIcon';
 import LinearGradient from 'react-native-linear-gradient';
 
 const CardDataItem = ({name}) => {
-  return (
+  return (   
     <LinearGradient
       colors={['rgba(13, 255, 255, 0.49)', 'rgba(255, 255, 255, 0)']}
       style={styles.cardContainerBorder}>

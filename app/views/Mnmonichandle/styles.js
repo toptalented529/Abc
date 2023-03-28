@@ -2,11 +2,11 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { COLOR_WHITE } from '../../constants/colors';
 
 
-const { width } = Dimensions.get('screen');
+const { width,height } = Dimensions.get('screen');
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center"
   },
   logo: {
@@ -90,14 +90,15 @@ export default StyleSheet.create({
     color: '#fff',
   },
   registerButton: {
-    height: 64,
+    height: height * 0.08,
     width: width * 0.8,
   },
   metamaskBox: {
     width: width * 0.8,
-    height: 190.3,
+    height: height * 0.25,
     flexGrow: 0,
-    marginBottom: 36,
+    marginBottom: height * 0.06,
+    marginTop: height * 0.03,
     flexDirection: "column",
     // marginVertical: 32.7,
     // marginTop: 32.7,
@@ -116,7 +117,7 @@ export default StyleSheet.create({
   metamask: {
     width: width * 0.2,
     height: width * 0.2,
-    marginTop: 23,
+    marginTop: 1,
     resizeMode:'contain',
   },
   metamaskText: {

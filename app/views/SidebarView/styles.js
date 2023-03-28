@@ -23,7 +23,7 @@ export default StyleSheet.create({
     marginTop: 50,
   },
   headerContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 20,
@@ -124,6 +124,7 @@ export default StyleSheet.create({
     right: 0,
     width: 24,
     height: 24,
+    borderRadius:12,
   },
   menuText: {
     fontFamily: 'Montserrat',
@@ -162,4 +163,13 @@ export default StyleSheet.create({
   chevronIcon: {
     alignSelf: 'center',
   },
+  error : {
+    color:"#fff",
+    fontSize:24,
+    alignSelf:'flex-start',
+    borderStyle:"solid",
+    // backgroundColor:"#6da0ee",
+    padding:2,
+    borderRadius:12,
+  }
 });
