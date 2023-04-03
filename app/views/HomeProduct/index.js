@@ -11,7 +11,7 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import StatusBar from '../../containers/StatusBar';
@@ -28,14 +28,18 @@ import { withTheme } from '../../theme';
 import { COLOR_WHITE } from '../../constants/colors';
 
 import BalanceDetail from './BalanceDetail';
-import BuyButton from './BuyButton';
 import RecentActivity from './RecentActivity';
 import CardDataItem from './CardDataItem';
 
 import images from '../../assets/images';
-const { width } = Dimensions.get('screen');
+import TeamData from './TeamData';
+const { width,height } = Dimensions.get('screen');
 
-const HomeView = props => {
+const HomeProduct = props => {
+  const route = useRoute()
+  const {type} = route.params
+
+  console.log("5645678456",type)
   const navigation = useNavigation();
   const [state, setState] = useState({
     refreshing: false,
@@ -61,17 +65,13 @@ const HomeView = props => {
           <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
         <ScrollView style={{ flexGrow: 1 }}>
+          <View style = {[styles.cardItems,{marginTop:height * 0.05}]}>
+          <CardDataItem name = {type} />
+          {/* <CardDataItem name = {'Products'}/>
+          <CardDataItem name = {'Associated'}/> */}
+          </View>
           <BalanceDetail />
-          <View style={styles.btnContainer}>
-            <BuyButton name={'Buy Investment'} />
-            <BuyButton name={'Buy Blockchain'} />
-            <BuyButton name={'Buy Products'} />
-          </View>
-          <View style = {styles.cardItems}>
-          <CardDataItem name = {'Blockchain'} />
-          </View>
-          <CardDataItem name = {'Associated'}/>
-          <CardDataItem name = {'Products'}/>
+          <TeamData/>
           <RecentActivity />
         </ScrollView>
       </ImageBackground>
@@ -92,4 +92,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withActionSheet(withTheme(HomeView)));
+)(withActionSheet(withTheme(HomeProduct)));

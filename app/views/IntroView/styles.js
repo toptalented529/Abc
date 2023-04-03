@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native'
 import { COLOR_YELLOW } from '../../constants/colors'
 
-const { height } = Dimensions.get('window');
+const {width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -12,11 +12,12 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -30,
+    marginTop: -height * 0.15,
   },
   image: {
     maxWidth: '80%',
-    height: 300,
+    // height: 300,
+    height: height * 0.3,
     resizeMode: 'contain',
     alignItems: 'center',
     justifyContent: 'center',
@@ -26,18 +27,33 @@ export default StyleSheet.create({
     paddingHorizontal: 42,
   },
   title: {
-    fontFamily: 'Inter',
+    fontFamily: 'Poppins',
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: '600',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  title_first: {
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    lineHeight: 24,
+    fontWeight: '100',
     textAlign: 'center',
     marginBottom: 8,
   },
   text: {
-    fontFamily: 'Inter',
-    fontSize: 12,
+    fontFamily: 'Poppins',
+    fontSize: 20,
     lineHeight: 20,
     fontWeight: '300',
+    textAlign: 'center',
+  },
+  text_last: {
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    lineHeight: 20,
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   submitBtn: {
@@ -46,9 +62,10 @@ export default StyleSheet.create({
   paginationContainer: {
     position: 'absolute',
     bottom: height * 0.05,
-    left: 16,
-    right: 16,
-    height: height * 0.2
+    // left: 16,
+    // right: 16,
+    height: height * 0.15,
+    width:width * 1,
   },
   paginationDots: {
     height: 16,
@@ -62,9 +79,9 @@ export default StyleSheet.create({
     borderRadius: 4,
     marginHorizontal: 6,
     borderWidth: 1,
-    borderColor: COLOR_YELLOW,
+    borderColor: "white",
     borderStyle: 'solid',
-    backgroundColor: COLOR_YELLOW,
+    backgroundColor: "white",
   },
   dot: {
     width: 7,
@@ -75,5 +92,42 @@ export default StyleSheet.create({
     borderColor: '#605E5E',
     borderStyle: 'solid',
     backgroundColor: '#2B2D2E',
+  },
+  registerButton: {
+    height: height * 0.08,
+    // width: width * 0.8,
+  },
+  registerText: {
+    fontFamily: 'Montserrat',
+    fontSize: 14,
+    fontWeight: '600',
+    letterSpacing: 1.4,
+    textAlign: 'center',
+    color: '#fff',
+  },
+  logo: {
+    width: 93,
+    height: 48,
+    resizeMode: 'contain',
+  },
+  logoText: {
+    width: 275,
+    height: 33,
+    marginTop: 11,
+    fontFamily: 'Montserrat',
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: '#fff',
+  },
+  appText: {
+    width: width * 0.8,
+    marginTop: 14,
+    fontFamily: 'Montserrat',
+    fontSize: 36,
+    fontWeight: '700',
+    letterSpacing: 4,
+    textAlign: 'center',
+    color: '#fff',
   },
 })

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Alert,
   Image,
@@ -11,15 +11,15 @@ import {
   TouchableHighlight,
   useWindowDimensions,
 } from 'react-native';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import {TabView, SceneMap} from 'react-native-tab-view';
-import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import { TabView, SceneMap } from 'react-native-tab-view';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
-import {setUser as setUserAction} from '../../actions/login';
+import { setUser as setUserAction } from '../../actions/login';
 import ActivityIndicator from '../../containers/ActivityIndicator';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
-import {withActionSheet} from '../../containers/ActionSheet';
+import { withActionSheet } from '../../containers/ActionSheet';
 
 import {
   COLOR_WHITE,
@@ -27,7 +27,7 @@ import {
   COLOR_ULTRAMARINE,
   COLOR_DARKBLACK,
 } from '../../constants/colors';
-import {withTheme} from '../../theme';
+import { withTheme } from '../../theme';
 import images from '../../assets/images';
 import styles from './styles';
 
@@ -35,11 +35,25 @@ import StatusBar from '../../containers/StatusBar';
 import MainHeader from '../../containers/MainHeader';
 import MainScreen from '../../containers/MainScreen';
 import ProductItem from './ProductItem';
+import { useRoute } from '@react-navigation/native';
 
 const MarketView = props => {
   const searchInput = useRef(null);
   const [searchText, setSearchText] = useState('');
   const tabBarHeight = useBottomTabBarHeight();
+
+  const route = useRoute();
+  let { indexID } = route.params;
+  if (indexID === undefined) {
+    indexID = 1;
+  }
+
+
+  useEffect(() => {
+   setIndex(indexID) 
+  },[indexID])
+
+  console.log("how I can",indexID)
 
   const tData = [
     {
@@ -72,7 +86,7 @@ const MarketView = props => {
     },
   ];
 
-  const RenderFlatListItem = ({data, type}) => {
+  const RenderFlatListItem = ({ data, type }) => {
     if (data.length > 0) {
       return (
         <ScrollView>
@@ -87,12 +101,14 @@ const MarketView = props => {
   };
 
   const layout = useWindowDimensions();
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(indexID);
+
+  console.log("IIIIIIII",index)
   const [routes] = React.useState([
-    {key: 'first', title: 'All'},
-    {key: 'second', title: 'Blockchain'},
-    {key: 'third', title: 'Products'},
-    {key: 'firth', title: 'Investments'},
+    { key: 'first', title: 'All' },
+    { key: 'second', title: 'Blockchain' },
+    { key: 'third', title: 'Products' },
+    { key: 'firth', title: 'Investments' },
   ]);
 
   const renderScene = SceneMap({
@@ -111,16 +127,16 @@ const MarketView = props => {
                 {i == index ? (
                   <LinearGradient
                     colors={['#6da0ee', '#a755ff']}
-                    start={{x: 0, y: 0.5}}
-                    end={{x: 1, y: 0.5}}
+                    start={{ x: 0, y: 0.5 }}
+                    end={{ x: 1, y: 0.5 }}
                     style={styles.tabItem}>
-                    <Text style={[styles.tabText, {color: COLOR_WHITE}]}>
+                    <Text style={[styles.tabText, { color: COLOR_WHITE }]}>
                       {route.title}
                     </Text>
                   </LinearGradient>
                 ) : (
                   <View>
-                    <Text style={[styles.tabText, {color: COLOR_WHITE}]}>
+                    <Text style={[styles.tabText, { color: COLOR_WHITE }]}>
                       {route.title}
                     </Text>
                   </View>
@@ -134,18 +150,18 @@ const MarketView = props => {
   };
 
   return (
-    <MainScreen style={{backgroundColor: "#141436"}}>
-      <View style ={{backgroundColor:"#02010c"}}>
-      <StatusBar />
-      <MainHeader />
+    <MainScreen style={{ backgroundColor: "#141436" }}>
+      <View style={{ backgroundColor: "#02010c" }}>
+        <StatusBar />
+        <MainHeader />
       </View>
       <View style={styles.notificationBox}>
-        <Text style={[styles.notificationText, {color: COLOR_WHITE}]}>
+        <Text style={[styles.notificationText, { color: COLOR_WHITE }]}>
           Shop Market
         </Text>
         <LinearGradient
           colors={['#8d8be5', '#3c3ca0']}
-          style={{borderRadius: 12, opacity: 0.3}}>
+          style={{ borderRadius: 12, opacity: 0.3 }}>
           <View style={[styles.searchBox]}>
             <Image source={images.ico_search} style={styles.searchBtn} />
             <TextInput
@@ -158,16 +174,16 @@ const MarketView = props => {
               placeholder={'Input your item key'}
               placeholderTextColor={'#aaa'}
               onChangeText={val => setSearchText(val)}
-              style={{marginLeft: 10, color: COLOR_WHITE}}
+              style={{ marginLeft: 10, color: COLOR_WHITE }}
             />
           </View>
         </LinearGradient>
       </View>
       <TabView
-        navigationState={{index, routes}}
+        navigationState={{ index, routes }}
         renderScene={renderScene}
         renderTabBar={renderTabBar}
-        initialLayout={{width: layout.width}}
+        initialLayout={{ width: layout.width }}
         onIndexChange={setIndex}
         style={{
           backgroundColor: COLOR_ULTRAMARINE,

@@ -23,6 +23,10 @@ const user = (sequelize,DataTypes) => {
     nombramiento:DataTypes.STRING,  
     onboarding_finished:DataTypes.BOOLEAN,
     vitalImport:DataTypes.BOOLEAN,
+    last_blockchain_purchased_time:DataTypes.DATE,
+    last_products_purchased_time:DataTypes.DATE,
+    last_Investment_purchased_time:DataTypes.DATE,
+
 
   
     

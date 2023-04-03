@@ -205,7 +205,7 @@ export const MainTabBar = React.memo(({theme, navigation, state}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.tabContainer}
-            onPress={() => navigation.navigate('Market')}>
+            onPress={() => navigation.navigate('Market',{indexID:0})}>
             <Image
               source={state.index === 1 ? images.ico_bag_cli : images.ico_bag}
               style={styles.tabIcon}

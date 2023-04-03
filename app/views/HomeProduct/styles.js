@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import { COLOR_BLACK } from '../../constants/colors';
 
 const {width, height} = Dimensions.get('screen');
 export default StyleSheet.create({
@@ -137,8 +138,8 @@ export default StyleSheet.create({
   },
   balancePriceBox: {
     alignItems: 'center',
-    width: 170,
-    height: 33,
+    width: width * 0.8,
+    // height: height * 0.2 ,
     borderRadius: 13,
     marginBottom: 20,
     marginTop: 6,
@@ -147,11 +148,44 @@ export default StyleSheet.create({
     justifyContent: 'center',
     fontSize: 22,
     fontWeight: '800',
+    letterSpacing:4,
   },
+  chronometer: {
+    color:"#fff",
+    fontFamily:"Poppins",
+    fontSize:16,
+    alignSelf:"center"
+  },  
+  chronometerDays: {
+    width:width * 0.15,
+    height:width * 0.15,
+    backgroundColor:COLOR_BLACK,
+    justifyContent:"center",
+    textAlign:"center",
+    borderRadius:12,
+    alignItems:"center"
 
+
+  },
+  chronometerDay: {
+    color:"#fff",
+    textAlign:"center",
+    padding:2
+
+  },
+  ChronometerBox: {
+    flex:0,
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    alignItems:"flex-start"
+  },  
+  chronometersubBox: {
+    padding:12
+  },
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+    alignSelf:"flex-start"
   },
   btnBox: {
     width: 100,
@@ -213,7 +247,7 @@ export default StyleSheet.create({
   },
   cardContainerBorder: {
     borderRadius: 29,
-    marginHorizontal: 28,
+    marginHorizontal: width * 0.08,
     marginVertical: height * 0.01,
     paddingHorizontal: 2,
     paddingVertical: 2,
@@ -224,6 +258,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  whiteline: {
+    width: width * 0.7,
+    borderStyle:"solid",
+    borderTopColor:"#fff",
+    borderWidth:0.5,
+    marginVertical:height * 0.01,
   },
   cardPic: {
     width: width * 0.2,

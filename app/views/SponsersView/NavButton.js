@@ -18,20 +18,13 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
+
+
+
 const NavButton = ({name}) => {
 
-
-
-  
- const navigation = useNavigation()
-
- const handlePress = () => {
-   navigation.navigate("Sponsers")
- }
- 
- 
   return (
-    <TouchableOpacity style={{paddingHorizontal: 10, paddingVertical: 10}} onPress = {handlePress}>
+    <TouchableOpacity style={{paddingHorizontal: 10, paddingVertical: 10}}>
       <LinearGradient
         colors={['rgba(255, 255, 255, 0.61)', 'rgba(255, 255, 255, 0.05)']}
         start={{x: 0.5, y: 0}}

@@ -32,13 +32,17 @@ import { Linking } from 'react-native';
 
 import BackgroundTimer from 'react-native-background-timer';
 // import MetaMaskSDK from '@metamask/sdk';
+import axios from 'axios';
+// import Web3 from 'web3';
+import { decode as atob, encode as btoa } from 'base-64';
 import "react-native-get-random-values"
 import "@ethersproject/shims"
-import { ethers } from 'ethers';
-import axios from 'axios';
 
-import { decode as atob, encode as btoa } from 'base-64';
-import store from '../../lib/createStore';
+import { ethers } from "ethers";
+
+
+
+
 global.atob = atob;
 global.btoa = btoa;
 const theme = 'light';
@@ -56,12 +60,11 @@ const theme = 'light';
 //   },
 // });
 // const ethereum = sdk.getProvider();
-// const provider = new ethers.providers.Web3Provider(ethereum);
 
 
 const ConnectMetamask = props => {
   const navigation = useNavigation();
-  const {ethereum, loginSuccess } = props;
+  const { ethereum, loginSuccess } = props;
   // const { setEthereum } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [errMetamask, seterrMetamask] = useState('')
@@ -82,32 +85,43 @@ const ConnectMetamask = props => {
     const setItme = async () => {
       // const result = await ethereum.request({ method: 'eth_requestAccounts' });
       // console.log('RESULT', result?.[0],ethereum.selectedAddress);
-      console.log("77777777777777777777777777777",ethereum)
+      console.log("77777777777777777777777777777", ethereum)
       const eth = ethereum.sdk.getProvider();
       // const result = await eth.request({ method: 'eth_requestAccounts' });
       setEthereums(eth)
     }
     setItme()
-  },[])
-  
+  }, [])
+
   const handleContinue = async () => {
     navigation.navigate("ConnectMetamaskCheck")
   }
 
   const handlemetamask = async () => {
     try {
-      if (!address) {
+      if (!ethereums.isConnected()) {
         console.log("dfdf", ethereums)
         const result = await ethereums.request({ method: 'eth_requestAccounts' });
-        console.log('RESULT', result?.[0],ethereums.selectedAddress);
+        console.log('RESULT', result?.[0], ethereums.selectedAddress);
         setAddress(result?.[0])
         AsyncStorage.setItem("currentAddress", result?.[0])
+        const provider = new ethers.providers.Web3Provider(ethereums);
+        const address = '0x735951C5519704203a1e76ef5251A3D9fe3ED61f';
 
+        // Get the balance for the address
+        provider.getBalance(address)
+          .then(balance => {
+            console.log(`Balance for ${address}: ${ethers.utils.formatEther(balance)} ETH`);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+ 
 
-        
-      } else {
-        sign()
-      }
+    }else{
+      console.log("343435")
+      sign()
+    }
 
     } catch (e) {
       console.log('ERROR', e);
@@ -118,7 +132,8 @@ const ConnectMetamask = props => {
 
   const sign = async () => {
     var nonce1 = "12";
-    if (address) {
+    if (ethereums.isConnected()) {
+      const address = await AsyncStorage.getItem("currentAddress")
       console.log("33333333333333333333333333333")
       const res = await axios.post("http://95.217.197.177:80/account/signup", {
         address: address
@@ -132,7 +147,7 @@ const ConnectMetamask = props => {
       console.log("11111111111111111", nonce1)
 
       const resp = await ethereums.request({ method, params });
-  
+
       console.log("sign data", resp)
 
       const res1 = await axios.post("http:///95.217.197.177:80/account/signin", {
@@ -144,7 +159,7 @@ const ConnectMetamask = props => {
       console.log("here", flag)
       setTimeout(() => {
         handleContinue()
-        
+
       }, 1000);
     }
   };
@@ -167,13 +182,13 @@ const ConnectMetamask = props => {
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
             keyboardShouldPersistTaps="handled"> */}
-            <View style={sharedStyles.headerContainer}>
-              <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
-            </View>
+        <View style={sharedStyles.headerContainer}>
+          <Image style={styles.logo} source={images.logo} />
+          <Text style={styles.logoText}>OFFICE</Text>
+          <Text style={styles.appText}>universo</Text>
+        </View>
 
-          {/* </ScrollView>
+        {/* </ScrollView>
         </KeyboardView> */}
 
         <View style={styles.metamaskBox}>

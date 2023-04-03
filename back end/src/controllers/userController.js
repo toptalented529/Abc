@@ -167,6 +167,12 @@ export const me = async (req, res) => {
     const user = req.currentUser;
     res.status(200).json({ user: existinguser })
 }
+export const sponser = async (req, res) => {
+    const existinguser = await models.User.findOne({ where: { address: req.address } });
+    const sponser = await models.User.findOne({where:{id:existinguser.parent_id}})
+    const user = req.currentUser;
+    res.status(200).json({ user: sponser })
+}
 
 //get profile from the current user
 export const getProfile = async (req, res, next) => {
@@ -270,27 +276,27 @@ export const setSponserName = async (req, res) => {
     existinguser.parent_id = sponser.id
     await existinguser.save()
 
-    try{
-        const transaction = contract.methods.addMember(existinguser.id, sponser.id, account.address);
-        console.log("sdfsdfsdf", account.address)
-        let estimatedGas = await transaction.estimateGas({ from: account.address });
+    // try{
+    //     const transaction = contract.methods.addMember(existinguser.id, sponser.id, account.address);
+    //     console.log("sdfsdfsdf", account.address)
+    //     let estimatedGas = await transaction.estimateGas({ from: account.address });
     
-        const options = {
-            to: transaction._parent._address,
-            gas: estimatedGas * 2, //sometimes estimate is wrong and we don't care if more gas is needed
-            data: transaction.encodeABI(),
-        };
+    //     const options = {
+    //         to: transaction._parent._address,
+    //         gas: estimatedGas * 2, //sometimes estimate is wrong and we don't care if more gas is needed
+    //         data: transaction.encodeABI(),
+    //     };
     
-        const signed = await web3.eth.accounts.signTransaction(options, privateKey);
-        const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction);
-        console.log(receipt)
+    //     const signed = await web3.eth.accounts.signTransaction(options, privateKey);
+    //     const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction);
+    //     console.log(receipt)
     
     
-    }catch(e){
-        console.log(e)
-        res.status(401).json({success:false})
-        return
-    }
+    // }catch(e){
+    //     console.log(e)
+    //     res.status(401).json({success:false})
+    //     return
+    // }
 
    
 

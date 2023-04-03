@@ -52,15 +52,18 @@ const theme = 'light';
 const sdk = new MetaMaskSDK({
   openDeeplink: link => {
     Linking.openURL(link);
+    Linking.canOpenURL(link);
   },
   timer: BackgroundTimer,
   dappMetadata: {
     name: 'React Native Test Dapp',
     url: 'example.com',
   },
+  // checkInstallationImmediately: true,
+  injectProvider: true,
+
 });
 const ethereum = sdk.getProvider();
-// const provider = new ethers.providers.Web3Provider(ethereum);
 
 
 const MetamaskInstall = props => {
@@ -69,7 +72,6 @@ const MetamaskInstall = props => {
   const { setEthereum } = props;
   const [errMetamask, seterrMetamask] = useState('')
   let metamaskUrl = 'https://metamask.app.link'
-  // const [metamaskInstalled, setMetamaskInstalled] = useState(true);
   if (Platform.OS === 'ios') {
     metamaskUrl = 'metamask:';
   } else if (Platform.OS === 'android') {
@@ -106,7 +108,7 @@ const MetamaskInstall = props => {
   
   const handleContinue = async() => {
 
-     const supported  =   Linking.canOpenURL(metamaskUrl)
+     const supported  =  await Linking.canOpenURL(metamaskUrl)
       if(ethereum){
         navigation.navigate("OfficeAccount")
 
@@ -161,8 +163,8 @@ const MetamaskInstall = props => {
   // };
 
   const handlematamaskinstall =async () => {
-    const supported  =   Linking.canOpenURL(metamaskUrl)
-    if(ethereum?.isMetaMask ){
+    const supported  = await   Linking.canOpenURL(metamaskUrl)
+    if(supported ){
       // setMetamaskInstalled(true)
       seterrMetamask("Metamask already installed!")
     }else{

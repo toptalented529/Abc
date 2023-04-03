@@ -62,7 +62,6 @@ const CardDataItem = ({ name }) => {
 
 
     const handleCLick = () => {
-      console.log("234234234234")
       navigation.navigate("HomeProduct",{type:name})
     }
 

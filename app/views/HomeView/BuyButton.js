@@ -13,10 +13,18 @@ import LinearGradient from 'react-native-linear-gradient';
 import images from '../../assets/images';
 import styles from './styles';
 import {COLOR_WHITE, COLOR_BLACK} from '../../constants/colors';
+import { useNavigation } from '@react-navigation/native';
 
 const BuyButton = ({name}) => {
+
+
+  const navigation = useNavigation()
+
+  const handlePress = () => {
+    navigation.navigate("Market",{indexID:name === 'Buy Investment' ?3:name === 'Buy Products'?2:1 })
+  }
   return (
-    <TouchableOpacity style={{paddingHorizontal: 8, paddingVertical: 8}}>
+    <TouchableOpacity style={{paddingHorizontal: 8, paddingVertical: 8}} onPress ={handlePress}>
       <LinearGradient
         colors={['#42e8e0ff', 'rgba(255, 239, 252, 0)']}
         style={{

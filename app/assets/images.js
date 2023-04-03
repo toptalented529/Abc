@@ -123,7 +123,15 @@ const images = {
   home_background: require('./images/backgrounds/Background/Home.jpg'),
   metamask_image: require('./images/backgrounds/Icon/metamask.png'),
   logo_white: require('./images/backgrounds/Icon/logoWhite.png'),
-  tick_circle: require('./images/backgrounds/Icon/tick-circle.png')
+  tick_circle: require('./images/backgrounds/Icon/tick-circle.png'),
+  onboarding_mobile: require("./images/backgrounds/Onboarding/Onboarding01.png"),
+  onboarding_coin: require("./images/backgrounds/Onboarding/Onboarding02.png"),
+  onboarding_people: require("./images/backgrounds/Onboarding/Onboarding03.png"),
+  profile_image6: require("./images/profile/006.png"),
+  profile_image7: require("./images/profile/007.png"),
+  profile_image8: require("./images/profile/008.png"),
+  profile_image9: require("./images/profile/9.png"),
+  profile_group: require("./images/profile/group.png"),
 };
 
 export default images;

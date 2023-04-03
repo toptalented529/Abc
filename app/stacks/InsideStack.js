@@ -33,6 +33,9 @@ import MarketView from '../views/MarketView';
 import TransactionView from '../views/TransactionView';
 import CreatePINView from '../views/CreatePINView';
 import EditPINView from '../views/EditPINView';
+import HomeProduct from '../views/HomeProduct';
+import SponsersView from '../views/SponsersView';
+import RankingView from '../views/RankingView';
 
 const Tab = createBottomTabNavigator();
 const Inside = createStackNavigator();
@@ -64,11 +67,7 @@ const TabStack = () => {
         component={HomeStack}
         options={{headerShown: false}}
       />
-      <Tab.Screen
-        name="EditPin"
-        component={EditPINView}
-        options={{headerShown: false}}
-      />
+     
       <Tab.Screen
         name="Market"
         component={MarketView}
@@ -97,6 +96,26 @@ const TabStack = () => {
       <Tab.Screen
         name="MyData"
         component={MyDataView}
+        options={{headerShown: false}}
+      />
+       <Tab.Screen
+        name="HomeProduct"
+        component={HomeProduct}
+        options={{headerShown: false}}
+      />
+       <Tab.Screen
+        name="Sponsers"
+        component={SponsersView}
+        options={{headerShown: false}}
+      />
+       <Tab.Screen
+        name="RankingView"
+        component={RankingView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="EditPin"
+        component={EditPINView}
         options={{headerShown: false}}
       />
     </Tab.Navigator>
@@ -201,3 +220,4 @@ const DrawerNavigator = () => {
 };
 
 export default DrawerNavigator;
+ 
