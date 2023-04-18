@@ -37,7 +37,7 @@ const { width,height } = Dimensions.get('screen');
 
 const HomeProduct = props => {
   const route = useRoute()
-  const {type} = route.params
+  const {type,active} = route.params
 
   console.log("5645678456",type)
   const navigation = useNavigation();
@@ -53,7 +53,7 @@ const HomeProduct = props => {
 
     <MainScreen
       navigation={navigation}
-      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight-30 }}
+      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight+10}}
     >
       <ImageBackground
         source={images.home_background}
@@ -66,13 +66,13 @@ const HomeProduct = props => {
         )}
         <ScrollView style={{ flexGrow: 1 }}>
           <View style = {[styles.cardItems,{marginTop:height * 0.05}]}>
-          <CardDataItem name = {type} />
+          <CardDataItem name = {type} active = {active} />
           {/* <CardDataItem name = {'Products'}/>
           <CardDataItem name = {'Associated'}/> */}
           </View>
-          <BalanceDetail />
+          <BalanceDetail name = {type} />
           <TeamData/>
-          <RecentActivity />
+          <RecentActivity name = {type} />
         </ScrollView>
       </ImageBackground>
     </MainScreen>

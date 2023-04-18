@@ -31,6 +31,7 @@ import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
 import PushNotification from 'react-native-push-notification';
+import i18n from '../../i18n';
 const theme = 'light';
 
 const publicKeyImport = props => {
@@ -111,13 +112,13 @@ const publicKeyImport = props => {
             keyboardShouldPersistTaps="handled">
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={[styles.appText, { marginTop: -10 }]}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={[styles.appText, { marginTop: -10 }]}>{i18n.t('universo')}</Text>
             </View>
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  This is your Public Key , Copy and paste and save it
+                {i18n.t('This_is_your_Public_Key_Copy_and_paste_and_save_it')}
                 </Text>
               </View>
 
@@ -146,7 +147,7 @@ const publicKeyImport = props => {
                   <Text
                     style={[styles.forgotText, { color: COLOR_WHITE }]}
                   >
-                  {copied?  ' public key copied':'Copy public key' }
+                  {copied?  <>{i18n.t('public_key_copied')}</>:<>{i18n.t('Copy_public_key')}</> }
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -166,7 +167,7 @@ const publicKeyImport = props => {
             }}>
             <TouchableOpacity style={[styles.registerButton]} onPress={onSubmit}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>CONTINUE LOG IN</Text>
+                <Text style={styles.registerText}>{i18n.t('CONTINUE_LOG_IN')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

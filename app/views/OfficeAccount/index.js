@@ -26,6 +26,7 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
+import i18n from '../../i18n';
 const { width, height } = Dimensions.get('screen');
 
 const theme = 'light';
@@ -90,8 +91,8 @@ const OfficeAccount = props => {
             keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={styles.appText}>{i18n.t('universo')}</Text>
             </View>
 
           {/* </ScrollView>
@@ -101,13 +102,13 @@ const OfficeAccount = props => {
           <Image style={styles.metamask} source={images.logo_white}></Image>
           
           <View style={{ flex: 0, justifyContent: 'center', flexDirection: "row" }}>
-            <Text style={styles.metamaskText}>Do you</Text>
-            <Text style={styles.metamaskTextB}> have an account</Text>
-            <Text style={styles.metamaskText}> at</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Do_you')} </Text>
+            <Text style={styles.metamaskTextB}>{i18n.t('have_an_account')}</Text>
+            <Text style={styles.metamaskText}> {i18n.t('at')}</Text>
           </View>
           <View style={{ flex: 0, flexDirection: "row", justifyContent: 'center', marginBottom: 15 }}>
-            <Text style={styles.metamaskText}> the</Text>
-            <Text style={styles.metamaskTextB}>  Office Mobile account?</Text>
+            <Text style={styles.metamaskText}> {i18n.t('the')}</Text>
+            <Text style={styles.metamaskTextB}> {i18n.t('Office_Mobile_account')}</Text>
           </View>
         </View>
 
@@ -127,7 +128,7 @@ const OfficeAccount = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleContinue}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>YES</Text>
+                <Text style={styles.registerText}>{i18n.t('YES')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -152,7 +153,7 @@ const OfficeAccount = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleSignContinue}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>NO</Text>
+                <Text style={styles.registerText}>{i18n.t('NO')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

@@ -1,3 +1,4 @@
+import images from '../assets/images';
 import I18n from '../i18n';
 
 export const POST_TYPE_TEXT = 'text';
@@ -11,6 +12,27 @@ export const CLOUD_URL =
   'https://us-central1-vip-billionaires-c07df.cloudfunctions.net';
 export const MERCHANT_ID = 'merchant.com.ninasoft.vipbillionaires';
 
+
+export const Ranges = [
+  {id:"1", image:images.color_range1,no_color_image:images.no_color_range1, name:'ATOMO',rangeLevel:0,  },
+  {id:"2", image:images.color_range2,no_color_image:images.no_color_range2, name:'TIERRA',rangeLevel:600,  },
+  {id:"3", image:images.color_range3,no_color_image:images.no_color_range3, name:'AGUA',rangeLevel:1250,  },
+  {id:"4", image:images.color_range4,no_color_image:images.no_color_range4, name:'FUEGO',rangeLevel:2500,  },
+  {id:"5", image:images.color_range5,no_color_image:images.no_color_range5, name:'VIENTO',rangeLevel:5000,  },
+  {id:"6", image:images.color_range6,no_color_image:images.no_color_range6, name:'LUNA',rangeLevel:10000,  },
+  {id:"7", image:images.color_range7,no_color_image:images.no_color_range7, name:'COMETA',rangeLevel:25000,  },
+  {id:"8", image:images.color_range8,no_color_image:images.no_color_range8, name:'SOL',rangeLevel:50000,  },
+  {id:"9", image:images.color_range9,no_color_image:images.no_color_range9, name:'NOVA',rangeLevel:150000,  },
+  {id:"10", image:images.color_range10,no_color_image:images.no_color_range10, name:'MARKABAH',rangeLevel:300000,  },
+  {id:"11", image:images.color_range11,no_color_image:images.no_color_range11, name:'ORION',rangeLevel:600000,  },
+  {id:"12", image:images.color_range12,no_color_image:images.no_color_range12, name:'CENTAURO',rangeLevel:1200000,  },
+  {id:"13", image:images.color_range13,no_color_image:images.no_color_range13, name:'ANDROMEDA',rangeLevel:2500000,  },
+  {id:"14", image:images.color_range14,no_color_image:images.no_color_range14, name:'PARCEO',rangeLevel:5000000,  },
+  {id:"15", image:images.color_range15,no_color_image:images.no_color_range15, name:'GALAXIA',rangeLevel:10000000,  },
+  {id:"16", image:images.color_range16,no_color_image:images.no_color_range16, name:'COSMOS',rangeLevel:25000000,  },
+  {id:"17", image:images.color_range17,no_color_image:images.no_color_range17, name:'CELESTIAL',rangeLevel:50000000,  },
+  {id:"18", image:images.color_range18,no_color_image:images.no_color_range18, name:'UNIVERSAL',rangeLevel:120000000,  },
+]
 export const Genders = [
   { value: 'male', text: I18n.t('Male') },
   { value: 'female', text: I18n.t('Female') },

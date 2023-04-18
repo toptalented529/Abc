@@ -30,6 +30,7 @@ import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
 import axios from 'axios';
+import i18n from '../../i18n';
 
 const theme = 'light';
 
@@ -129,13 +130,13 @@ const OldSignInView = props => {
             keyboardShouldPersistTaps="handled">
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={[styles.appText,{marginTop:-10}]}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={[styles.appText,{marginTop:-10}]}>{i18n.t('universo')}</Text>
             </View>
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                 Enter your Old Credentials
+                {i18n.t('Enter_your_Old_Credentials')}
                 </Text>
               </View>
               <CustomTextInput
@@ -177,10 +178,10 @@ const OldSignInView = props => {
                 </View>
                 <Text
                   style={[styles.termText, {color: COLOR_WHITE,marginRight:5}]}
-                >I have read and agree</Text>
+                >{i18n.t('I_have_read_and_agree')}</Text>
                 <Text
                  style={[styles.termText, {color:  "#01dfcc"}]}
-                >to the term and conditions</Text>
+                >{i18n.t('to_the_term_and_conditions')}</Text>
               </View>
 
               </View>
@@ -210,11 +211,11 @@ const OldSignInView = props => {
             }}>
             <TouchableOpacity disabled = {!isSelected} style={[styles.registerButton]} onPress={onSubmit}>
               <View style={{flex: 1, justifyContent: 'center'}}>
-                <Text style={styles.registerText}>LOG IN</Text>
+                <Text style={styles.registerText}>{i18n.t('LOGIN')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient> 
-          <Text style ={ styles.error}>{warning}</Text>
+          {/* <Text style ={ styles.error}>{warning}</Text> */}
 
        
         </View>

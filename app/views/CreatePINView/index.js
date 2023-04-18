@@ -28,6 +28,7 @@ import KeyboardView from '../../containers/KeyboardView';
 import axios from 'axios';
 import BackgroundTimer from 'react-native-background-timer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from '../../i18n';
 
 const CreatePINView = props => {
   const navigation = useNavigation();
@@ -178,7 +179,7 @@ const CreatePINView = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  {!createPin ? <> Enter your </> : (!fullPin ? <> Create a </> : <>This is your </>)}  <Text style={{ fontWeight: '700' }}>6-digit code</Text>
+                  {!createPin ? <> {i18n.t('Enter_your')} </> : (!fullPin ? <>{i18n.t(' Create_a')} </> : <>{i18n.t('This_is_your')} </>)}  <Text style={{ fontWeight: '700' }}>{i18n.t('digit_code6')}</Text>
                 </Text>
               </View>
               <View
@@ -225,7 +226,7 @@ const CreatePINView = props => {
           }}>
           <TouchableOpacity disabled={!fullPin} style={styles.registerButton} onPress={handleContinue}>
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              <Text style={styles.registerText}>CONTINUE</Text>
+              <Text style={styles.registerText}>{i18n.t('CONTINUE')}</Text>
             </View>
           </TouchableOpacity>
         </LinearGradient>

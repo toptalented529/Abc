@@ -5,9 +5,9 @@ export * from './isRTL'
 
 export const LANGUAGES = [
   {
-    label: '日本語',
-    value: 'ja',
-    file: require('./locales/ja').default,
+    label: 'español',
+    value: 'es',
+    file: require('./locales/es').default,
   },
   {
     label: 'English',
@@ -24,7 +24,7 @@ const translations = LANGUAGES.reduce((ret, item) => {
 i18n.translations = translations
 i18n.fallbacks = true
 
-const defaultLanguage = { languageTag: 'en', isRTL: false }
+const defaultLanguage = { languageTag: 'es', isRTL: false }
 const { languageTag, isRTL } = defaultLanguage
 
 I18nManager.forceRTL(isRTL)
@@ -34,7 +34,7 @@ const locale =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale
     : NativeModules.I18nManager.localeIdentifier
-i18n.locale = locale?.indexOf('ja') > -1 ? 'ja' : defaultLanguage.languageTag
+i18n.locale = locale?.indexOf('es') > -1 ? 'es' : defaultLanguage.languageTag
 i18n.isRTL = I18nManager.isRTL
 
 export default i18n

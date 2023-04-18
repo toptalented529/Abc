@@ -27,6 +27,7 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
+import i18n from '../../i18n';
 const { width,height } = Dimensions.get('screen');
 
 const theme = 'light';
@@ -91,8 +92,8 @@ const MnemonicHandle = props => {
             keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={styles.appText}>{i18n.t('universo')}</Text>
             </View>
 {/* 
           </ScrollView>
@@ -101,10 +102,10 @@ const MnemonicHandle = props => {
         <View style={styles.metamaskBox}>
           <Image style ={styles.metamask} source = {images.logo_white}></Image>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>You have to create a </Text>
+            <Text style={styles.metamaskText}>{i18n.t('You_have_to_create_a')} </Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center',marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>24 keywords</Text>
+            <Text style={styles.metamaskText}>{i18n.t('keywords_24')}</Text>
           </View>
         </View>
 
@@ -124,7 +125,7 @@ const MnemonicHandle = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleContinue}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>CONTINUE WITH UNIVERSO</Text>
+                <Text style={styles.registerText}>{i18n.t('CONTINUE_WITH_UNIVERSO')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -149,7 +150,7 @@ const MnemonicHandle = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleSignContinue}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>GO TO METAMASK</Text>
+                <Text style={styles.registerText}>{i18n.t('GO_TO_METAMASK')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

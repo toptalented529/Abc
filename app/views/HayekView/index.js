@@ -113,7 +113,7 @@ const HayekView = ({subProp}) => {
                 style={{width: '50%', paddingHorizontal: 4}}>
                 {i == index ? (
                   <LinearGradient
-                    colors={['#6da0ee', '#a755ff']}
+                    colors={['#a74afb', '#f65ca8']}
                     start={{x: 0, y: 0.5}}
                     end={{x: 1, y: 0.5}}
                     style={styles.tabItem}>
@@ -148,14 +148,14 @@ const HayekView = ({subProp}) => {
             borderRadius: 29,
           }}>
           <LinearGradient
-            colors={['rgba(132, 44, 191, 0.35)', '#f2e9f9']}
+            colors={['#a74afb', '#f65ca8']}
             start={{x: 1, y: 1}}
             end={{x: 0, y: 0}}
             style={styles.summaryBox}>
             <View style={styles.summaryBoxMain}>
               <View
                 style={[styles.summaryIconBox, {backgroundColor: COLOR_WHITE}]}>
-                <Image source={images.ico_invest} style={styles.summaryIcon} />
+                <Image source={images.haykes_image} style={styles.summaryIcon} />
               </View>
               <View style={{marginLeft: 10}}>
                 <Text

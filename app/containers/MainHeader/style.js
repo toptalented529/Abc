@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 8,
-    margin: 16,
+    margin: 8,
     borderWidth: 0,
     
   },

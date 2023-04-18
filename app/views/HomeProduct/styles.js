@@ -221,6 +221,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingHorizontal: 22,
+    borderRadius:24,
   },
   recentActivityAvatarBox: {
     width: 39,
@@ -274,7 +275,7 @@ export default StyleSheet.create({
   },
   cardpiccontainer: {
     width: width * 0.3,
-    height: width * 0.3,
+    height: width * 0.25,
     backgroundColor:"#141436",
     borderRadius:12,
     justifyContent:"center",
@@ -302,13 +303,14 @@ export default StyleSheet.create({
     width: 129,
   },
   activeword : {
-    paddingHorizontal:width * 0.05,
+    paddingHorizontal:width * 0.02,
     backgroundColor:"rgba(65, 232, 141, 0.69)",
     color:"white",
     borderRadius:12,
     fontFamily:"Poppins",
     fontWeight:"light",
-    marginBottom:height * 0.005
+    marginBottom:height * 0.005,
+    textAlign:"center"
   },
   cardInfoBtn: {
     width: 129,

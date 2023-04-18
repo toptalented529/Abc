@@ -11,6 +11,7 @@ const USES_RTL_LAYOUT = [
   'ug',
   'ur',
   'yi',
+  'es,'
 ];
 
 export const isRTL = locale => USES_RTL_LAYOUT.includes(locale);

@@ -19,24 +19,12 @@ import {COLOR_WHITE, themes} from '../../constants/colors';
 const MainHeader = ({avatarImage, onChangeText, ...otherInputProps}) => {
   const {theme} = useTheme();
 
-  const [showSearchIcon, setShowSearchIcon] = useState(true);
 
   const inputRef = useRef();
   const navigation = useNavigation();
 
-  const focusInput = () => {
-    setShowSearchIcon(false);
-    setTimeout(() => {
-      inputRef.current.focus();
-    }, 100);
-  };
+ 
 
-  const clearInputFocus = () => {
-    inputRef.current.clear();
-    setTimeout(() => {
-      setShowSearchIcon(true);
-    }, 100);
-  };
 
   return (
     <View style={styles.container}>

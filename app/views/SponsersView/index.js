@@ -42,12 +42,39 @@ import NavButton from './NavButton';
 import { ImageBackground } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Badge } from 'react-native-elements/dist/badge/Badge';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ranges } from '../../constants/app';
 
 
 
 
 
 const SponsersView = props => {
+  const tabBarHeight = useBottomTabBarHeight();
+
+  const [sponser, setSonser] = useState()
+  useEffect(() => {
+    const handle = async () => {
+      try {
+        const jwt = await AsyncStorage.getItem("jwt")
+        const res = await axios.get("http://95.217.197.177:80/account/sponser", {
+          headers: {
+            authorization: `bearer ${jwt}`
+          }
+        }
+        )
+        console.log("66666666666", res.data.user)
+        setSonser(res.data.user)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    handle()
+  },[])
+
+
+
   const navigation = useNavigation();
   const [state, setState] = useState({
     refreshing: false,
@@ -57,26 +84,26 @@ const SponsersView = props => {
   const { loading, isUpdating, refreshing } = state;
 
   return (
-    <MainScreen navigation={navigation} style={{ backgroundColor: '#141436' }}>
+    <MainScreen navigation={navigation} style={{ backgroundColor: '#141436'}}>
       <ImageBackground
         source={images.home_background}
-        style={styles.backgroundImage}
+        style={[styles.backgroundImage,{paddingBottom: tabBarHeight+ 60 }]}
       >
         <MainHeader />
 
         {isUpdating && (
           <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
+        <ScrollView style={{ flexGrow: 0 }}>
         <BalanceDetail />
 
-        <ScrollView style={{ flexGrow: 1 }}>
 
           <View style={styles.btnContainer}>
             <View>
               <View style={styles.badge}>
-                <Badge value={3} badgeStyle={{ backgroundColor: "#000" }} />
+                <Badge value={sponser&& sponser.range} badgeStyle={{ backgroundColor: "#000" }} />
               </View>
-              <Image source={images.profile_image7} style={styles.rangeImage}></Image>
+              <Image source={sponser && Ranges[sponser.range-1].image} style={styles.rangeImage}></Image>
             </View>
             <View >
              <Text style = {styles.rankText}>Range Actual</Text> 

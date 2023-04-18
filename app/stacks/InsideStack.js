@@ -36,6 +36,13 @@ import EditPINView from '../views/EditPINView';
 import HomeProduct from '../views/HomeProduct';
 import SponsersView from '../views/SponsersView';
 import RankingView from '../views/RankingView';
+import BuyView from '../views/BuyView';
+import TokenView from '../views/TokenView';
+import TransactionDetailView from '../views/TransactionDetailView';
+import GenuView from '../views/GenuView';
+import RewardsView from '../views/RewardsView';
+import RewardsDetailView from '../views/RewardsDetailView';
+import AuthorizeView from '../views/AuthorizeView';
 
 const Tab = createBottomTabNavigator();
 const Inside = createStackNavigator();
@@ -113,9 +120,44 @@ const TabStack = () => {
         component={RankingView}
         options={{headerShown: false}}
       />
+       <Tab.Screen
+        name="BuyView"
+        component={BuyView}
+        options={{headerShown: false}}
+      />
+       <Tab.Screen
+        name="TokenView"
+        component={TokenView}
+        options={{headerShown: false}}
+      />
+       <Tab.Screen
+        name="TransactionDetailView"
+        component={TransactionDetailView}
+        options={{headerShown: false}}
+      />
       <Tab.Screen
         name="EditPin"
         component={EditPINView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="GenuView"
+        component={GenuView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="RewardsView"
+        component={RewardsView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="RewardsDetailView"
+        component={RewardsDetailView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="AuthorizationView"
+        component={AuthorizeView}
         options={{headerShown: false}}
       />
     </Tab.Navigator>

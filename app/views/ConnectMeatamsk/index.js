@@ -39,6 +39,7 @@ import "react-native-get-random-values"
 import "@ethersproject/shims"
 
 import { ethers } from "ethers";
+import i18n from '../../i18n';
 
 
 
@@ -140,11 +141,13 @@ const ConnectMetamask = props => {
       })
       setNonce(res.data.nonce)
       nonce1 = res.data.nonce;
+      console.log(nonce1,"ddd")
+      const signatureBuffer = Buffer.from(nonce1, 'hex');
+      const signatureString = signatureBuffer.toString('base64');
 
-
-      const params = [address, nonce1];
+      const params = [address, `Signing to Office: ${nonce1}`];
       const method = 'personal_sign';
-      console.log("11111111111111111", nonce1)
+      console.log("11111111111111111", signatureString)
 
       const resp = await ethereums.request({ method, params });
 
@@ -184,8 +187,8 @@ const ConnectMetamask = props => {
             keyboardShouldPersistTaps="handled"> */}
         <View style={sharedStyles.headerContainer}>
           <Image style={styles.logo} source={images.logo} />
-          <Text style={styles.logoText}>OFFICE</Text>
-          <Text style={styles.appText}>universo</Text>
+          <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+          <Text style={styles.appText}>{i18n.t('universo')}</Text>
         </View>
 
         {/* </ScrollView>
@@ -194,10 +197,10 @@ const ConnectMetamask = props => {
         <View style={styles.metamaskBox}>
           <Image style={styles.metamask} source={images.metamask_image}></Image>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>Connect</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Connect')}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>MetaMask to the office</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Metamask_to_the_office')}</Text>
           </View>
         </View>
 
@@ -217,7 +220,7 @@ const ConnectMetamask = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handlemetamask}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                {!address ? <Text style={styles.registerText}>YES,CONTINUE</Text> : <Text style={styles.registerText}>SIGN IN</Text>}
+                {!address ? <Text style={styles.registerText}>{i18n.t('YES_CONTINUE')}</Text> : <Text style={styles.registerText}>{i18n.t('SIGN_IN')}</Text>}
               </View>
             </TouchableOpacity>
           </LinearGradient>

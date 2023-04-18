@@ -40,7 +40,11 @@ import MainHeader from '../../containers/MainHeader';
 import BalanceDetail from './BalanceDetail';
 import NavButton from './NavButton';
 import { ImageBackground } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 const DetailsView = props => {
+
+  const tabBarHeight = useBottomTabBarHeight();
+
   const navigation = useNavigation();
   const [state, setState] = useState({
     refreshing: false,
@@ -50,23 +54,25 @@ const DetailsView = props => {
   const {loading, isUpdating, refreshing} = state;
 
   return (
-    <MainScreen navigation={navigation} style={{backgroundColor: '#141436'}}>
+    <MainScreen navigation={navigation} style={{backgroundColor: '#141436',paddingBottom:tabBarHeight+15,}}>
       <ImageBackground
        source={images.home_background}
        style={styles.backgroundImage}
       >
       <MainHeader />
+      <ScrollView>
 
       {isUpdating && (
         <ActivityIndicator absolute theme={theme} size={'large'} />
       )}
       <BalanceDetail />
       <View style={styles.btnContainer}>
-        <NavButton name={'Sponsor'} />
+        <NavButton name={'Sponser'} />
         <NavButton name={'Ranks'} />
         <NavButton name={'Direct / Indirect Sales'} />
         <NavButton name={'Statistics'} />
       </View>
+      </ScrollView>
       </ImageBackground>
     </MainScreen>
   );

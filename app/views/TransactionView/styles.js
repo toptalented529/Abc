@@ -1,20 +1,23 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
+
+const {width,height} = Dimensions.get("screen")
 export default StyleSheet.create({
   searchContainer: {
     paddingHorizontal: 37,
-    paddingBottom: 23,
+    paddingBottom: 10,
     borderBottomLeftRadius:30,
     borderBottomRightRadius:30,
-    backgroundColor:"#02010c"
+    backgroundColor:"#02010c",
+    marginTop:-12,
   },
   searchBtn: {
-    width: 24,
-    height: 24,
+    width: width * 0.05,
+    height: width * 0.05,
   },
   searchBox: {
     paddingHorizontal: 11,
-    paddingVertical: 3,
+    paddingVertical: 0,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -79,7 +82,7 @@ export default StyleSheet.create({
     fontFamily: 'Montserrat',
     fontSize: 12,
     fontWeight: '600',
-    paddingHorizontal: 24,
+    paddingHorizontal: width * 0.04,
     paddingVertical: 12,
   },
   tabItem: {

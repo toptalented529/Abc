@@ -36,6 +36,8 @@ import MainHeader from '../../containers/MainHeader';
 import MainScreen from '../../containers/MainScreen';
 import ProductItem from './ProductItem';
 import { useRoute } from '@react-navigation/native';
+import axios from 'axios';
+// const https = require('https');
 
 const MarketView = props => {
   const searchInput = useRef(null);
@@ -48,12 +50,38 @@ const MarketView = props => {
     indexID = 1;
   }
 
+  // const agent = new https.Agent({
+  //   rejectUnauthorized: false
+  // });
+
 
   useEffect(() => {
-   setIndex(indexID) 
-  },[indexID])
+    const handleAxois = async () => {
+      console.log("here")
 
-  console.log("how I can",indexID)
+      // const response =await axios.post("https://31.220.82.149/rest/V1/integration/admin/token",{
+      //   username:"admin",
+      //   password:"admin123"
+      // })
+
+    
+
+
+
+
+      console.log(response1)
+    }
+
+
+
+
+    handleAxois()
+    setIndex(indexID)
+  }, [])
+
+
+
+
 
   const tData = [
     {
@@ -103,7 +131,7 @@ const MarketView = props => {
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(indexID);
 
-  console.log("IIIIIIII",index)
+  console.log("IIIIIIII", index)
   const [routes] = React.useState([
     { key: 'first', title: 'All' },
     { key: 'second', title: 'Blockchain' },
@@ -153,6 +181,7 @@ const MarketView = props => {
     <MainScreen style={{ backgroundColor: "#141436" }}>
       <View style={{ backgroundColor: "#02010c" }}>
         <StatusBar />
+        <ScrollView></ScrollView>
         <MainHeader />
       </View>
       <View style={styles.notificationBox}>

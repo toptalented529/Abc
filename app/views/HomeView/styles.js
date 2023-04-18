@@ -152,10 +152,11 @@ export default StyleSheet.create({
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingHorizontal:width * 0.1,
   },
   btnBox: {
-    width: 100,
-    height: 127,
+    width: width * 0.25,
+    height: width * 0.3,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 29,
@@ -208,8 +209,8 @@ export default StyleSheet.create({
 
   cardContainer: {
     borderRadius: 29,
-    paddingHorizontal: 1,
-    paddingVertical: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   cardContainerBorder: {
     borderRadius: 29,
@@ -219,7 +220,7 @@ export default StyleSheet.create({
     paddingVertical: 2,
   },
   cardBox: {
-    height: 139,
+    height: height * 0.17,
     borderRadius: 29,
     flexDirection: 'row',
     alignItems: 'center',
@@ -232,8 +233,8 @@ export default StyleSheet.create({
     marginLeft: -width * 0.15
   },
   cardpiccontainer: {
-    width: width * 0.3,
-    height: width * 0.3,
+    width: width * 0.28,
+    height: width * 0.28,
     backgroundColor:"#141436",
     borderRadius:12,
     justifyContent:"center",
@@ -270,7 +271,7 @@ export default StyleSheet.create({
     marginBottom:height * 0.005
   },
   cardInfoBtn: {
-    width: 129,
+    width: width * 0.35,
     height: 32,
     borderWidth: 1,
     alignItems: 'center',

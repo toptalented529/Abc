@@ -25,7 +25,6 @@ const BalanceDetail = ({ }) => {
           }
         }
         )
-        console.log("66666666666", res.data.user)
         setSonser(res.data.user)
       } catch (e) {
         console.log(e)

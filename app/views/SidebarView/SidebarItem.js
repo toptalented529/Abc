@@ -12,20 +12,26 @@ const Item = React.memo(
     const navigation = useNavigation();
 
     const gotoPage = name => {
-      if (name === 'Hayek') navigation.navigate('Hayek');
+      if (name === 'Token') navigation.navigate('TokenView');
       if (name === 'My data') navigation.navigate('MyData');
       if (name === 'Transactions') navigation.navigate('Transaction');
+      if (name === 'Rewards') navigation.navigate('RewardsView');
+      if (name === 'Authorization') navigation.navigate('AuthorizationView');
     };
 
     const gotoSubPage = (item, subName) => {
-      if (item.name === 'Hayek') {
-        if (subName === 'Emissions')
+      if (item.name === 'Token') {
+        if (subName === 'Hayek')
           navigation.navigate('Hayek', {subProp: subName});
-        if (subName === 'Distribution')
+        if (subName === 'Genu')
           navigation.navigate('Hayek', {subProp: subName});
       }
       if (item.name === 'My data') {
         navigation.navigate('MyData');
+      }
+      if (item.name === 'Rewards') {
+        if(subName ==="Direct")
+        navigation.navigate('RewardsDetailView');
       }
     };
 

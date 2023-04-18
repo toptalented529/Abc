@@ -18,47 +18,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
-const CardDataItem = ({ name }) => {
+const CardDataItem = ({ name,active }) => {
 
-  const [active, setActive] = useState(true)
   const [image, setImage] = useState()
 
 
   const navigation = useNavigation();
-  useEffect(() => {
 
-    const handleValue = async () => {
-
-      const jwt = await AsyncStorage.getItem("jwt")
-
-      const response = axios.get("http://95.217.197.177:80/account/", {
-        headers: {
-          authorization: `Bearer ${jwt}`
-        }
-      })
-
-      const active = (await response).data.active;
-      setActive(active)
-
-      switch (name) {
-        case "Blockchain":
-          setImage(images.ico_wallet)
-          break;
-
-        case "Products":
-          setImage(images.ico_bag1)
-
-          break;
-        case "asocciated Product":
-          setImage(images.ico_invest)
-          break;
-        default:
-          break;
-      }
-
-
-    }
-  })
 
 
     const handleCLick = () => {
@@ -86,7 +52,7 @@ const CardDataItem = ({ name }) => {
             <Text style={[styles.cardInfoText, { color: COLOR_WHITE }]}>
               {name}
             </Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={[
                 styles.cardInfoBtn,
                 { color: COLOR_WHITE, borderColor: COLOR_WHITE },
@@ -97,7 +63,7 @@ const CardDataItem = ({ name }) => {
                 button
               </Text>
                 </TouchableOpacity>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </LinearGradient>

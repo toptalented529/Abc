@@ -1,7 +1,8 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import { COLOR_BLACK } from '../../constants/colors';
 import {isIOS} from '../../utils/deviceInfo';
 
-const {width} = Dimensions.get('window');
+const {width,height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   profileContainer: {
@@ -20,15 +21,17 @@ export default StyleSheet.create({
   profileInnerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 50,
+    // marginTop: 50,
+    paddingHorizontal:width * 0.01,
+    // width:width * 0.5,
   },
   headerContainer: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 20,
+    // marginVertical: 20,
     marginHorizontal: 30,
-    paddingBottom: 30,
+    paddingBottom: 10,
     borderBottomWidth: 0.3,
   },
   logo: {
@@ -37,8 +40,8 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   avatar: {
-    width: 30,
-    height: 30,
+    width: width * 0.1,
+    height: width * 0.1,
   },
   avatarBox: {
     borderRadius: 50,
@@ -124,14 +127,14 @@ export default StyleSheet.create({
     right: 0,
     width: 24,
     height: 24,
-    borderRadius:12,
+    borderRadius:8,
   },
   menuText: {
     fontFamily: 'Montserrat',
     fontSize: 16,
     fontWeight: '700',
     lineHeight: 26,
-    marginTop: 16,
+    // marginTop: 16,
   },
   bottomView: {
     flexDirection: 'row',
@@ -164,12 +167,30 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   error : {
-    color:"#fff",
+    flex:0,
+    flexDirection:"row",
+    color:COLOR_BLACK,
     fontSize:24,
     alignSelf:'flex-start',
     borderStyle:"solid",
     // backgroundColor:"#6da0ee",
     padding:2,
     borderRadius:12,
+    marginTop:height * 0.1,
+    alignItems:"center"
+  },
+  image :{
+    width: width * 0.2,
+    height: width * 0.2,
+  },
+  horizonLine: {
+    backgroundColor:"#d4d3e0",
+    width: width * 0.55,
+    height:1,
+    marginVertical:12,
+  },
+  nickname:{
+    fontWeight:"bold",
+    fontFamily:"Poppins"
   }
 });

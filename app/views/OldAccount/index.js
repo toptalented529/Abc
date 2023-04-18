@@ -26,6 +26,7 @@ import { appStart as appStartAction } from '../../actions/app';
 import StatusBar from '../../containers/StatusBar';
 import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
+import i18n from '../../i18n';
 const { width,height } = Dimensions.get('screen');
 
 
@@ -102,8 +103,8 @@ const OldAccount = props => {
             keyboardShouldPersistTaps="handled"> */}
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={styles.appText}>{i18n.t('universo')}</Text>
             </View>
 
           {/* </ScrollView>
@@ -112,10 +113,10 @@ const OldAccount = props => {
         <View style={styles.metamaskBox}>
           <Image style ={styles.metamask} source = {images.logo_white}></Image>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>Do you have Universe</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Do_you_have_Universe')}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center',marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>Blockchain account?</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Blockchain_Account')}</Text>
           </View>
         </View>
 
@@ -135,7 +136,7 @@ const OldAccount = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleContinue}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>YES</Text>
+                <Text style={styles.registerText}>{i18n.t('YES')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -160,7 +161,7 @@ const OldAccount = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleSignContinue}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>NO</Text>
+                <Text style={styles.registerText}>{i18n.t('NO')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

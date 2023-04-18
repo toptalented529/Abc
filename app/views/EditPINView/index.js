@@ -29,6 +29,7 @@ import KeyboardView from '../../containers/KeyboardView';
 import axios from 'axios';
 import BackgroundTimer from 'react-native-background-timer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from '../../i18n';
 
 const EditPINView = props => {
   const navigation = useNavigation();
@@ -163,13 +164,13 @@ const EditPINView = props => {
             keyboardShouldPersistTaps="handled">
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={styles.appText}>{i18n.t('universo')}</Text>
             </View>
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  {!createPin ? <> Enter your </> : (!fullPin ? <> Edit a </> : <>This is your </>)}  <Text style={{ fontWeight: '700' }}>6-digit code</Text>
+                  {!createPin ? <> {i18n.t('Enter_your')} </> : (!fullPin ? <> {i18n.t('Edit_a')} </> : <>{i18n.t('This_is_your')} </>)}  <Text style={{ fontWeight: '700' }}>{i18n.t('digit_code6')}</Text>
                 </Text>
               </View>
               <View

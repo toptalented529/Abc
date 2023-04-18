@@ -26,7 +26,15 @@ const NavButton = ({name}) => {
  const navigation = useNavigation()
 
  const handlePress = () => {
+  if(name === "Sponser")
    navigation.navigate("Sponsers")
+   
+  if(name === "Ranks")
+   navigation.navigate("RankingView",{userID:0})
+   
+  if(name === "Direct / Indirect Sales")
+   navigation.navigate("BuyView",{userID:0})
+
  }
  
  

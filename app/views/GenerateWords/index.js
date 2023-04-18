@@ -18,6 +18,7 @@ import { withTheme } from '../../theme';
 import sharedStyles from '../Styles';
 import styles from "./styles"
 import images from '../../assets/images';
+import bip39 from 'react-native-bip39';
 
 import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
@@ -26,11 +27,16 @@ import { appStart as appStartAction } from '../../actions/app';
 import Clipboard from '@react-native-community/clipboard';
 
 import StatusBar from '../../containers/StatusBar';
-import CustomTextInput from '../../containers/CustomTextInput';
 import KeyboardView from '../../containers/KeyboardView';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const { width,height } = Dimensions.get('screen');
+import i18n from '../../i18n';
+import { ethers } from 'ethers';
+import  {fromSeed} from 'bip32';
+import { createHash } from 'react-native-crypto';
+
+
+const { width, height } = Dimensions.get('screen');
 
 const theme = 'light';
 
@@ -46,15 +52,15 @@ const GenerateWords = props => {
   const [mnemonic, setMnemonic] = useState('')
   const nicknameInput = useRef(null);
   const passwordInput = useRef(null);
-  const [copied,setCopied] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    if(copied) {
+    if (copied) {
       setTimeout(() => {
         setCopied(false)
       }, 1000);
     }
-  },[copied])
+  }, [copied])
 
   const isValid = () => {
     seterrNickname('');
@@ -79,22 +85,53 @@ const GenerateWords = props => {
     Clipboard.setString(mnemonic)
     setCopied(true)
   }
- 
+
   const handlewords = async () => {
 
-    try{
-      const response = await axios.get("http://95.217.197.177:80/account/mnemonic")
-      console.log(response.data)
-      setMnemonic(response.data.mnemonic)
-      setPrivateKey(response.data.privateKey)
-      const tempString = `${response.data.privateKey}`
-      await AsyncStorage.setItem("privateKey",tempString.slice(2))
-      await AsyncStorage.setItem("publicKey",response.data.publicKey)
-  
-    }catch(e){
+    try {
+      // const response = await axios.get("http://95.217.197.177:80/account/mnemonic")
+      // console.log(response.data)
+
+
+      const seed = ethers.utils.randomBytes(32);
+
+      // Convert the seed to a HDNode object
+      const mnemonic = bip39.entropyToMnemonic(seed);
+      // const seeds = bip39.mnemonicToSeed(mnemonic);
+      // console.log(seeds)
+
+
+      // Create a Wallet object from the seed
+      const wallet = new ethers.Wallet.fromMnemonic(mnemonic);
+      // const wallets = ethers.Wallet.fromMnemonic(mnemonic);
+
+      // Extract the private key and public key from the Wallet object
+      const privateKey = wallet.privateKey;
+      const publicKey = wallet.publicKey;
+      const address = wallet.address;
+      console.log('Private key:', privateKey);
+      console.log('Public key:', publicKey);
+      console.log('Address:', address);
+
+      console.log("sdfsdfsdfsdf", mnemonic);
+
+
+
+
+
+
+      setMnemonic(mnemonic)
+      setPrivateKey(privateKey)
+      // const tempString = `${response.data.privateKey}`
+      await AsyncStorage.setItem("privateKey", privateKey)
+      await AsyncStorage.setItem("publicKey", publicKey)
+
+    
+
+    } catch (e) {
       console.log(e)
     }
-  
+
   }
   const renderItem = ({ item, index }) => (
     <View style={styles.item}>
@@ -120,19 +157,19 @@ const GenerateWords = props => {
             keyboardShouldPersistTaps="handled">
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={styles.appText}>{i18n.t('universo')}</Text>
             </View>
 
           </ScrollView>
         </KeyboardView>
 
         <View style={styles.metamaskBox}>
-         { privateKey &&
-         <TouchableOpacity style={styles.copyText} onPress ={handleCopy}>
-          <Text style={styles.copyText}>{!copied? "copiar clave":"copied"}</Text>
-          </TouchableOpacity>
-         }
+          {privateKey &&
+            <TouchableOpacity style={styles.copyText} onPress={handleCopy}>
+              <Text style={styles.copyText}>{!copied ? "copiar clave" : "copied"}</Text>
+            </TouchableOpacity>
+          }
           <View style={styles.FlatList}>
             {mnemonic ? <FlatList
               data={mnemonic.split(" ")}
@@ -140,14 +177,14 @@ const GenerateWords = props => {
               numColumns={4}
               columnWrapperStyle={styles.row}
 
-            /> : <Text style={styles.dontText}>Mnemonic will be here</Text>}
+            /> : <Text style={styles.dontText}>{i18n.t('Mnemonic_will_be_here')}</Text>}
           </View>
         </View>
 
 
 
 
-        <View style={{ flexDirection: 'column',  marginBottom: height * 0.06 }}>
+        <View style={{ flexDirection: 'column', marginBottom: height * 0.06 }}>
           <LinearGradient
             colors={['#6c40bd', '#1b97c0', '#01dfcc']}
             start={{ x: 0, y: 0 }}
@@ -158,9 +195,9 @@ const GenerateWords = props => {
               borderRadius: 43,
 
             }}>
-            <TouchableOpacity disabled ={!privateKey} style={styles.registerButton} onPress={handleContinue}>
+            <TouchableOpacity disabled={!privateKey} style={styles.registerButton} onPress={handleContinue}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>CONTINUE</Text>
+                <Text style={styles.registerText}>{i18n.t('CONTINUE')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -185,7 +222,7 @@ const GenerateWords = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handlewords}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>GENERATE MNEMONIC</Text>
+                <Text style={styles.registerText}>{i18n.t('GENERATE_MNEMONIC')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

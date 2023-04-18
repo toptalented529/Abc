@@ -8,24 +8,28 @@ import styles from './styles';
 import {COLOR_WHITE, COLOR_BLACK} from '../../constants/colors';
 
 import {VectorIcon} from '../../containers/VectorIcon';
+import { useNavigation } from '@react-navigation/native';
 
 const RecentActivity = ({name}) => {
+ const navigation = useNavigation()
+  const handlepress = () => {
+    navigation.navigate("Market",{indexID:name === 'Buy Investment' ?3:name === 'Buy Products'?2:1 })
+
+  }
   return (
-    <View style={{paddingHorizontal: 28,paddingVertical:20}}>
-      <Text style={[styles.recentActivityText, {color: COLOR_WHITE}]}>
-        Recent Activities
-      </Text>
+    <View style={{paddingHorizontal: 28,paddingVertical:20,borderRadius:24,}}>
+     
       <TouchableOpacity
-        style={[styles.recentActivityBox, {backgroundColor: COLOR_BLACK}]}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        style={[styles.recentActivityBox, {backgroundColor: COLOR_BLACK}]} onPress = {handlepress}>
+        <View style={{flexDirection: 'row', alignItems: 'center',borderRadius:24,}}>
           <LinearGradient
             colors={['#a755ff', '#6da0ee']}
             style={styles.recentActivityAvatarBox}>
             <Image source={images.ico_wallet_white} style={styles.btnAvatar} />
           </LinearGradient>
           <Text style={[styles.recentActivityBoxText, {color: COLOR_WHITE}]}>
-            Hayek Earnings
-          </Text>
+           Buy {name}
+         </Text>
         </View>
         <View style={[styles.moreActivityBtn, {borderColor: COLOR_WHITE}]}>
           <VectorIcon

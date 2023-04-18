@@ -1,5 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
+const {width,height} = Dimensions.get("screen")
 export default StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
@@ -90,8 +91,8 @@ export default StyleSheet.create({
   },
 
   avatarIcon: {
-    width: 90,
-    height: 90,
+    width: width * 0.23,
+    height: width * 0.23,
   },
   rankText: {
     fontSize: 9,
@@ -126,7 +127,7 @@ export default StyleSheet.create({
     paddingBottom: 20,
     width: '100%',
     borderRadius: 29,
-    paddingVertical: 20,
+    paddingVertical: width * 0.04,
   },
   headerContainer: {
     width: '100%',
@@ -139,7 +140,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   btnBox: {
-    width: 150,
+    width: width * 0.35,
     height: 125,
     justifyContent: 'center',
     alignItems: 'center',

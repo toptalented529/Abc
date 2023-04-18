@@ -31,6 +31,8 @@ import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
 import { borderBottom } from '../../utils/navigation';
 import axios from 'axios';
+import i18n from '../../i18n';
+import ActivityIndicator from '../../containers/ActivityIndicator';
 
 const theme = 'light';
 
@@ -69,21 +71,27 @@ const CreateSponserNickName = props => {
   const onSubmit = async () => {
     if (isValid() && nickname) {
       setIsLoading(true);
+      console.log("h334",isLoading)
       const jwt = await AsyncStorage.getItem("jwt")
       try{
-        const response = axios.post("http://95.217.197.177:80/account/setsponsername",{
+
+        const response = await axios.post("http://95.217.197.177:80/account/setsponsername",{
           sponsername:nickname
         },{
           headers: {
             authorization: `bearer ${jwt}`
           }
         })
-  
+        setIsLoading(false);
+
         // loginSuccess({});
         if((await response).status === 200)
         navigation.navigate("CreatePin")
      
       }catch(e){
+
+        setIsLoading(false);
+
         console.log(e)
         if((await e.response).status == 404) {
           setPassword("you've entered wrong name")
@@ -115,13 +123,13 @@ const CreateSponserNickName = props => {
             keyboardShouldPersistTaps="handled">
             <View style={sharedStyles.headerContainer}>
               <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={[styles.appText, { marginTop: -10 }]}>universo</Text>
+              <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+              <Text style={[styles.appText, { marginTop: -10 }]}>{i18n.t('universo')}</Text>
             </View>
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  Create your Sponser'nickanme 
+                {i18n.t('Enter_your_sponser_nickname')}
                 </Text>
               </View>
               <CustomTextInput
@@ -151,10 +159,10 @@ const CreateSponserNickName = props => {
                   </View>
                   <Text
                     style={[styles.termText, { color: COLOR_WHITE, marginRight: 5 }]}
-                  >I have read and agree</Text>
+                  >{i18n.t('I_have_read_and_agree')}</Text>
                   <Text
                     style={[styles.termText, { color: "#01dfcc" }]}
-                  >to the term and conditions</Text>
+                  >{i18n.t('to_the_term_and_conditions')}</Text>
                 </View>
 
               </View>
@@ -174,9 +182,14 @@ const CreateSponserNickName = props => {
               marginHorizontal: 20,
               borderRadius: 43,
             }}>
-            <TouchableOpacity disabled={!isSelected} style={[styles.registerButton, { borderBottom: 20 }]} onPress={onSubmit}>
+            <TouchableOpacity disabled={!isSelected ||isLoading} style={[styles.registerButton, { borderBottom: 20 }]} onPress={onSubmit}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>{!isSelected?<>CONTINUE</>:<>SAVE</> }</Text>
+              {
+                !isLoading?
+                <Text style={styles.registerText}>{!isSelected?<>{i18n.t('CONTINUE')}</>:<>{i18n.t('Save')}</> }</Text>
+                :<ActivityIndicator  absolute theme={"light"} size={'large'}/>
+              }
+
               </View>
             </TouchableOpacity>
           </LinearGradient>

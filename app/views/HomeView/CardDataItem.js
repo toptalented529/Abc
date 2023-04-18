@@ -17,6 +17,7 @@ import { VectorIcon } from '../../containers/VectorIcon';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CardDataItem = ({ name }) => {
 
@@ -25,45 +26,45 @@ const CardDataItem = ({ name }) => {
 
 
   const navigation = useNavigation();
+  
+  const [remainingTime, setRemainingTime] = useState(0)
   useEffect(() => {
-
-    const handleValue = async () => {
-
+    const handle = async () => {
       const jwt = await AsyncStorage.getItem("jwt")
-
-      const response = axios.get("http://95.217.197.177:80/account/", {
+      const res = await axios.get("http://95.217.197.177:80/account/me", {
         headers: {
-          authorization: `Bearer ${jwt}`
+          authorization: `bearer ${jwt}`
         }
-      })
-
-      const active = (await response).data.active;
-      setActive(active)
-
-      switch (name) {
-        case "Blockchain":
-          setImage(images.ico_wallet)
-          break;
-
-        case "Products":
-          setImage(images.ico_bag1)
-
-          break;
-        case "asocciated Product":
-          setImage(images.ico_invest)
-          break;
-        default:
-          break;
       }
+      )
 
+      const blockchain_purchased = new Date(name === "Blockchain" ? res.data.user.last_blockchain_purchased_date : name === "Products" ? res.data.user.last_product_purchased_date : res.data.user.last_associated_purchased_date)
+      const timestamp = blockchain_purchased.getTime()
+
+
+
+      const currentUTC = Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(),
+        new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+
+        const daysToMilliseconds = 30 * 24 * 60 * 60 * 1000;
+        
+        setRemainingTime(daysToMilliseconds - (currentUTC - timestamp))
+        
+        if(daysToMilliseconds - (currentUTC - timestamp) < 0){
+          setActive(false)
+        }
+        console.log("Current UTC Timestamp: ", currentUTC,daysToMilliseconds - (currentUTC - timestamp));
 
     }
-  })
+
+    handle()
+
+  }, [])
 
 
     const handleCLick = () => {
       console.log("234234234234")
-      navigation.navigate("HomeProduct",{type:name})
+      navigation.navigate("HomeProduct",{type:name,active:active})
     }
 
 
@@ -95,7 +96,7 @@ const CardDataItem = ({ name }) => {
                 <TouchableOpacity style={[styles.cardInfoBtnText, { color: COLOR_WHITE }]} onPress ={handleCLick}>
 
               <Text style={[styles.cardInfoBtnText, { color: COLOR_WHITE }]}>
-                button
+                See More
               </Text>
                 </TouchableOpacity>
             </TouchableOpacity>

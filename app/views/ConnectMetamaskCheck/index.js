@@ -69,38 +69,38 @@ const ConnectMetamask = props => {
             style={{ flex: 1, height: '100%' }}
             {...scrollPersistTaps}
             keyboardShouldPersistTaps="handled"> */}
-            <View style={sharedStyles.headerContainer}>
-              <Image style={styles.logo} source={images.logo} />
-              <Text style={styles.logoText}>OFFICE</Text>
-              <Text style={styles.appText}>universo</Text>
-            </View>
-{/* 
+        <View style={sharedStyles.headerContainer}>
+          <Image style={styles.logo} source={images.logo} />
+          <Text style={styles.logoText}>OFFICE</Text>
+          <Text style={styles.appText}>universo</Text>
+        </View>
+        {/* 
           </ScrollView>
         </KeyboardView> */}
 
         <View style={styles.metamaskBox}>
-          <View style={{ flex: 1, flexDirection:"row", justifyContent: 'center' }}>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
             <Text style={styles.metamaskText}>Connecting</Text>
             <Text style={styles.UniversoText}>  Universo</Text>
           </View>
-          <View style={{ flex: 1, flexDirection:"row", justifyContent: 'center', marginBottom: 15 }}>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center', marginBottom: 15 }}>
             <Text style={styles.metamaskText}>to</Text>
             <Text style={styles.UniversoText}>  Metamask</Text>
           </View>
         </View>
 
 
-        <View style ={{flexDirection:"row",justifyContent:"space-around",alignItems:"center"}}>
-          <View style ={styles.circlebox}>
-          <Image style={styles.metamask} source={images.logo}></Image>
+        <View style={{ flexDirection: "row", justifyContent: "space-around", alignItems: "center" }}>
+          <View style={styles.circlebox}>
+            <Image style={styles.metamask} source={images.logo}></Image>
 
           </View>
-          <View style ={styles.dotedline}></View>
+          <View style={styles.dotedline}></View>
           <Image source={images.tick_circle}></Image>
-          <View style ={styles.dotedline}></View>
+          <View style={styles.dotedline}></View>
 
-          <View style ={styles.circlebox}>
-          <Image style={styles.metamask} source={images.metamask_image}></Image>
+          <View style={styles.circlebox}>
+            <Image style={styles.metamask} source={images.metamask_image}></Image>
 
           </View>
 
@@ -108,7 +108,7 @@ const ConnectMetamask = props => {
 
 
 
-        
+
       </ImageBackground>
     </SafeAreaView>
   );

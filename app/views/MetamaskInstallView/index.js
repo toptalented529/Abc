@@ -20,7 +20,7 @@ import sharedStyles from '../Styles';
 import styles from './styles';
 import images from '../../assets/images';
 import { COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors';
-
+import i18n from '../../i18n';
 import { loginSuccess as loginSuccessAction } from '../../actions/login';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import { CURRENT_USER } from '../../constants/keys';
@@ -199,8 +199,8 @@ const MetamaskInstall = props => {
             keyboardShouldPersistTaps="handled"> */}
         <View style={sharedStyles.headerContainer}>
           <Image style={styles.logo} source={images.logo} />
-          <Text style={styles.logoText}>OFFICE</Text>
-          <Text style={styles.appText}>universo</Text>
+          <Text style={styles.logoText}>{i18n.t('OFFICE')}</Text>
+          <Text style={styles.appText}>{i18n.t('universo')}</Text>
         </View>
         {/* 
           </ScrollView>
@@ -209,10 +209,10 @@ const MetamaskInstall = props => {
         <View style={styles.metamaskBox}>
           <Image style={styles.metamask} source={images.metamask_image}></Image>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.metamaskText}>Do you have</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Do_you_have')}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', marginBottom: 15 }}>
-            <Text style={styles.metamaskText}>MetaMask installed???</Text>
+            <Text style={styles.metamaskText}>{i18n.t('Metamask_Installed')}</Text>
           </View>
         </View>
 
@@ -232,7 +232,7 @@ const MetamaskInstall = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handleContinue}>
               <View style={{ flex: 1, height: 64, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>YES,CONTINUE</Text>
+                <Text style={styles.registerText}>{i18n.t('YES_CONTINUE')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>
@@ -255,7 +255,7 @@ const MetamaskInstall = props => {
             }}>
             <TouchableOpacity style={styles.registerButton} onPress={handlematamaskinstall}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>INSTALL METAMASK</Text>
+                <Text style={styles.registerText}>{i18n.t('INSTALL_METAMASK')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

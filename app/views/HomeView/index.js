@@ -33,9 +33,12 @@ import RecentActivity from './RecentActivity';
 import CardDataItem from './CardDataItem';
 
 import images from '../../assets/images';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 const { width } = Dimensions.get('screen');
 
 const HomeView = props => {
+  const {width,height} = Dimensions.get("screen")
   const navigation = useNavigation();
   const [state, setState] = useState({
     refreshing: false,
@@ -45,23 +48,59 @@ const HomeView = props => {
   const { loading, isUpdating, refreshing } = state;
   const tabBarHeight = useBottomTabBarHeight();
 
+  const [users,setUsers] = useState()
+  const [rangeAmount,setRangeAmount] = useState()
+
+  useEffect(() => {
+
+    const handleEffect = async () => {
+
+      const jwt = await AsyncStorage.getItem("jwt")
+  
+        const res = await axios.get("http://95.217.197.177:80/account/me", {
+  
+          headers: {
+            authorization: `bearer ${jwt}`
+          }
+        }
+        )
+
+        console.log(res.data.user)
+        setUsers(res.data)
+
+      }
+      
+
+
+    handleEffect()
+  }, [])
+
+
+
+
   return (
 
     <MainScreen
       navigation={navigation}
-      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight-30 }}
+      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight }}
     >
       <ImageBackground
         source={images.home_background}
         style={styles.backgroundImage}
       >
+       
         <StatusBar />
         <MainHeader />
         {isUpdating && (
           <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
-        <ScrollView style={{ flexGrow: 1 }}>
-          <BalanceDetail />
+        <ScrollView style={{ flexGrow: 1,marginBottom:30 }}>
+         {users?
+         
+         <BalanceDetail data = {users} />:  <View>
+         <ActivityIndicator absolute theme={"light"} size={'large'}  />
+       </View>
+         } 
           <View style={styles.btnContainer}>
             <BuyButton name={'Buy Investment'} />
             <BuyButton name={'Buy Blockchain'} />
@@ -72,7 +111,7 @@ const HomeView = props => {
           </View>
           <CardDataItem name = {'Associated'}/>
           <CardDataItem name = {'Products'}/>
-          <RecentActivity />
+          {/* <RecentActivity /> */}
         </ScrollView>
       </ImageBackground>
     </MainScreen>

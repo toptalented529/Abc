@@ -31,6 +31,7 @@ import KeyboardView from '../../containers/KeyboardView';
 import { CheckBox } from 'react-native-elements';
 import OldTransactionImport from '../OldTransactionImport';
 import PushNotification from 'react-native-push-notification';
+import i18n from '../../i18n';
 const theme = 'light';
 
 const privateKeyImport = props => {
@@ -119,7 +120,10 @@ const privateKeyImport = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                This is your Private Key, copy it and save it to put it in Metamask
+                {i18n.t("This_is_your_Private_Key_copy_it_and_import_it_in_Metamask")}
+                </Text>
+                <Text style={styles.loginText}>
+                {i18n.t('Need_to_comeback_to_the_office')}
                 </Text>
               </View>
 
@@ -148,7 +152,7 @@ const privateKeyImport = props => {
                   <Text
                     style={[styles.forgotText, { color: COLOR_WHITE }]}
                   >
-                    {!copied? 'Copy clave privada':"private key copied"}
+                    {!copied?<>{i18n.t('copy_private_key')}</> :<>{i18n.t('private_key_copied')}</>}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -168,7 +172,7 @@ const privateKeyImport = props => {
             }}>
             <TouchableOpacity style={[styles.registerButton]} onPress={onSubmit}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>CONTINUE LOG IN</Text>
+                <Text style={styles.registerText}>{i18n.t('CONTINUE_LOG_IN')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

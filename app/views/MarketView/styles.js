@@ -21,8 +21,8 @@ export default StyleSheet.create({
     paddingBottom: 23,
   },
   searchBtn: {
-    width: 24,
-    height: 24,
+    width: width * 0.05,
+    height: width * 0.05,
   },
   searchBox: {
     paddingHorizontal: 11,
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     fontFamily: 'Montserrat',
     fontSize: 12,
     fontWeight: '600',
-    paddingHorizontal: 24,
+    paddingHorizontal: width *0.05,
     paddingVertical: 12,
   },
   tabItem: {

@@ -11,15 +11,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const { width, height } = Dimensions.get("screen")
-const BalanceDetail = ({ balance, day = 0, hour = 0, minute = 0, second = 0 }) => {
+
+const BalanceDetail = ({ balance, day = 0, hour = 0, minute = 0, second = 0, name }) => {
 
   const [currentDay, setCurrentDay] = useState(day)
   const [currentHour, setCurrentHour] = useState(hour)
   const [currentMinute, setCurrentMinute] = useState(minute)
   const [currentSecond, setCurrentSecond] = useState(second)
-  const [blockchainTime, setBlockchainTime] = useState()
-  const [productsTime, setProductsTime] = useState()
-  const [investmentTime, setInvestmentTime] = useState()
+
   const [remainingTime, setRemainingTime] = useState(0)
   useEffect(() => {
     const handle = async () => {
@@ -31,28 +30,26 @@ const BalanceDetail = ({ balance, day = 0, hour = 0, minute = 0, second = 0 }) =
       }
       )
 
-      setInvestmentTime(res.data.user.last_Investment_purchased_time)
-      setProductsTime(res.data.user.last_products_purchased_time)
-      setBlockchainTime(res.data.user.last_blockchain_purchased_time)
 
-      const blockchain_purchased = new Date(res.data.user.createdAt)
+
+      const blockchain_purchased = new Date(name === "Blockchain" ? res.data.user.last_blockchain_purchased_date : name === "Products" ? res.data.user.last_product_purchased_date : res.data.user.last_associated_purchased_date)
       const timestamp = blockchain_purchased.getTime()
-    
-    
-    
+
+
+
       const currentUTC = Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(),
-      new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
-    
+        new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+
       console.log("Current UTC Timestamp: ", currentUTC,timestamp);
       const daysToMilliseconds = 30 * 24 * 60 * 60 * 1000;
 
-      setRemainingTime(daysToMilliseconds-(currentUTC - timestamp))
+      setRemainingTime(daysToMilliseconds - (currentUTC - timestamp))
 
     }
 
     handle()
 
-  },[])
+  }, [])
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -63,14 +60,14 @@ const BalanceDetail = ({ balance, day = 0, hour = 0, minute = 0, second = 0 }) =
         setCurrentHour(date.getUTCHours());
         setCurrentMinute(date.getUTCMinutes());
         setCurrentSecond(date.getUTCSeconds());
-      }else{
+      } else {
         setCurrentDay(0)
         setCurrentHour(0)
         setCurrentMinute(0)
         setCurrentSecond(0)
       }
     }, 1000);
-  
+
     return () => clearInterval(intervalId);
   }, [remainingTime]);
 
@@ -120,7 +117,7 @@ const BalanceDetail = ({ balance, day = 0, hour = 0, minute = 0, second = 0 }) =
             {balance ? `${balance}$` : `00000$`}
           </Text>
           <Text style={[{ color: '#fff', paddingBottom: 6 }]}>
-            Money Today
+            {/* Money Today */}
           </Text>
         </LinearGradient>
       </View>
