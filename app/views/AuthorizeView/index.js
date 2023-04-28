@@ -38,6 +38,7 @@ import axios from 'axios';
 import i18n from '../../i18n';
 import LinearGradient from 'react-native-linear-gradient';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RESULTS } from 'react-native-permissions';
 const { width } = Dimensions.get('screen');
 
 const AuthorizeView = props => {
@@ -51,7 +52,7 @@ const AuthorizeView = props => {
   const { loading, isUpdating, refreshing } = state;
   const tabBarHeight = useBottomTabBarHeight();
 
-  const [users, setUsers] = useState()
+  const [approved, setApproved] = useState(false)
   const [request, setRequest] = useState()
   const [timer, setTimer] = useState(0)
   const [isRequest, setIsRequest] = useState(false)
@@ -73,10 +74,10 @@ const AuthorizeView = props => {
             }
           }
           )
-          if (res.data.success) {
+          if (res.data.success && res.data.request !==request) {
             setRequest(res.data.request)
           }
-
+          setTimer(timer + 1)
 
         } catch (e) {
 
@@ -113,8 +114,13 @@ const AuthorizeView = props => {
           }
         }
       )
+      if(res.data.success){
+        setApproved(true)
+      }
 
-      navigation.navigate("HomeView")
+      setTimeout(() => {
+        navigation.navigate("Home")
+      },5000)
     } catch (e) {
 
     }
@@ -136,7 +142,7 @@ const AuthorizeView = props => {
         }
       }
     )
-    navigation.navigate("HomeView")
+    navigation.navigate("Home")
 
   }
 
@@ -170,18 +176,22 @@ const AuthorizeView = props => {
         </View>
 
         <View style={styles.metamaskBox}>
+          {
+          approved? <Text style={[styles.UniversoText, { color: "#FFFF00" }]}>Sign up approved</Text>: request ? <>
 
-          {request ? <>
+          <Text style={[styles.UniversoText, { color: "#FFFF00" }]}>Request from</Text>
+          <Text style={[styles.UniversoText, { color: "#FFFF00" }]}> {request.email}</Text>
+          <Text style={[styles.UniversoText, { color: "#FFFF00" }]}>{i18n.t('You_can_accept_request_here')}</Text></> :
+          <>
+            <Text style={styles.metamaskText}>{i18n.t('MarketPlace_request')}</Text>
+            <Text style={styles.UniversoText}> {i18n.t('will_be_here')}</Text>
+            <Text style={styles.UniversoText}>{i18n.t('You_can_accept_request_here')}</Text>
+          </>
+          
+          
+        }
 
-            <Text style={[styles.UniversoText, { color: "#FFFF00" }]}>Request from</Text>
-            <Text style={[styles.UniversoText, { color: "#FFFF00" }]}> {request.email}</Text>
-            <Text style={[styles.UniversoText, { color: "#FFFF00" }]}>{i18n.t('You_can_accept_request_here')}</Text></> :
-            <>
-              <Text style={styles.metamaskText}>{i18n.t('MarketPlace_request')}</Text>
-              <Text style={styles.UniversoText}> {i18n.t('will_be_here')}</Text>
-              <Text style={styles.UniversoText}>{i18n.t('You_can_accept_request_here')}</Text>
-            </>
-          }
+      
         </View>
 
 

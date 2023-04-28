@@ -48,12 +48,12 @@ const HomeProduct = props => {
   });
   const { loading, isUpdating, refreshing } = state;
   const tabBarHeight = useBottomTabBarHeight();
-
+  
   return (
 
     <MainScreen
       navigation={navigation}
-      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight+10}}
+      style={{backgroundColor: 'transparent', paddingBottom:height * 0.02 + 31}}
     >
       <ImageBackground
         source={images.home_background}

@@ -11,7 +11,7 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import StatusBar from '../../containers/StatusBar';
@@ -37,6 +37,8 @@ import RewardHeader from './RewardHeader';
 const { width } = Dimensions.get('screen');
 
 const RewardsDetailView = props => {
+  const route = useRoute()
+  const { name } = route.params
   const navigation = useNavigation();
   const [state, setState] = useState({
     refreshing: false,
@@ -45,12 +47,13 @@ const RewardsDetailView = props => {
   });
   const { loading, isUpdating, refreshing } = state;
   const tabBarHeight = useBottomTabBarHeight();
+  const {height} = Dimensions.get("screen")
 
   return (
 
     <MainScreen
       navigation={navigation}
-      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight-30 }}
+      style={{ backgroundColor: 'transparent', paddingBottom:height * 0.02 + 31  }}
     >
       <ImageBackground
         source={images.home_background}
@@ -62,19 +65,22 @@ const RewardsDetailView = props => {
           <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
         <ScrollView style={{ flexGrow: 1 }}>
-          <RewardHeader name = {"Direct"} />
+          <BalanceDetail name={name} />
+          <RewardHeader name={name} />
 
-          <Text style = {styles.transactionText}>My Transaction</Text>
-          <View style={styles.btnContainer}>
-            <BuyButton name={'Buy Investment'} />
-            <BuyButton name={'Buy Blockchain'} />
-            <BuyButton name={'Buy Products'} />
+          <Text style={styles.transactionText}>My Transaction</Text>
+          {name !== "Annual" && name !== "Embassador" ?
+            <View style={styles.btnContainer}>
+              <BuyButton name={'Investment'} />
+              <BuyButton name={'Blockchain'} />
+              <BuyButton name={'Products'} />
+            </View> : <></>
+          }
+          <View style={styles.cardItems}>
+            <CardDataItem name={'Blockchain'} type={name} />
           </View>
-          <View style = {styles.cardItems}>
-          <CardDataItem name = {'Blockchain'} />
-          </View>
-          <CardDataItem name = {'Associated'}/>
-          <CardDataItem name = {'Products'}/>
+          <CardDataItem name={'Associated'} type={name} />
+          <CardDataItem name={'Products'} type={name} />
         </ScrollView>
       </ImageBackground>
     </MainScreen>

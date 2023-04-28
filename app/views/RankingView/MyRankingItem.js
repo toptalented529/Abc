@@ -126,7 +126,7 @@ const MyRanking = ({ data }) => {
            {
             user?<View>
               <Image source={Ranges[user.range-1].image} style={styles.rangeImage}></Image>
-            </View>:<View>
+            </View>:<View style ={{width:width * 0.2 ,justifyContent:"center",alignItems:"center"}}>
               <ActivityIndicator  absolute theme={"light"} size={'large'}/>
             </View>
            }

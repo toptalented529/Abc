@@ -135,7 +135,7 @@ export const themes = {
     activeTintColor: '#FFFFFF',
     backgroundColor: '#2F3131',
     focusedBackground: '#2B2A2A',
-    borderColor: '#555555',
+    borderColor: 'transparent',
     popupBackground: '#2F3131',
     postBackground: '#1D1C1C',
     titleColor: '#FFFFFF',

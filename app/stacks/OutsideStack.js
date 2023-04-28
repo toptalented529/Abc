@@ -25,6 +25,8 @@ import ConnectMeatamsk from '../views/ConnectMeatamsk'
 import ConnectMetamaskCheck from '../views/ConnectMetamaskCheck'
 import OldDataImportOption from '../views/OldDataImportOption'
 import PublicKeyImport from '../views/PublicKeyImport'
+import RequireUneView from '../views/RequireUneView'
+import RequirePaymentView from '../views/RequirePaymentView'
 
 // Outside
 const Outside = createStackNavigator()
@@ -128,6 +130,16 @@ const OutsideStack = () => {
       <Outside.Screen
         name="OldSignIn"
         component={OldSignInView}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
+        name="RequireUneView"
+        component={RequireUneView}
+        options={{ headerShown: false }}
+      />
+      <Outside.Screen
+        name="RequirePaymentView"
+        component={RequirePaymentView}
         options={{ headerShown: false }}
       />
       <Outside.Screen

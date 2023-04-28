@@ -18,7 +18,7 @@ const BalanceDetail = ({}) => {
           MY CURRENT RANK
         </Text>
         <Text style={[styles.balanceText, {color: COLOR_WHITE}]}>
-          <Text style={{fontWeight: '800'}}>Atomo</Text> Balanace
+          <Text style={{fontWeight: '800'}}>Atomo</Text> Balance
         </Text>
       </View>
 

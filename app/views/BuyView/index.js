@@ -58,7 +58,7 @@ const BuyView = ({ subProp }) => {
   const [cdata, setCdata] = useState();
 
   const tabBarHeight = useBottomTabBarHeight();
-
+  const {height} = Dimensions.get("screen")
   console.log('HayekView started -->', subProp);
   const route = useRoute()
   const { userID } = route.params
@@ -207,7 +207,9 @@ const BuyView = ({ subProp }) => {
         </ScrollView>
       );
     } else {
-      return <></>;
+      return <>
+        <Text style = {{color:"#FFD700",marginTop:height * 0.05,flexDirection:"column", textAlign:"center",justifyContent:"center",alignSelf:"center"}}>No Child exist</Text>
+      </>;
     }
   };
 
@@ -296,7 +298,7 @@ const BuyView = ({ subProp }) => {
   };
 
   return (
-    <MainScreen style={{ backgroundColor: COLOR_DARKBLACK }}>
+    <MainScreen style={{ backgroundColor: COLOR_DARKBLACK,paddingBottom:height * 0.02 + 31  }}>
       <StatusBar />
       <MainHeader />
       <View style={styles.summaryBoxContainer}>
@@ -310,7 +312,6 @@ const BuyView = ({ subProp }) => {
         onIndexChange={setIndex}
         style={{
           backgroundColor: COLOR_ULTRAMARINE,
-          paddingBottom: tabBarHeight,
         }}
       />
     </MainScreen>

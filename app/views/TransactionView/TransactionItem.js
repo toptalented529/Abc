@@ -38,7 +38,7 @@ const TransactionItem = ({data}) => {
           </View>
           <View>
             <Text style={[styles.TransactionItemBoxText, {color: COLOR_WHITE}]}>
-              {data.title}
+              {data.title} - ${data.price}
             </Text>
             <Text style={[styles.TransactionItemDateText, {color: '#42e8e0'}]}>
               {data.date}

@@ -57,7 +57,7 @@ const sdk = new MetaMaskSDK({
   timer: BackgroundTimer,
   dappMetadata: {
     name: 'React Native Test Dapp',
-    url: 'example.com',
+    url: 'Office app',
   },
   // checkInstallationImmediately: true,
   injectProvider: true,

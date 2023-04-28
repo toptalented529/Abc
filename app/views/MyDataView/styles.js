@@ -1,5 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
+
+const {width, height} = Dimensions.get("screen")
 export default StyleSheet.create({
   searchContainer: {
     paddingHorizontal: 37,
@@ -22,12 +24,27 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 19,
   },
+  backgroundImage: {
+    flex:1,
+    resizeMode:"cover",
+    height:"105%",
+  },
+  
+  avatarIcon: {
+    width: width * 0.23,
+    height: width * 0.23,
+    marginVertical: height * 0.025
+  },
   DataItemAvatarBox: {
     width: 39,
     height: 39,
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  headerContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   btnAvatar: {
     width: 25,

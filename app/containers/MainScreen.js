@@ -34,6 +34,7 @@ import {
 import SearchBox from './SearchBox';
 import I18n from '../i18n';
 import {VectorIcon} from './VectorIcon';
+const {width,height} = Dimensions.get("screen")
 
 export const Button = isAndroid ? Touch : TouchableOpacity;
 
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingTop: 19,
-    paddingBottom: 20,
+    paddingTop: height * 0.01,
+    paddingBottom: height * 0.01,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     borderStyle: "solid"

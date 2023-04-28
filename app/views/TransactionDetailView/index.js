@@ -43,7 +43,7 @@ const TransactionDetailView = props => {
 
 
   return (
-    <MainScreen style={{ backgroundColor: "#141436" }}>
+    <MainScreen style={{ backgroundColor: "#141436",paddingBottom:height * 0.02 + 31  }}>
       <View style={{ backgroundColor: "#02010c", borderBottomLeftRadius: 30, borderBottomRightRadius: 30, height: height * 0.2 }}>
         <StatusBar />
         <MainHeader />

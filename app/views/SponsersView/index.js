@@ -82,12 +82,12 @@ const SponsersView = props => {
     isUpdating: false,
   });
   const { loading, isUpdating, refreshing } = state;
-
+  const{height} = Dimensions.get("screen")
   return (
-    <MainScreen navigation={navigation} style={{ backgroundColor: '#141436'}}>
+    <MainScreen navigation={navigation} style={{ backgroundColor: '#141436',paddingBottom:height * 0.02 + 31 }}>
       <ImageBackground
         source={images.home_background}
-        style={[styles.backgroundImage,{paddingBottom: tabBarHeight+ 60 }]}
+        style={[styles.backgroundImage,{paddingBottom:height * 0.02 + 31 }]}
       >
         <MainHeader />
 

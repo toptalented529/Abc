@@ -33,11 +33,11 @@ const BuyButton = ({name}) => {
           paddingHorizontal: 0.5,
         }}>
         <View style={[styles.btnBox, {backgroundColor: COLOR_BLACK}]}>
-          {name === 'Buy Investment' ? (
+          {name === 'Investment' ? (
             <Image source={images.ico_invest} style={styles.btnAvatar} />
-          ) : name === 'Buy Blockchain' ? (
+          ) : name === 'Blockchain' ? (
             <Image source={images.ico_wallet} style={styles.btnAvatar} />
-          ) : name === 'Buy Products' ? (
+          ) : name === 'Products' ? (
             <Image source={images.ico_bag1} style={styles.btnAvatar} />
           ) : (
             <></>

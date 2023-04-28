@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   useWindowDimensions,
+  ImageBackground,
 } from 'react-native';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
@@ -26,6 +27,7 @@ import StatusBar from '../../containers/StatusBar';
 import MainHeader from '../../containers/MainHeader';
 import SearchData from './SearchData';
 import DataItem from './DataItem';
+import BalanceDetail from './BalanceDetail';
 
 const MyDataView = props => {
   const tData = [
@@ -37,22 +39,24 @@ const MyDataView = props => {
       id: 2,
       title: 'Edit My Information',
     },
-    {
-      id: 3,
-      title: 'Edit Wallet',
-    },
+  
   ];
 
   return (
-    <MainScreen style={{backgroundColor: COLOR_DARKBLACK}}>
+    <MainScreen  style={{backgroundColor: '#141436' }}>
+      <ImageBackground
+       source={images.home_background}
+       style={styles.backgroundImage}
+      >
       <StatusBar />
       <MainHeader />
-      <SearchData />
-      <View style={{flexGrow: 1, backgroundColor: COLOR_ULTRAMARINE}}>
+      <BalanceDetail />
+      <View style={{flexGrow: 1}}>
         {tData.map(idx => (
           <DataItem data={idx} key={'dat' + idx.id} />
         ))}
       </View>
+      </ImageBackground>
     </MainScreen>
   );
 };

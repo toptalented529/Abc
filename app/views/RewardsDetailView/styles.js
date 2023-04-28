@@ -112,7 +112,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '33%',
+    width: '50%',
   },
   followWrap: {
     flexDirection: 'row',
@@ -129,8 +129,12 @@ export default StyleSheet.create({
   },
 
   avatarIcon: {
-    width: 112,
-    height: 112,
+    width: width * 0.28,
+    height: width * 0.28,
+  },
+  embaIcon: {
+    width: width * 0.4,
+    height: width * 0.4,
   },
   balanceText: {
     fontSize: 18,
@@ -138,11 +142,12 @@ export default StyleSheet.create({
   },
   balancePriceBox: {
     alignItems: 'center',
-    width: 170,
-    height: 33,
+    width: width * 0.8,
+    // height: height * 0.2 ,
     borderRadius: 13,
     marginBottom: 20,
     marginTop: 6,
+    backgroundColor:"#000"
   },
   balancePriceText: {
     justifyContent: 'center',
@@ -156,8 +161,8 @@ export default StyleSheet.create({
     marginVertical: height * 0.01,
   },
   btnBox: {
-    width: 100,
-    height: 127,
+    width: width * 0.25,
+    height: width * 0.35,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 29,
@@ -237,7 +242,7 @@ export default StyleSheet.create({
     // height:height * 0.15,
   },
   cardBox: {
-    // height: height * 0.14,
+    // height: height * 0.15,
     borderRadius: 29,
     flexDirection: 'row',
     justifyContent: 'space-around',

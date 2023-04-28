@@ -167,7 +167,7 @@ const publicKeyImport = props => {
             }}>
             <TouchableOpacity style={[styles.registerButton]} onPress={onSubmit}>
               <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text style={styles.registerText}>{i18n.t('CONTINUE_LOG_IN')}</Text>
+                <Text style={styles.registerText}>{i18n.t('CONTINUE')}</Text>
               </View>
             </TouchableOpacity>
           </LinearGradient>

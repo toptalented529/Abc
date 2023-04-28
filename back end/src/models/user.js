@@ -26,6 +26,20 @@ const user = (sequelize,DataTypes) => {
     last_blockchain_purchased_time:DataTypes.DATE,
     last_products_purchased_time:DataTypes.DATE,
     last_Investment_purchased_time:DataTypes.DATE,
+    my_team_rank:DataTypes.ARRAY(DataTypes.INTEGER),
+    my_team_prev_rank:DataTypes.ARRAY(DataTypes.INTEGER),
+    last_blockchain_purchased_date: {
+        type: DataTypes.DATE,
+        defaultValue: '2021-01-01' // Sets the default value to the current date and time
+      },
+      last_associated_purchased_date: {
+        type: DataTypes.DATE,
+        defaultValue:'2021-01-01' // Sets the default value to null
+      },
+      last_product_purchased_date: {
+        type: DataTypes.DATE,
+        defaultValue: '2021-01-01' // Sets the default value to a specific date
+      }
 
 
   

@@ -31,6 +31,12 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
   },
+  wrongPinText: {
+    marginTop:height * 0.01,
+    textAlign:"center",
+    color:"#FFD700",
+
+  },
   formContainer: {
     flex: 1,
     paddingVertical: 16,

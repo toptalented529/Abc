@@ -16,7 +16,7 @@ const BalanceDetail = ({data}) => {
       <View style={styles.headerContainer}>
         <Image source={Ranges[data.user.range-1].image} style={styles.avatarIcon} />
         <Text style={[styles.balanceText, {color: COLOR_WHITE}]}>
-          <Text style={{fontWeight: '800'}}>{Ranges[data.user.range-1].name}</Text> Balanace
+          <Text style={{fontWeight: '800'}}>{Ranges[data.user.range-1].name}</Text> Balance
         </Text>
       </View>
 

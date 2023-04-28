@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 
 const profile = (sequelize,DataTypes)=>{
-    const Profile = sequelize.define('transaction',{
+    const Profile = sequelize.define('profile',{
         specialization:{
             type: DataTypes.STRING,
         },

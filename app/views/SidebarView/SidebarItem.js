@@ -31,7 +31,21 @@ const Item = React.memo(
       }
       if (item.name === 'Rewards') {
         if(subName ==="Direct")
-        navigation.navigate('RewardsDetailView');
+        navigation.navigate('RewardsDetailView',{name:"Direct"});
+        if(subName ==="Range")
+        navigation.navigate('RewardsDetailView',{name:"Range"});
+        if(subName ==="Team")
+        navigation.navigate('RewardsDetailView',{name:"Team"});
+        if(subName ==="Annual")
+        navigation.navigate('RewardsDetailView',{name:"Annual"});
+        if(subName ==="Igualacion")
+        navigation.navigate('RewardsDetailView',{name:"Igualacion"});
+        if(subName ==="Embassador")
+        navigation.navigate('RewardsDetailView',{name:"Embassador"});
+        if(subName ==="Empates")
+        navigation.navigate('MatchingRewardView',{userID:0});
+        if(subName ==="Sales")
+        navigation.navigate('RewardsDetailView',{name:"Sales"});
       }
     };
 

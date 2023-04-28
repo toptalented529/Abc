@@ -10,6 +10,7 @@ import {
   View,
   TouchableHighlight,
   useWindowDimensions,
+  Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -42,7 +43,7 @@ const HayekView = ({subProp}) => {
   const [searchText, setSearchText] = useState('');
 
   const tabBarHeight = useBottomTabBarHeight();
-
+  const {height} = Dimensions.get("screen")
   console.log('HayekView started -->', subProp);
 
   const tData = [
@@ -138,7 +139,7 @@ const HayekView = ({subProp}) => {
   };
 
   return (
-    <MainScreen style={{backgroundColor: COLOR_DARKBLACK}}>
+    <MainScreen style={{backgroundColor: COLOR_DARKBLACK,paddingBottom:height * 0.02 + 31 }}>
       <StatusBar />
       <MainHeader />
       <View style={styles.summaryBoxContainer}>
@@ -192,7 +193,6 @@ const HayekView = ({subProp}) => {
         onIndexChange={setIndex}
         style={{
           backgroundColor: COLOR_ULTRAMARINE,
-          paddingBottom: tabBarHeight,
         }}
       />
     </MainScreen>

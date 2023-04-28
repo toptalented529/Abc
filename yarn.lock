@@ -11634,6 +11634,11 @@ react-native-scroll-bottom-sheet@^0.7.0:
   dependencies:
     utility-types "^3.10.0"
 
+react-native-share@^3.8.5:
+  version "3.8.5"
+  resolved "https://registry.npmjs.org/react-native-share/-/react-native-share-3.8.5.tgz"
+  integrity sha512-GjMI2NwUvi8zC7JHWk6NIcg/gFJmK/+cAQ8VStvfy4/kOiXYE5YnpPjvKs/K1Aun0HqYi2vjvZruL5ouDEWxmg==
+
 react-native-size-matters@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"

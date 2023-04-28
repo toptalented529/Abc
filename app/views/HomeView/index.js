@@ -35,6 +35,7 @@ import CardDataItem from './CardDataItem';
 import images from '../../assets/images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+
 const { width } = Dimensions.get('screen');
 
 const HomeView = props => {
@@ -82,7 +83,7 @@ const HomeView = props => {
 
     <MainScreen
       navigation={navigation}
-      style={{backgroundColor: 'transparent', paddingBottom: tabBarHeight }}
+      style={{backgroundColor: 'transparent', paddingBottom:height * 0.02 + 31 }}
     >
       <ImageBackground
         source={images.home_background}
@@ -94,7 +95,7 @@ const HomeView = props => {
         {isUpdating && (
           <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
-        <ScrollView style={{ flexGrow: 1,marginBottom:30 }}>
+        <ScrollView style={{ flexGrow: 1 }}>
          {users?
          
          <BalanceDetail data = {users} />:  <View>

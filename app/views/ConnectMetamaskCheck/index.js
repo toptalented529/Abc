@@ -48,7 +48,7 @@ const ConnectMetamask = props => {
   useEffect(() => {
     setTimeout(
       () => {
-        navigation.navigate("OldAccount")
+        navigation.navigate("RequireUneView")
       }, 1000
     )
   })

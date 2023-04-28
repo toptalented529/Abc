@@ -94,13 +94,14 @@ const CustomTextInput = props => {
   const [showPassword, setShowPassword] = useState(!secureTextEntry);
 
   return (
-    <View style={{marginBottom: 25}}>
+    <View style={{marginBottom: 25,}}>
       <View
         style={[
           styles.container,
           {
             borderColor: error ? COLOR_RED : themes[theme].borderColor,
             borderRadius: 25,
+            backgroundColor:backgroundColor
           },
         ]}>
         <TextInput

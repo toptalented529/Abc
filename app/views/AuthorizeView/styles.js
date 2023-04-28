@@ -310,6 +310,7 @@ export default StyleSheet.create({
     backgroundColor:`rgba(255,255,255,0.1)`,
     justifyContent:"center",
     alignItems:"center",
+    alignSelf:"center",
 
     paddingHorizontal:2,
   },
@@ -323,7 +324,8 @@ export default StyleSheet.create({
     fontFamily: "Poppins",
     fontSize: 20,
     color: "white",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textAlign:"center"
   },
   logo: {
     width: width * 0.2,

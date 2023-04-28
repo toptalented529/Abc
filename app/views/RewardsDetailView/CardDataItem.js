@@ -19,49 +19,14 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Chronometer from './Chronometer';
 
-const CardDataItem = ({ name }) => {
+const CardDataItem = ({ name,type }) => {
 
   const [active, setActive] = useState(true)
   const [expanded, setExpanded] = useState(false)
 
 
   const navigation = useNavigation();
-  useEffect(() => {
-
-    const handleValue = async () => {
-
-      const jwt = await AsyncStorage.getItem("jwt")
-
-      const response = axios.get("http://95.217.197.177:80/account/", {
-        headers: {
-          authorization: `Bearer ${jwt}`
-        }
-      })
-
-      const active = (await response).data.active;
-      setActive(active)
-
-      switch (name) {
-        case "Blockchain":
-          break;
-
-        case "Products":
-
-          break;
-        case "asocciated Product":
-          break;
-        default:
-          break;
-      }
-
-
-    }
-  })
-
-
-  const handleCLick = () => {
-    navigation.navigate("HomeProduct", { type: name })
-  }
+ 
 
   const handleExpand = () => {
       setExpanded (!expanded)
@@ -104,7 +69,7 @@ const CardDataItem = ({ name }) => {
         </View>
         {
           expanded &&
-          <Chronometer />
+          <Chronometer name = {name} type ={type} />
         }
        
       </LinearGradient>

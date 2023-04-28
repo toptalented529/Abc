@@ -15,12 +15,21 @@ const DataItem = ({data}) => {
 
   const gotoPages = title => {
     if (title === 'Edit PIN') navigation.navigate('EditPin');
+    if (title === 'Edit My Information') navigation.navigate('EditNicknameView');
   };
 
   return (
     <View style={{paddingHorizontal: 28, paddingVertical: 9}}>
+      <LinearGradient
+       colors={['#00000659', '#000006']}
+       start={{ x: 0, y: 0 }}
+       end={{ x: 0, y: 1 }}
+       locations={[0, 0.67, 1]}
+       style ={{borderRadius:12,}}
+      >
+
       <TouchableOpacity
-        style={[styles.DataItemBox, {backgroundColor: COLOR_BLACK}]}
+        style={[styles.DataItemBox]}
         onPress={() => gotoPages(data.title)}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View>
@@ -56,6 +65,8 @@ const DataItem = ({data}) => {
           />
         </View>
       </TouchableOpacity>
+      </LinearGradient>
+      
     </View>
   );
 };

@@ -10,10 +10,11 @@ import joi, { array } from "joi"
 import 'dotenv/config';
 import sequelize from 'sequelize'
 import { contract, web3, account, privateKey } from '../config/web3Config'
+import { Ranges } from '../config/config'
 const bip39 = require('bip39')
 const Wallet = require('ethereumjs-wallet')
 const ethers = require('ethers');
-const { bufferToHex } = require('ethereumjs-util');
+const { bufferToHex, fromRpcSig, toBuffer, hashPersonalMessage, ecrecover, publicToAddress } = require('ethereumjs-util');
 const { recoverPersonalSignature } = require('eth-sig-util')
 const sha256 = require('js-sha256'); // Import SHA-256 hash library
 
@@ -44,10 +45,12 @@ export const register = async (req, res, next) => {
                 address,
                 nonce,
                 pin: 1,
+                range:1,
+
             })
-            res.status(200).json({ nonce: user.nonce })
+            res.status(200).json({ nonce: user.nonce,existing:false })
         } else {
-            res.status(200).json({ nonce: existinguser.nonce })
+            res.status(200).json({ nonce: existinguser.nonce,existing:true })
         }
 
 
@@ -58,6 +61,27 @@ export const register = async (req, res, next) => {
     }
 }
 
+
+export const restoreAccount = async (req, res, next) => {
+    const { address } = req.body
+    try {
+        const existinguser = await models.User.findOne({ where: { address } });
+        console.log(existinguser, address)
+        if (!existinguser) {
+           
+         
+            res.status(200).json({ nonce:"",existing:false })
+        } else {
+            res.status(200).json({ nonce: existinguser.nonce,existing:true })
+        }
+
+
+
+
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
 
 export const registerForOld = async (req, res, next) => {
 
@@ -162,11 +186,145 @@ export const login = async (req, res, next) => {
 
 
 export const me = async (req, res) => {
+    const children = [];
     const existinguser = await models.User.findOne({ where: { address: req.address } });
+    let  amountArray = []
+    let rangeResultArray = []
+    let my_rangeAmount =0
+    let childrenIDArray = []
+     try{
+        const resultArray = await contract?.methods.getNodeChildren(existinguser.id).call();
+        console.log(resultArray);
+        my_rangeAmount = await contract.methods.getNodeRangeAccum(existinguser.id).call();
+        const my_range = await contract.methods.getNodeRange(existinguser.id).call();
+        const range = Ranges.indexOf(my_range) +1
+        console.log(my_range,range)
+        for(let i = 0; i< resultArray.length; i ++ ) {
+        const result = await contract.methods.getPurchasedAmount(resultArray[i]).call();
+        const rangeResult = await contract.methods.getNodeRangeAccum(resultArray[i]).call();
+        amountArray.push(result)
+        rangeResultArray.push(rangeResult)
+        childrenIDArray.push(parseInt(resultArray[i]))
+        }
+
+        for(let j = 0; j < amountArray.length;j ++) {
+            for(let k = j +1;k < amountArray;k ++){
+                if(amountArray[k] > amountArray[j]){
+                  const temp = amountArray[j]
+                    amountArray[j] = amountArray[k]
+                    amountArray[k] = temp
+
+
+                  const temp1 = resultArray[j]
+                  resultArray[j] = resultArray[k]
+                  resultArray[k] = temp1
+                 
+                 
+                  const temp2 = rangeResultArray[j]
+                  rangeResultArray[j] = rangeResultArray[k]
+                  rangeResultArray[k] = temp2
+
+                }
+            }
+        }
+
+        existinguser.my_team_prev_rank = existinguser.my_team_rank;
+        existinguser.my_team_rank = childrenIDArray
+        existinguser.range = range
+
+       await existinguser.save()
+    
+    }catch(e){
+        console.log(e)
+        res.status(401).json({success:false})
+        return
+    }
+
+    
+    for(let u = 0; u < existinguser.my_team_rank.length; u ++){
+        const child = await models.User.findById(existinguser.my_team_rank[u])
+        children.push(child)
+    }
+
+
+
+    
+
+    res.status(200).json({ user: existinguser, myRangeAmount:my_rangeAmount,children:children,children_purchased:amountArray,rangeAmount:rangeResultArray})
+}
+
+
+
+export const getUser = async (req, res) => {
+    const children = [];
+    const existinguser = await models.User.findOne({ where: { id: req.query.userID } });
+    let  amountArray = []
+    let rangeResultArray = []
+    let childrenIDArray = []
+    let  my_rangeAmount = []
+     try{
+        const resultArray = await contract.methods.getNodeChildren(existinguser.id).call();
+        console.log(resultArray);
+        my_rangeAmount = await contract.methods.getNodeRangeAccum(existinguser.id).call();
+
+        for(let i = 0; i< resultArray.length; i ++ ) {
+        const result = await contract.methods.getPurchasedAmount(resultArray[i]).call();
+        const rangeResult = await contract.methods.getNodeRangeAccum(resultArray[i]).call();
+        rangeResultArray.push(rangeResult)
+        amountArray.push(result)
+
+        childrenIDArray.push(parseInt(resultArray[i]))
+
+        }
+
+        for(let j = 0; j < amountArray.length;j ++) {
+            for(let k = j +1;k < amountArray;k ++){
+                if(amountArray[k] > amountArray[j]){
+                  const temp = amountArray[j]
+                    amountArray[j] = amountArray[k]
+                    amountArray[k] = temp
+
+
+                  const temp1 = resultArray[j]
+                  resultArray[j] = resultArray[k]
+                  resultArray[k] = temp1
+
+                  const temp2 = rangeResultArray[j]
+                  rangeResultArray[j] = rangeResultArray[k]
+                  rangeResultArray[k] = temp2
+
+                }
+            }
+        }
+
+        existinguser.my_team_prev_rank = existinguser.my_team_rank;
+        existinguser.my_team_rank = childrenIDArray
+
+       await existinguser.save()
+    
+    }catch(e){
+        console.log(e)
+        res.status(401).json({success:false})
+        return
+    }
+
+    
+    for(let u = 0; u < existinguser.my_team_rank.length; u ++){
+        const child = await models.User.findById(existinguser.my_team_rank[u])
+        children.push(child)
+    }
+
+
+
+
+    
 
     const user = req.currentUser;
-    res.status(200).json({ user: existinguser })
+    res.status(200).json({ user: existinguser, myRangeAmount:my_rangeAmount,children:children,children_purchased:amountArray,children_rangeAmount:rangeResultArray })
 }
+
+
+
 export const sponser = async (req, res) => {
     const existinguser = await models.User.findOne({ where: { address: req.address } });
     const sponser = await models.User.findOne({where:{id:existinguser.parent_id}})
@@ -210,15 +368,26 @@ export const mnemonic = async (req, res) => {
 export const verifySignature = async (address, signature) => {
     const user = await models.User.findOne({ where: { address } });
     if (user != null) {
-        const msg = user.nonce;
+        // const msg = user.nonce;
         console.log("1111111111111111111111", msg)
-        const msgBufferHex = bufferToHex(Buffer.from(msg, 'hex'));
-        const sigAddress = recoverPersonalSignature({
-            data: msgBufferHex,
-            sig: signature,
-        })
-        console.log("55555555555555555555", sigAddress)
-        if (address.toLowerCase() !== sigAddress.toLowerCase()) {
+        const msg = `Signing to Office: ${user.nonce}`;
+
+    // We now are in possession of msg, publicAddress and signature. We
+    // can perform an elliptic curve signature verification with ecrecover
+    const msgBuffer = toBuffer(Buffer.from(msg, 'utf8'));
+    const msgHash = hashPersonalMessage(msgBuffer);
+    const signatureBuffer = toBuffer(signature);
+    const signatureParams = fromRpcSig(signatureBuffer);
+    const publicKey = ecrecover(
+      msgHash,
+      signatureParams.v,
+      signatureParams.r,
+      signatureParams.s
+    );
+    const addressBuffer = publicToAddress(publicKey);
+    const SSaddress = bufferToHex(addressBuffer);
+
+        if (address.toLowerCase() !== SSaddress.toLowerCase()) {
             return null;
         }
 
@@ -244,6 +413,7 @@ export const setPin = async (req, res) => {
 
 export const setNickName = async (req, res) => {
     const existinguser = await models.User.findOne({ where: { address: req.address } });
+   try{
     if (!existinguser) {
         res.status(400).json({ success: "no user exist" })
         return
@@ -252,10 +422,15 @@ export const setNickName = async (req, res) => {
     existinguser.nickname = req.body.nickname;
     const doubleUser = await models.User.findOne({ where: { nickname: req.body.nickname } })
     if (doubleUser) {
-        res.status(400).json({ success: false })
+      return  res.status(400).json({ success: false })
     }
     await existinguser.save()
     res.status(200).json({ user: existinguser, success: true })
+   }catch(e){
+  return  res.status(400).json({ success: false })
+
+   }
+   
 
 }
 
@@ -276,27 +451,26 @@ export const setSponserName = async (req, res) => {
     existinguser.parent_id = sponser.id
     await existinguser.save()
 
-    // try{
-    //     const transaction = contract.methods.addMember(existinguser.id, sponser.id, account.address);
-    //     console.log("sdfsdfsdf", account.address)
-    //     let estimatedGas = await transaction.estimateGas({ from: account.address });
+    try{
+        const transaction = contract.methods.addMember(existinguser.id, sponser.id, req.address);
+        let estimatedGas = await transaction.estimateGas({ from: account.address });
     
-    //     const options = {
-    //         to: transaction._parent._address,
-    //         gas: estimatedGas * 2, //sometimes estimate is wrong and we don't care if more gas is needed
-    //         data: transaction.encodeABI(),
-    //     };
+        const options = {
+            to: transaction._parent._address,
+            gas: estimatedGas * 2, //sometimes estimate is wrong and we don't care if more gas is needed
+            data: transaction.encodeABI(),
+        };
     
-    //     const signed = await web3.eth.accounts.signTransaction(options, privateKey);
-    //     const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction);
-    //     console.log(receipt)
+        const signed = await web3.eth.accounts.signTransaction(options, privateKey);
+        const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction);
+        console.log(receipt)
     
     
-    // }catch(e){
-    //     console.log(e)
-    //     res.status(401).json({success:false})
-    //     return
-    // }
+    }catch(e){
+        console.log(e)
+        res.status(401).json({success:false})
+        return
+    }
 
    
 
@@ -330,7 +504,6 @@ export const addBlockchainMembers = async (req, res) => {
         try{
 
             const transaction = contract.methods.addMembers(usersID, users_Parent_ID,mine);
-            console.log("sdfsdfsdf", account.address)
             let estimatedGas = await transaction.estimateGas({ from: account.address });
     
             const options = {
@@ -409,5 +582,148 @@ export const importOldData = async (req, res) => {
     }
 }
 
+export const setSignUpRequest = async (req,res) => {
+    try{
+        const result = await models.MarketplaceSginup.findOne({where:{email:req.body.email,nickname:req.body.nickname}})
+        if(result) {
+            return res.status(401).json({success:false})
+        }
+        const user_result = await models.User.findOne({where:{nickname:req.body.nickname}})
+        if(!user_result){
+            return res.status(400).json({success:false})
+        }
+        const result_same = await models.MarketplaceSginup.findOne({where:{nickname:req.body.nickname}})
+        if(result_same){
+            await models.MarketplaceSginup.destroy({where:{nickname:req.body.nickname}})
+        }
 
-///////////////// when user 
+
+        await models.MarketplaceSginup.create({
+            email:req.body.email,
+            nickname:req.body.nickname,
+            accepted:false,
+        })
+
+        res.status(200).json({success:true})
+
+
+    }catch(e) {
+        console.log(e)
+    }
+}
+
+export const marketplaceRequestcheck = async (req,res) => {
+
+    try{
+        const user = await models.User.findOne({where:{address:req.address}})
+        const result = await models.MarketplaceSginup.findOne({where:{nickname:user.nickname}})
+        if(result){
+                return res.status(200).json({success:true,result:"Request exists!",request:result})
+        }else{
+            return res.status(400).json({success:false,result:"Requst is not there"})
+
+        }
+   
+    }catch(e){
+
+    }
+}
+
+export const approveSignUp = async (req,res) => {
+
+    const agent = new https.Agent({
+        rejectUnauthorized: false,
+    });
+    try{
+        const user = await models.User.findOne({where:{address:req.address}})
+        
+        const request = await models.MarketplaceSginup.findOne({where:{email:req.body.email,nickname:req.body.nickname}})
+     
+        
+        
+        const response = await axios.post("https://31.220.82.149/rest/V1/integration/admin/token", {
+            username: "admin",
+            password: "admin123",
+        }, {
+            httpsAgent: agent,
+        })
+        
+        
+        
+        const customerId =await axios.get(`https://31.220.82.149/rest/V1/customers/search?searchCriteria[filterGroups][0][filters][0][field]=email&searchCriteria[filterGroups][0][filters][0][value]=${req.body.email}&searchCriteria[filterGroups][0][filters][0][conditionType]=eq`,{
+            httpsAgent: agent,
+            headers: {
+                Authorization: `Bearer ${response.data}`
+            }
+        })
+        
+        
+        await axios.put(`https://31.220.82.149/rest/V1/customers/${customerId.data.items[0].id}`,{
+            customer: {
+                id:customerId.data.items[0].id,
+                custom_attributes:[
+                    {
+                        attribute_code:"office_id",
+                        value:user.id,
+                    }
+                ]
+                
+            }
+        },{
+            httpsAgent: agent,
+            headers: {
+                Authorization: `Bearer ${response.data}`
+                
+            }
+        })
+        console.log("22222222222222222222",customerId.data.items[0].id)
+        
+        request.accepted =true;
+        await request.save()
+
+
+   res.status(200).json({success:true})
+
+    }catch(e){
+        res.status(401).json({success:false})
+    }
+}
+export const rejectSignUp = async (req,res) => {
+    try{
+        const request = await models.marketplaceRequestcheck.findOne({where:{email:req.body.email,nickname:req.body.nickname}})
+        request.accepted = false;
+        await request.save()
+
+
+
+   await models.marketplaceRequestcheck.destroy({where:{email:req.body.email,nickname:req.body.nickname}})
+
+
+   res.status(200).json({success:true})
+
+    }catch(e){
+        res.status(400).json({success:false})
+    }
+}
+
+
+///////////////// when user ////////////////////////////////
+
+export const checkEthereumAddress = async(req,res) => {
+    try {
+        // Check if the address is a valid checksum address
+        const checksumAddress = ethers.utils.getAddress(req.body.address);
+        // Compare the original address with the checksum address
+        if (req.body.address === checksumAddress) {
+            // If they are the same, then it's a valid Ethereum address
+            return res.status(200).json({success:true});
+        } else {
+            // If they are different, then it's an invalid Ethereum address
+            return res.status(400).json({success:false});
+        }
+    } catch (error) {
+        // If there's an error, then it's an invalid Ethereum address
+        return res.status(400).json({success:false});
+    }
+
+}

@@ -10,12 +10,12 @@ export default StyleSheet.create({
   },
   notificationBox: {
     paddingHorizontal: 35,
-    paddingVertical: 10,
+    paddingVertical: 2,
     borderBottomLeftRadius:20,
     borderBottomRightRadius:20,
   },
   dateText: {
-    fontFamily: 'Montserrat',
+    fontFamily: 'Poppins',
     fontSize: 11,
   },
   dayText: {
@@ -26,9 +26,9 @@ export default StyleSheet.create({
   },
   highlightdateBox: {
     borderRadius: 29,
-    paddingHorizontal: 12,
-    paddingVertical: 16,
-    marginTop: 28,
+    paddingHorizontal: 4,
+    paddingVertical: 6,
+    marginTop: 8,
   },
   dateBox: {},
   dateBoxContainer: {

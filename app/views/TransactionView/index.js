@@ -8,6 +8,7 @@ import {
   View,
   ScrollView,
   useWindowDimensions,
+  Dimensions,
 } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -21,6 +22,7 @@ import {
 import { withTheme } from '../../theme';
 import images from '../../assets/images';
 import styles from './styles';
+import ActivityIndicator from '../../containers/ActivityIndicator';
 
 import MainScreen from '../../containers/MainScreen';
 import StatusBar from '../../containers/StatusBar';
@@ -29,14 +31,24 @@ import SearchTransaction from './SearchTransaction';
 import TransactionItem from './TransactionItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { useIsFocused } from '@react-navigation/native';
 
 const TransactionView = props => {
-
-  const [allTransaction, setAllTransaction] = useState()
-  const [shoppingTransaction, setShoppingTransaction] = useState()
-  const [commissionTransaction, setCommissionTransaction] = useState()
-  const [withdrawTransaction, setWithdrawTransaction] = useState()
+  const {width, height} = Dimensions.get("screen")
+  const [allTransaction, setAllTransaction] = useState([])
+  const [shoppingTransaction, setShoppingTransaction] = useState([])
+  const [commissionTransaction, setCommissionTransaction] = useState([])
+  const [withdrawTransaction, setWithdrawTransaction] = useState([])
+  const [teamTransaction, setTeamTransaction] = useState([])
+  const [directTransaction, setDirectTransaction] = useState([])
+  const [matchingTransaction, setMatchingTransaction] = useState([])
+  const [salesTransaction, setSalesTransaction] = useState([])
+  const [annualTransaction, setAnnualTransaction] = useState([])
   const [started,setStart] = useState(false)
+
+  let ifFocused = false
+  ifFocused = useIsFocused()
+  console.log("00000000000000",ifFocused)
   useEffect(() => {
     const handleFetch = async () => {
 
@@ -52,7 +64,7 @@ const TransactionView = props => {
 
         temp.push({
           id: key,
-          title: transaction.productname?transaction.productname:'Token',
+          title: transaction.productType?transaction.productType:'Token',
           price: transaction.imp,
           name: transaction.hayeks_pos > 0 ? "Hayek" : transaction.tkns > 0 ? "Genu" : "producto",
           date: transaction.fch_hra,
@@ -64,6 +76,7 @@ const TransactionView = props => {
 
         })
       })
+      console.log("99999999999999999999999999999")
       setAllTransaction(temp)
       const shopping = temp.filter(transaction => transaction.mov_tip ==="A")
       setShoppingTransaction(shopping)
@@ -71,6 +84,21 @@ const TransactionView = props => {
       setCommissionTransaction(commit)
       const withdraw = temp.filter(transaction => transaction.mov_tip ==="C")
       setWithdrawTransaction(withdraw)
+      const direct = temp.filter(transaction => transaction.title ==="Direct")
+      setDirectTransaction(direct)
+      const matching = temp.filter(transaction => transaction.title ==="Empates")
+      setMatchingTransaction(matching)
+      const annual = temp.filter(transaction => transaction.title ==="Annual")
+      setAnnualTransaction(annual)
+      const team = temp.filter(transaction => transaction.title ==="Team")
+      setTeamTransaction(team)
+      const sales = temp.filter(transaction => transaction.title ==="Sales")
+      setSalesTransaction(sales)
+
+
+
+
+
 
       setStart(true)
       console.log("slow",res.data)
@@ -78,7 +106,7 @@ const TransactionView = props => {
       
     }
     handleFetch()
-  }, [])
+  }, [ifFocused])
 
   const handleScroll = () => {
     
@@ -124,19 +152,25 @@ const TransactionView = props => {
         // const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
 
     if (data.length > 0) {
-      return (
-        <ScrollView onScroll={handleScroll}>
-          {started && <View>
-            {data.map(idx => (
-          <TransactionItem data={idx} key={'ti' + idx.id} /> 
-          ))}
-          </View>}
-         
-        
-        </ScrollView>
-      );
+      if(data ===tData){
+        return <Text style = {{color:"#FFD700",marginTop:height * 0.05,flexDirection:"column", textAlign:"center",justifyContent:"center",alignSelf:"center"}}>No transaction found</Text>
+      }else{
+
+        return (
+          <ScrollView onScroll={handleScroll}>
+            {started && <View>
+              {data.map(idx => (
+            <TransactionItem data={idx} key={'ti' + idx.id} /> 
+            ))}
+            </View>}
+           
+          
+          </ScrollView>
+        );
+      }
     } else {
-      return <></>;
+      return    <ActivityIndicator absolute theme={"light"} size={'large'} />
+      ;
     }
   };
 
@@ -147,18 +181,29 @@ const TransactionView = props => {
     { key: 'second', title: 'Shopping' },
     { key: 'third', title: 'Commissions' },
     { key: 'forth', title: 'Withdrawals' },
+    { key: 'fifth', title: 'Direct' },
+    { key: 'sixth', title: 'Matching' },
+    { key: 'seventh', title: 'Team' },
+    { key: 'eighth', title: 'Sales' },
+    { key: 'ninth', title: 'Annual' },
   ]);
 
   const renderScene = SceneMap({
-    first: () => <RenderFlatListItem type={'all'} data={allTransaction? allTransaction:tData} />,
-    second: () => <RenderFlatListItem type={'shopping'} data={shoppingTransaction? shoppingTransaction:tData} />,
-    third: () => <RenderFlatListItem type={'commisions'} data={commissionTransaction?commissionTransaction:tData} />,
-    forth: () => <RenderFlatListItem type={'Withdrawals'} data={withdrawTransaction? withdrawTransaction:tData} />,
+    first: () => <RenderFlatListItem type={'all'} data={allTransaction.length !==0?allTransaction:tData} />,
+    second: () => <RenderFlatListItem type={'shopping'} data={shoppingTransaction.length !==0? shoppingTransaction:tData} />,
+    third: () => <RenderFlatListItem type={'commisions'} data={commissionTransaction.length !==0?commissionTransaction:tData} />,
+    forth: () => <RenderFlatListItem type={'Withdrawals'} data={withdrawTransaction.length !==0? withdrawTransaction:tData} />,
+    fifth: () => <RenderFlatListItem type={'Direct'} data={directTransaction.length !==0? directTransaction:tData} />,
+    sixth: () => <RenderFlatListItem type={'Matching'} data={matchingTransaction.length !==0? matchingTransaction:tData} />,
+    seventh: () => <RenderFlatListItem type={'Team'} data={teamTransaction.length !==0? teamTransaction:tData} />,
+    eighth: () => <RenderFlatListItem type={'Sales'} data={salesTransaction.length !==0? salesTransaction:tData} />,
+    ninth: () => <RenderFlatListItem type={'Annual'} data={annualTransaction.length !==0? annualTransaction:tData} />,
   });
   const renderTabBar = props => {
     return (
       <View style={[styles.tabBarContainer]}>
         <View style={styles.tabBar}>
+          <ScrollView horizontal = {true}>
           {props.navigationState.routes.map((route, i) => {
             return (
               <TouchableOpacity key={i} onPress={() => setIndex(i)}>
@@ -182,13 +227,14 @@ const TransactionView = props => {
               </TouchableOpacity>
             );
           })}
+          </ScrollView>
         </View>
       </View>
     );
   };
 
   return (
-    <MainScreen style={{ backgroundColor: "#141436" }}>
+    <MainScreen style={{ backgroundColor: "#141436",paddingBottom:height * 0.02 + 31  }}>
       <View style={{ backgroundColor: "#02010c", borderBottomLeftRadius: 30, borderBottomRightRadius: 30 }}>
         <StatusBar />
         <MainHeader />
@@ -202,7 +248,6 @@ const TransactionView = props => {
         onIndexChange={setIndex}
         style={{
           backgroundColor: COLOR_ULTRAMARINE,
-          paddingBottom: tabBarHeight,
         }}
       />
     </MainScreen>

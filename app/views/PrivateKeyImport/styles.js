@@ -44,7 +44,7 @@ export default StyleSheet.create({
   },
   forgotContainer: {
     marginBottom: 10,
-    width:width *0.4,
+    // width:width *0.4,
     borderRadius:12,
     alignSelf:"center",
 
@@ -73,7 +73,7 @@ export default StyleSheet.create({
   },
   loginText: {
     fontFamily: 'Montserrat',
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 24,
     color: '#fff',
     textAlign:"center"

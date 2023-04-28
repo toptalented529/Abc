@@ -44,7 +44,7 @@ export default StyleSheet.create({
   },
   forgotContainer: {
     marginBottom: 10,
-    width:width *0.4,
+    // width:width *0.4,
     borderRadius:12,
     alignSelf:"center",
 

@@ -1,0 +1,1085 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "sku": "Women Blouse",
+            "name": "Women Blouse",
+            "attribute_set_id": 4,
+            "price": 70,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:49:12",
+            "updated_at": "2023-04-17 15:50:59",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [
+                {
+                    "id": 29,
+                    "media_type": "image",
+                    "label": null,
+                    "position": 1,
+                    "disabled": false,
+                    "types": [
+                        "image",
+                        "small_image",
+                        "thumbnail",
+                        "swatch_image"
+                    ],
+                    "file": "/p/r/project-1_1.png"
+                },
+                {
+                    "id": 30,
+                    "media_type": "image",
+                    "label": null,
+                    "position": 2,
+                    "disabled": false,
+                    "types": [],
+                    "file": "/m/s/msg5369252484-18164.jpg"
+                }
+            ],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "image",
+                    "value": "/p/r/project-1_1.png"
+                },
+                {
+                    "attribute_code": "small_image",
+                    "value": "/p/r/project-1_1.png"
+                },
+                {
+                    "attribute_code": "thumbnail",
+                    "value": "/p/r/project-1_1.png"
+                },
+                {
+                    "attribute_code": "swatch_image",
+                    "value": "/p/r/project-1_1.png"
+                },
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse"
+                },
+                {
+                    "attribute_code": "msrp_display_actual_price_type",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": []
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                },
+                {
+                    "attribute_code": "product_page_type",
+                    "value": "default"
+                },
+                {
+                    "attribute_code": "product_image_size",
+                    "value": "0"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "sku": "Fashion Dress",
+            "name": "Fashion Dress",
+            "attribute_set_id": 4,
+            "price": 90,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:49:18",
+            "updated_at": "2023-04-17 20:39:16",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 0,
+                        "category_id": "28"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-1"
+                },
+                {
+                    "attribute_code": "msrp_display_actual_price_type",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "28"
+                    ]
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                },
+                {
+                    "attribute_code": "product_image_size",
+                    "value": "0"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "sku": "Blue Denim Jeans",
+            "name": "Blue Denim Jeans",
+            "attribute_set_id": 4,
+            "price": 200,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:50:34",
+            "updated_at": "2023-04-17 20:04:19",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "10"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "28"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-2"
+                },
+                {
+                    "attribute_code": "msrp_display_actual_price_type",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "10",
+                        "4",
+                        "28"
+                    ]
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                },
+                {
+                    "attribute_code": "product_image_size",
+                    "value": "0"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "sku": "Sheri Collar Shirt",
+            "name": "Sheri Collar Shirt",
+            "attribute_set_id": 4,
+            "price": 70,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:51:43",
+            "updated_at": "2023-04-17 20:47:06",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "29"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-3"
+                },
+                {
+                    "attribute_code": "msrp_display_actual_price_type",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "29"
+                    ]
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                },
+                {
+                    "attribute_code": "product_image_size",
+                    "value": "0"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "sku": "Fashion Jacket",
+            "name": "Fashion Jacket",
+            "attribute_set_id": 4,
+            "price": 33,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:52:57",
+            "updated_at": "2016-08-26 02:53:46",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "10"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-4"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "10",
+                        "4"
+                    ]
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "sku": "Sample Product",
+            "name": "Sample Product",
+            "attribute_set_id": 4,
+            "price": 70,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:53:49",
+            "updated_at": "2016-08-26 02:55:03",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "10"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "special_price",
+                    "value": "50.000000"
+                },
+                {
+                    "attribute_code": "special_from_date",
+                    "value": "2016-08-26 14:55:03"
+                },
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-5"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "custom_design_from",
+                    "value": "2016-08-26 14:55:03"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "10",
+                        "4"
+                    ]
+                },
+                {
+                    "attribute_code": "news_from_date",
+                    "value": "2016-08-26 14:55:03"
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "sku": "Elizabeth Kint Top",
+            "name": "Elizabeth Kint Top",
+            "attribute_set_id": 4,
+            "price": 220,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:55:05",
+            "updated_at": "2016-08-26 02:56:11",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "10"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-6"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "custom_design_from",
+                    "value": "2016-08-26 00:00:00"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "10",
+                        "4"
+                    ]
+                },
+                {
+                    "attribute_code": "news_from_date",
+                    "value": "2016-08-26 00:00:00"
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "sku": "Pink Shirt",
+            "name": "Pink Shirt",
+            "attribute_set_id": 4,
+            "price": 90,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:56:13",
+            "updated_at": "2016-08-26 02:57:03",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "10"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-7"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "custom_design_from",
+                    "value": "2016-08-26 00:00:00"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "10",
+                        "4"
+                    ]
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "sku": "Sample Fashion",
+            "name": "Sample Fashion",
+            "attribute_set_id": 4,
+            "price": 90,
+            "status": 1,
+            "visibility": 4,
+            "type_id": "simple",
+            "created_at": "2016-08-26 02:57:05",
+            "updated_at": "2016-08-26 02:59:15",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "10"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "women-blouse-8"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "custom_design_from",
+                    "value": "2016-08-26 00:00:00"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Women Blouse"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Women Blouse Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "10",
+                        "4"
+                    ]
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n\t<ul>\r\n\t\t<li>Any Product types that You want - Simple, Configurable, Bundled and Grouped Products</li>\r\n\t\t<li>Downloadable/Digital Products, Virtual Products</li>\r\n\t\t<li>Inventory Management with Backordered items</li>\r\n\t\t<li>Customer Personalized Products - upload text for embroidery, monogramming, etc.</li>\r\n\t\t<li>Create Store-specific attributes on the fly</li>\r\n\t\t<li>Advanced Pricing Rules and support for Special Prices</li>\r\n\t\t<li>Tax Rates per location, customer group and product type</li>\r\n                <li>Detailed Configuration Options in Theme Admin Penl</li>\r\n\t</ul>"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "sku": "Sample Configurable-White",
+            "name": "Sample Configurable-White",
+            "attribute_set_id": 9,
+            "price": 120,
+            "status": 1,
+            "visibility": 1,
+            "type_id": "simple",
+            "created_at": "2016-08-26 03:04:41",
+            "updated_at": "2016-08-26 03:04:41",
+            "weight": 1,
+            "extension_attributes": {
+                "website_ids": [
+                    1
+                ],
+                "category_links": [
+                    {
+                        "position": 1,
+                        "category_id": "2"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "3"
+                    },
+                    {
+                        "position": 1,
+                        "category_id": "6"
+                    },
+                    {
+                        "position": 0,
+                        "category_id": "4"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "options_container",
+                    "value": "container2"
+                },
+                {
+                    "attribute_code": "gift_message_available",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "sample-configurable-white"
+                },
+                {
+                    "attribute_code": "required_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "has_options",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "meta_title",
+                    "value": "Sample Configurable"
+                },
+                {
+                    "attribute_code": "meta_keyword",
+                    "value": "Sample Configurable"
+                },
+                {
+                    "attribute_code": "meta_description",
+                    "value": "Sample Configurable "
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "2",
+                        "3",
+                        "6",
+                        "4"
+                    ]
+                },
+                {
+                    "attribute_code": "sw_featured",
+                    "value": "1"
+                },
+                {
+                    "attribute_code": "color",
+                    "value": "4"
+                }
+            ]
+        }
+    ]
+}

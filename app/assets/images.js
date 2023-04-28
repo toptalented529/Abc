@@ -170,6 +170,13 @@ const images = {
   no_color_range16: require("./images/Icon/RangeNoColor/16.png"),
   no_color_range17: require("./images/Icon/RangeNoColor/17.png"),
   no_color_range18: require("./images/Icon/RangeNoColor/18.png"),
+  icon_expansion: require("./images/Icon/Embassador/expansion.png"),
+  icon_formacion: require("./images/Icon/Embassador/formacion.png"),
+  icon_global: require("./images/Icon/Embassador/global.png"),
+  icon_producccion: require("./images/Icon/Embassador/producccion.png"),
+  icon_founder: require("./images/Icon/Embassador/fundador.png"),
+  icon_user:require("./images/backgrounds/Icon/Icon_user.png"),
+  
   coin: require("./images/Icon/coin.png"),
   coin_color: require("./images/Icon/coin_color.png"),
 };

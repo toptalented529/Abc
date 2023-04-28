@@ -5,13 +5,13 @@ const {width} = Dimensions.get('window');
 export default StyleSheet.create({
   notificationText: {
     fontFamily: 'Montserrat',
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: '700',
-    marginBottom: 9,
+    marginBottom: 2,
   },
   notificationBox: {
     paddingHorizontal: 35,
-    paddingBottom:20,
+    paddingBottom:10,
     backgroundColor:"#02010c",
     borderBottomLeftRadius:30,
     borderBottomRightRadius:30,
@@ -21,12 +21,12 @@ export default StyleSheet.create({
     paddingBottom: 23,
   },
   searchBtn: {
-    width: width * 0.05,
-    height: width * 0.05,
+    width: width * 0.03,
+    height: width * 0.03,
   },
   searchBox: {
     paddingHorizontal: 11,
-    paddingVertical: 3,
+    // paddingVertical: 3,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -37,7 +37,7 @@ export default StyleSheet.create({
   },
   tabBarContainer: {
     justifyContent: 'center',
-    paddingVertical: 26,
+    paddingVertical: 6,
   },
   tabContainer: {
     width: '33%',
@@ -86,8 +86,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   productItem: {
-    width: 60,
-    height: 170,
+    width: width * 0.75,
+    height: width * 0.35,
+    resizeMode:"contain"
   },
   productInfoContainer: {
     paddingLeft: 28,
@@ -118,4 +119,9 @@ export default StyleSheet.create({
     fontSize: 12,
     lineSpacing: 2,
   },
+  finshedText: {
+    textAlign:"center",
+    alignSelf:"center",
+    color:"blue",
+  }
 });

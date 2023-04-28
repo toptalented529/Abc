@@ -300,7 +300,7 @@ const RankingView = ({ subProp }) => {
   };
 
   return (
-    <MainScreen style={{ backgroundColor: COLOR_DARKBLACK }}>
+    <MainScreen style={{ backgroundColor: COLOR_DARKBLACK,paddingBottom:height * 0.02 + 31}}>
       <StatusBar />
       <MainHeader />
       <View style={styles.summaryBoxContainer}>
@@ -314,7 +314,6 @@ const RankingView = ({ subProp }) => {
         onIndexChange={setIndex}
         style={{
           backgroundColor: COLOR_ULTRAMARINE,
-          paddingBottom: tabBarHeight,
         }}
       />
     </MainScreen>

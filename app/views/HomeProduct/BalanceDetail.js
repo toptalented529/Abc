@@ -55,11 +55,19 @@ const BalanceDetail = ({ balance, day = 0, hour = 0, minute = 0, second = 0, nam
     const intervalId = setInterval(() => {
       if (remainingTime > 1000) {
         setRemainingTime(remainingTime - 1000);
-        const date = new Date(remainingTime);
-        setCurrentDay(date.getUTCDay());
-        setCurrentHour(date.getUTCHours());
-        setCurrentMinute(date.getUTCMinutes());
-        setCurrentSecond(date.getUTCSeconds());
+        const seconds = Math.floor(remainingTime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+
+        // Calculate the remaining hours, minutes, and seconds
+        const remainingHours = hours % 24;
+        const remainingMinutes = minutes % 60;
+        const remainingSeconds = seconds % 60;
+        setCurrentDay(days);
+        setCurrentHour(remainingHours);
+        setCurrentMinute(remainingMinutes);
+        setCurrentSecond(remainingSeconds);
       } else {
         setCurrentDay(0)
         setCurrentHour(0)

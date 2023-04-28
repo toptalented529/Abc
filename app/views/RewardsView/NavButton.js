@@ -27,10 +27,28 @@ const NavButton = ({name}) => {
 
  const handlePress = () => {
   if(name === "Direct")
-   navigation.navigate("RewardsDetailView")
+   navigation.navigate("RewardsDetailView",{name:"Direct"})
    
-  if(name === "Ranks")
-   navigation.navigate("RankingView",{userID:0})
+  if(name === "Range")
+   navigation.navigate("RewardsDetailView",{name:"Range"})
+   
+  if(name === "Annual")
+   navigation.navigate("RewardsDetailView",{name:"Annual"})
+   
+  if(name === "Sales")
+   navigation.navigate("RewardsDetailView",{name:"Sales"})
+   
+  if(name === "Team")
+   navigation.navigate("RewardsDetailView",{name:"Team"})
+  
+  if(name === "Igualacion")
+   navigation.navigate("RewardsDetailView",{name:"Igualacion"})
+   
+  if(name === "Embassador")
+   navigation.navigate("RewardsDetailView",{name:"Embassador"})
+   
+  if(name === "Empates")
+   navigation.navigate("MatchingRewardView",{userID:0})
    
   if(name === "Direct / Indirect Sales")
    navigation.navigate("BuyView",{userID:0})

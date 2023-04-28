@@ -113,9 +113,6 @@ const GenerateWords = props => {
       console.log('Public key:', publicKey);
       console.log('Address:', address);
 
-      console.log("sdfsdfsdfsdf", mnemonic);
-
-
 
 
 

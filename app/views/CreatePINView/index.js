@@ -29,6 +29,7 @@ import axios from 'axios';
 import BackgroundTimer from 'react-native-background-timer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from '../../i18n';
+import { ethers } from 'ethers';
 
 const CreatePINView = props => {
   const navigation = useNavigation();
@@ -41,31 +42,59 @@ const CreatePINView = props => {
   const [backKeyPress, setBackKeyPress] = useState(false)
   const [createPin, setCreatePin] = useState(false)
   const { loginSuccess } = props;
+  const {ethereum} = props
   const [loginUser,seLoginUser] = useState()
+  const [wrongPin,setWrongPin] = useState(false)
+  const [ethereums, setEthereums] = useState()
+  const [jwtFlag, setJwtFlag] = useState(true)
+  const [existing, setExisting] = useState(true)
+  const [signinFlag,setSigninFlag] = useState(0)
+  const [userFlag,setUserFlag] = useState(true)
+  const [nonce,setNonce] = useState()
+  const [connected,setConntected] = useState(false)
   useEffect(() => {
     const getPin = async () => {
-      const address = AsyncStorage.getItem("currentAddress")
-      const jwt = await AsyncStorage.getItem("jwt")
-      const res = await axios.get("http://95.217.197.177:80/account/me", {
-        headers: {
-          authorization: `bearer ${jwt}`
+
+      try{
+        const jwt = await AsyncStorage.getItem("jwt")
+        if(jwt === null){
+          setJwtFlag(false)
+        }else{
+          setJwtFlag(true)
         }
+        const res = await axios.get("http://95.217.197.177:80/account/me", {
+          headers: {
+            authorization: `bearer ${jwt}`
+          }
+        }
+        )
+        console.log("88888", res.data.user)
+       const user = res.data.user;
+       if(user){
+        setUserFlag(true)
+       }else{
+        setUserFlag(false)
+       }
+        seLoginUser(user)
+        if (user.pin === "1" && existing) {
+          setCreatePin(true)
+        } else {
+  
+        }
+        setEthereums(ethereum.sdk.getProvider())
+        console.log("66666666",ethereum.sdk.getProvider())
+      }catch(e){
+       
+          setUserFlag(false)
+
+          setEthereums(ethereum.sdk.getProvider())
+          console.log("66666666",ethereum.sdk.getProvider())
       }
-      )
-      console.log("88888", res.data)
-     const user = res.data.user;
-     seLoginUser(user)
-      if (user.pin === "1") {
-        setCreatePin(true)
-      } else {
-
-      }
-
-
-    }
+    
+    } 
     getPin()
 
-  }, [])
+  }, [signinFlag])
 
 
 
@@ -117,6 +146,8 @@ const CreatePINView = props => {
         await AsyncStorage.setItem("current",JSON.stringify(loginUser))
 
         loginSuccess({data:loginUser});
+      } else{
+        setWrongPin(true)
       }
     }
     console.log('Full pin:', pin);
@@ -141,9 +172,77 @@ const CreatePINView = props => {
     }
   };
 
-  const handleContinue = () => {
-    navigation.navigate("CreateNickName")
+  const handlemetamask = async () => {
+    try {
+      if (!ethereums.isConnected()) {
+        console.log("dfdf", ethereums)
+        const result = await ethereums.request({ method: 'eth_requestAccounts' });
+        console.log('RESULT', result?.[0], ethereums.selectedAddress);
+        AsyncStorage.setItem("currentAddress", result?.[0])
+        const provider = new ethers.providers.Web3Provider(ethereums);
+        const address = '0x735951C5519704203a1e76ef5251A3D9fe3ED61f';
+
+        // Get the balance for the address
+        provider.getBalance(address)
+          .then(balance => {
+            console.log(`Balance for ${address}: ${ethers.utils.formatEther(balance)} ETH`);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+          setConntected(true)
+
+    }else{
+      sign()
+    }
+
+    } catch (e) {
+      console.log('ERROR', e);
+    }
+
   }
+
+
+  const sign = async () => {
+    var nonce1 = "12";
+    if (ethereums.isConnected()) {
+      try{
+        const address = await AsyncStorage.getItem("currentAddress")
+        console.log("33333333333333333333333333333",address)
+        const res = await axios.post("http://95.217.197.177:80/account/restoreaccount", {
+          address: address
+        })
+        console.log("666666666666666666666677",res.data)
+        setNonce(res.data.nonce)
+        setExisting(res.data.existing)
+        nonce1 = res.data.nonce;
+        console.log(nonce1,"ddd")
+        const signatureBuffer = Buffer.from(nonce1, 'hex');
+        const signatureString = signatureBuffer.toString('base64');
+  
+        const params = [address, `Signing to Office: ${nonce1}`];
+        const method = 'personal_sign';
+        console.log("11111111111111111", signatureString)
+  
+        const resp = await ethereums.request({ method, params });
+  
+        console.log("sign data", resp)
+  
+        const res1 = await axios.post("http:///95.217.197.177:80/account/signin", {
+          address: address,
+          signature: resp,
+        })
+        AsyncStorage.setItem("jwt", JSON.stringify(res1.data.jwt))
+        setSigninFlag(signinFlag +1)
+      }catch(e) {
+        const result = await ethereums.request({ method: 'eth_requestAccounts' });
+        console.log('RESULT', result?.[0], ethereums.selectedAddress);
+        await AsyncStorage.setItem("currentAddress",result?.[0])
+      }
+    
+    
+    }
+  };
 
 
 
@@ -179,7 +278,7 @@ const CreatePINView = props => {
             <View style={styles.formContainer}>
               <View style={styles.description}>
                 <Text style={styles.loginText}>
-                  {!createPin ? <> {i18n.t('Enter_your')} </> : (!fullPin ? <>{i18n.t(' Create_a')} </> : <>{i18n.t('This_is_your')} </>)}  <Text style={{ fontWeight: '700' }}>{i18n.t('digit_code6')}</Text>
+                  {!createPin ? <> {i18n.t('Enter_your')} </> : (!fullPin ? <>{i18n.t('Create_a')} </> : <>{i18n.t('This_is_your')} </>)}  <Text style={{ fontWeight: '700' }}>{i18n.t('digit_code6')}</Text>
                 </Text>
               </View>
               <View
@@ -210,6 +309,22 @@ const CreatePINView = props => {
                   />
                 ))}
               </View>
+              {
+                wrongPin &&
+              <Text style ={styles.wrongPinText}>You've entered wrong pin!</Text>
+              }
+              {
+                !jwtFlag &&
+              <Text style ={styles.wrongPinText}>You need to  login to the app first </Text>
+              }
+              {
+               !wrongPin && userFlag &&
+              <Text style ={styles.wrongPinText}>Plese enter Pin</Text>
+              }
+              {
+                !existing &&
+              <Text style ={styles.wrongPinText}>this is not a registered user account, you need to connect registered wallet</Text>
+              }
             </View>
           </ScrollView>
         </KeyboardView>
@@ -224,9 +339,9 @@ const CreatePINView = props => {
             marginBottom: 30,
             borderRadius: 43,
           }}>
-          <TouchableOpacity disabled={!fullPin} style={styles.registerButton} onPress={handleContinue}>
+          <TouchableOpacity disabled={userFlag && existing} style={styles.registerButton} onPress={handlemetamask}>
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              <Text style={styles.registerText}>{i18n.t('CONTINUE')}</Text>
+              <Text style={styles.registerText}>{ethereums?<>{!connected? <Text>Connect</Text>:<Text>Signin</Text>}</>:<Text>Connect</Text>}</Text>
             </View>
           </TouchableOpacity>
         </LinearGradient>
@@ -235,9 +350,13 @@ const CreatePINView = props => {
   );
 };
 
+
+const mapStateToProps = state => ({
+  ethereum: state.app.ethereum
+});
 const mapDispatchToProps = dispatch => ({
   loginSuccess: params => dispatch(loginSuccessAction(params)),
   appStart: params => dispatch(appStartAction(params)),
 });
 
-export default connect(null, mapDispatchToProps)(withTheme(CreatePINView));
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(CreatePINView));

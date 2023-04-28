@@ -33,6 +33,7 @@ import OptionCardBtn from '../../containers/OptionCardBtn';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 const SidebarView = props => {
   const { user, theme, navigation } = props;
@@ -55,7 +56,7 @@ const SidebarView = props => {
     {
       id: 'rewards',
       name: 'Rewards',
-      subItems: ['Direct', 'Empates', "Igualacion", "Range", 'Annual', "Embassador"],
+      subItems: ['Direct', 'Empates', "Igualacion", "Range", "Team", 'Sales', 'Annual', "Embassador"],
     },
     {
       id: 'my_team',
@@ -65,7 +66,7 @@ const SidebarView = props => {
     {
       id: 'my_data',
       name: 'My data',
-      subItems: ['Edit PIN', 'Edit My Information', 'Edit Wallet'],
+      subItems: ['Edit PIN', 'Edit My Information'],
       icon: '',
       route: '',
       routes: [''],
@@ -81,7 +82,6 @@ const SidebarView = props => {
   ];
   const [show, setShow] = useState(0);
   const [users, setUsers] = useState()
-
   useEffect(() => {
     const getuser = async () => {
       const userString = await AsyncStorage.getItem("current")
@@ -96,6 +96,10 @@ const SidebarView = props => {
     logout()
 
   };
+  const navigate = useNavigation()
+  const handlePress = () => {
+    navigate.navigate('ReferralView')
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -109,14 +113,14 @@ const SidebarView = props => {
           <View
             style={styles.error}
           >
-            <Image source = {images.profile_image6} style = {styles.image}></Image>
-         <View style ={{flexDirection:"column", marginLeft:3,}}>
-            <Text>BIENVENIDO 🔥</Text>
-            {users && <Text style={styles.nickname}>{users.nickname}</Text>}
-         </View>
+            <Image source={images.profile_image6} style={styles.image}></Image>
+            <View style={{ flexDirection: "column", marginLeft: 3, }}>
+              <Text>BIENVENIDO 🔥</Text>
+              {users && <Text style={styles.nickname}>{users.nickname}</Text>}
+            </View>
           </View>
-          <View style = {styles.horizonLine}/>
-          <View style={styles.profileInnerContainer}>
+          <View style={styles.horizonLine} />
+          <TouchableOpacity style={styles.profileInnerContainer} onPress = {handlePress}>
             <LinearGradient
               colors={['#6da0ee', '#a755ff']}
               start={{ x: 0, y: 0.5 }}
@@ -140,7 +144,7 @@ const SidebarView = props => {
                 </Text>
               </View>
             </LinearGradient>
-          </View>
+          </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => navigation.closeDrawer()}

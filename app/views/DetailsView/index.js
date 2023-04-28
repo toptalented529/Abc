@@ -44,7 +44,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const DetailsView = props => {
 
   const tabBarHeight = useBottomTabBarHeight();
-
+  const {height} = Dimensions.get("screen")
   const navigation = useNavigation();
   const [state, setState] = useState({
     refreshing: false,
@@ -54,7 +54,7 @@ const DetailsView = props => {
   const {loading, isUpdating, refreshing} = state;
 
   return (
-    <MainScreen navigation={navigation} style={{backgroundColor: '#141436',paddingBottom:tabBarHeight+15,}}>
+    <MainScreen navigation={navigation} style={{backgroundColor: '#141436',paddingBottom:height * 0.02 + 31}}>
       <ImageBackground
        source={images.home_background}
        style={styles.backgroundImage}
@@ -63,7 +63,7 @@ const DetailsView = props => {
       <ScrollView>
 
       {isUpdating && (
-        <ActivityIndicator absolute theme={theme} size={'large'} />
+        <ActivityIndicator absolute theme={"light"} size={'large'} />
       )}
       <BalanceDetail />
       <View style={styles.btnContainer}>

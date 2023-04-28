@@ -43,6 +43,12 @@ import GenuView from '../views/GenuView';
 import RewardsView from '../views/RewardsView';
 import RewardsDetailView from '../views/RewardsDetailView';
 import AuthorizeView from '../views/AuthorizeView';
+import MatchingRewardView from '../views/MatchingRewardView';
+import MatchingRewardDetailView from '../views/MatchingRewardDetailView';
+import EditNicknameView from '../views/EditNicknameView';
+import ReferralView from '../views/ReferralView';
+import RequireUneView from '../views/RequireUneView';
+import RequirePaymentView from '../views/RequirePaymentView';
 
 const Tab = createBottomTabNavigator();
 const Inside = createStackNavigator();
@@ -160,6 +166,27 @@ const TabStack = () => {
         component={AuthorizeView}
         options={{headerShown: false}}
       />
+      <Tab.Screen
+        name="MatchingRewardView"
+        component={MatchingRewardView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="MatchingRewardDetailView"
+        component={MatchingRewardDetailView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="EditNicknameView"
+        component={EditNicknameView}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="ReferralView"
+        component={ReferralView}
+        options={{headerShown: false}}
+      />
+     
     </Tab.Navigator>
   );
 };

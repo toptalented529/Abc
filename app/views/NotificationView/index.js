@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
+  Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
@@ -61,13 +62,12 @@ const NotificationView = props => {
     },
   ];
   const currentDate = 15;
-
-  const tabBarHeight = useBottomTabBarHeight();
+  const {height} = Dimensions.get("screen")
 
   return (
     <MainScreen
-      style={{backgroundColor: COLOR_ULTRAMARINE, paddingBottom: tabBarHeight-30,filter:"blur(250px)"}}>
-      <View style={{backgroundColor: COLOR_DARKBLACK, marginBottom: 20,borderBottomLeftRadius:30,borderBottomRightRadius:30}}>
+      style={{backgroundColor: COLOR_ULTRAMARINE, paddingBottom:height * 0.02 + 31 ,filter:"blur(250px)"}}>
+      <View style={{backgroundColor: COLOR_DARKBLACK, marginBottom: 10,borderBottomLeftRadius:30,borderBottomRightRadius:30}}>
         <StatusBar />
         <MainHeader />
         <View style={styles.notificationBox}>

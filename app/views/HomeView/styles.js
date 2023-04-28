@@ -288,6 +288,7 @@ export default StyleSheet.create({
     resizeMode:"cover",
     justifyContent:"center",
     height:"125%",
+  
   },
   cardItems : {
     flex:0,
